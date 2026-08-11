@@ -1,5 +1,10 @@
+import sys
 import os
 from pathlib import Path
+
+# Fix for Vercel deployment: Add the 'server' folder to Python's import path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
