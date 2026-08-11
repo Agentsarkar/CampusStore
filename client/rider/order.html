@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Active Delivery Workflow — Campus Rider</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Isolated Rider CSS -->
+    <link rel="stylesheet" href="css/rider.css">
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] min-h-screen flex flex-col font-sans selection:bg-[#D7F000] selection:text-[#111713]">
+
+    <!-- Header Navigation Bar -->
+    <header class="bg-white border-b border-[#E8E7DF] sticky top-0 z-40">
+        <div class="max-w-md mx-auto px-4 py-3.5 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-[#004D2B] text-white flex items-center justify-center font-extrabold text-sm shadow-xs">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <circle cx="5.5" cy="17.5" r="2.5"/>
+                        <circle cx="18.5" cy="17.5" r="2.5"/>
+                        <path d="M15 6h2.5l2 3 1.5 3.5h-5.5"/>
+                        <path d="M5.5 17.5L8 10h5l2.5 7.5"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-sm font-extrabold tracking-tight text-[#111713] block leading-tight">CAMPUS <span class="text-[#004D2B]">RIDER</span></span>
+                    <span id="page-header-subtitle" class="text-[10px] font-semibold text-[#526056] tracking-wider uppercase block">Delivery Workflow</span>
+                </div>
+            </a>
+
+            <a href="index.html" class="text-xs font-bold px-3 py-1.5 rounded-xl border border-[#D3D2C8] text-[#111713] hover:bg-gray-100 transition">
+                Dashboard
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-md w-full mx-auto px-4 py-5 space-y-4">
+
+        <!-- ==========================================
+             0. EMPTY STATE CONTAINER (No active order)
+             ========================================== -->
+        <div id="no-order-container" class="hidden campus-card p-8 text-center space-y-4">
+            <div class="w-16 h-16 rounded-full bg-gray-100 text-gray-500 mx-auto flex items-center justify-center">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+            </div>
+            <div class="space-y-1">
+                <h2 class="text-base font-extrabold text-[#111713]">No Active Order</h2>
+                <p class="text-xs text-[#526056]">You currently do not have an active delivery assignment.</p>
+            </div>
+            <div class="pt-2 space-y-2">
+                <a href="index.html" class="block text-xs font-bold text-[#526056] hover:underline pt-1">
+                    Return to Dashboard
+                </a>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             1. ACTIVE ORDER / PICKUP & DELIVERY STATE
+             ========================================== -->
+        <div id="active-order-container" class="space-y-4">
+            
+            <!-- Step Progress Header -->
+            <div class="flex items-center justify-between text-xs font-extrabold px-1">
+                <span id="step-indicator-label" class="step-indicator bg-[#E6F0EB] text-[#004D2B] border border-[#A3D1B9]">
+                    STEP 1: STORE COLLECTION
+                </span>
+                <span class="text-[#8A988E]">Campus Express Fleet</span>
+            </div>
+
+            <!-- Top Banner Header: Order ID & Status -->
+            <div id="order-hero-banner" class="campus-card p-5 bg-gradient-to-r from-slate-900 to-[#111713] text-white space-y-2">
+                <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#D7F000]">ACTIVE ASSIGNMENT</span>
+                    <span id="order-status-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#004D2B] text-white border border-[#A3D1B9]">
+                        ACCEPTED
+                    </span>
+                </div>
+                <div class="flex items-baseline justify-between pt-1">
+                    <div>
+                        <span class="text-[11px] text-gray-400 block font-medium">Order ID</span>
+                        <h1 id="order-id-text" class="text-xl font-black text-white tracking-tight truncate max-w-[200px]">ORD-10516</h1>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[11px] text-gray-400 block font-medium">Reward</span>
+                        <span id="order-reward-text" class="text-sm font-extrabold text-[#D7F000]">₹20</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Store Pickup Card (Details Loaded ONLY from rider/config/stores.json) -->
+            <div id="store-details-card" class="campus-card p-5 space-y-3">
+                <div class="flex items-center gap-2.5 border-b border-[#E8E7DF] pb-3">
+                    <div class="w-8 h-8 rounded-xl bg-[#E6F0EB] text-[#004D2B] flex items-center justify-center font-bold flex-shrink-0">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                    </div>
+                    <div class="overflow-hidden">
+                        <span class="text-[10px] font-extrabold text-[#004D2B] uppercase tracking-wider block">Pickup Store Location</span>
+                        <h2 id="store-name-text" class="text-sm font-extrabold text-[#111713] truncate">Loading Store Config...</h2>
+                    </div>
+                </div>
+
+                <div class="space-y-2 text-xs">
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#8A988E] font-medium flex-shrink-0">Counter / Location:</span>
+                        <span id="store-location-text" class="font-bold text-[#111713] break-words">Loading...</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#8A988E] font-medium flex-shrink-0">Store Contact:</span>
+                        <span id="store-contact-text" class="font-bold text-[#111713]">Loading...</span>
+                    </div>
+                    <div id="store-instructions-row" class="p-2.5 rounded-xl bg-[#FAF9F3] border border-[#E8E7DF] text-[11px] text-[#526056] font-medium mt-1">
+                        <strong>Collection Note:</strong> <span id="store-instructions-text">Show Order ID at counter before pickup.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collection / Delivery Instructions Checklist Card -->
+            <div id="checklist-card" class="campus-card p-5 space-y-3">
+                <div class="flex items-center gap-2 border-b border-[#E8E7DF] pb-2.5">
+                    <div class="w-6 h-6 rounded-lg bg-[#E6F0EB] text-[#004D2B] flex items-center justify-center font-bold text-xs">
+                        📋
+                    </div>
+                    <h3 id="checklist-title" class="text-xs font-extrabold text-[#111713] uppercase tracking-wider">Pickup Checklist</h3>
+                </div>
+                <div id="checklist-items" class="space-y-2 text-xs text-[#526056]">
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#004D2B] font-bold">✓</span>
+                        <p>Proceed to canteen pickup counter.</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#004D2B] font-bold">✓</span>
+                        <p>Verify item contents with canteen staff.</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#004D2B] font-bold">✓</span>
+                        <p>Store meal securely in thermal insulated bag.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Items Card -->
+            <div class="campus-card p-5 space-y-3">
+                <div class="flex items-center justify-between border-b border-[#E8E7DF] pb-2.5">
+                    <h3 class="text-xs font-extrabold text-[#111713] uppercase tracking-wider">Order Items</h3>
+                    <span class="text-[11px] font-bold text-[#526056]" id="items-count-text"></span>
+                </div>
+
+                <div id="items-list" class="space-y-2 text-xs">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Customer Destination Card -->
+            <div id="destination-card" class="campus-card p-5 space-y-3">
+                <div class="flex items-center gap-2 border-b border-[#E8E7DF] pb-2.5">
+                    <div class="w-7 h-7 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center font-bold flex-shrink-0">
+                        📍
+                    </div>
+                    <h3 class="text-xs font-extrabold text-[#111713] uppercase tracking-wider">Delivery Destination</h3>
+                </div>
+                <div class="text-xs text-[#526056] space-y-1 mb-2">
+                    <span id="dest-address-text" class="font-bold text-[#111713] block">Hostel Block B — Ground Floor Lobby</span>
+                    <span id="dest-notes-text" class="text-[11px] text-[#526056] block">Customer Note: Call upon arrival at main hostel gate</span>
+                </div>
+                <!-- Customer Contact Block -->
+                <div class="flex items-center justify-between p-3 bg-[#FAF9F3] border border-[#E8E7DF] rounded-xl mt-2 hidden" id="customer-contact-block">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-[#E6F0EB] text-[#004D2B] flex items-center justify-center font-extrabold text-xs">
+                            <span id="customer-initial">S</span>
+                        </div>
+                        <div>
+                            <span id="customer-name-text" class="font-bold text-[#111713] text-xs block">Student Name</span>
+                            <span class="text-[10px] text-[#8A988E]">Customer</span>
+                        </div>
+                    </div>
+                    <a id="customer-call-btn" href="#" class="w-8 h-8 rounded-full bg-[#004D2B] hover:bg-[#003B21] text-white flex items-center justify-center transition shadow-md">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- SLIDE TO ACTION CONTROL CONTAINER -->
+            <div class="pt-2 space-y-3">
+                <!-- 1. Slide to Picked (When state is ACCEPTED) -->
+                <div id="slide-picked-wrapper">
+                    <div class="slide-action-track" id="slide-picked-track">
+                        <div class="slide-action-progress" id="slide-picked-progress"></div>
+                        <span class="slide-action-text">Slide to Pick Order →</span>
+                        <div class="slide-action-thumb" id="slide-picked-thumb">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Slide to Deliver (When state is PICKED) -->
+                <div id="slide-deliver-wrapper" class="hidden">
+                    <div class="slide-action-track" id="slide-deliver-track" style="background-color: #004D2B;">
+                        <div class="slide-action-progress" id="slide-deliver-progress"></div>
+                        <span class="slide-action-text">Slide to Complete Delivery →</span>
+                        <div class="slide-action-thumb" id="slide-deliver-thumb">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ==========================================
+             2. COMPLETED STATE OVERLAY / CARD
+             ========================================== -->
+        <div id="completed-order-container" class="hidden campus-card p-6 text-center space-y-5">
+            <div class="w-16 h-16 rounded-full bg-emerald-100 text-[#004D2B] mx-auto flex items-center justify-center shadow-lg">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+            </div>
+
+            <div class="space-y-1">
+                <span class="inline-block px-3 py-1 rounded-full text-[11px] font-extrabold bg-[#E6F0EB] text-[#004D2B] uppercase tracking-wider border border-[#A3D1B9]">
+                    DELIVERY COMPLETED
+                </span>
+                <h2 class="text-xl font-black text-[#111713] pt-1">Order Delivered Successfully!</h2>
+                <p class="text-xs text-[#526056]">Awesome job! The campus order has been handed over safely.</p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#FAF9F3] border border-[#E8E7DF] text-left text-xs space-y-2">
+                <div class="flex justify-between border-b border-[#E8E7DF] pb-1.5">
+                    <span class="text-[#8A988E]">Order ID:</span>
+                    <strong id="completed-order-id" class="text-[#111713]">ORD-10516</strong>
+                </div>
+                <div class="flex justify-between border-b border-[#E8E7DF] pb-1.5">
+                    <span class="text-[#8A988E]">Store:</span>
+                    <strong id="completed-store-name" class="text-[#111713]">Central Campus Canteen</strong>
+                </div>
+                <div class="flex justify-between border-b border-[#E8E7DF] pb-1.5">
+                    <span class="text-[#8A988E]">Destination:</span>
+                    <strong id="completed-dest" class="text-[#111713]">Hostel Block B</strong>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-[#8A988E]">Earnings Credited:</span>
+                    <strong id="completed-reward" class="text-[#004D2B]">₹--</strong>
+                </div>
+            </div>
+
+            <button type="button" onclick="finishCompletedOrder()" class="w-full py-3.5 px-4 bg-[#004D2B] hover:bg-[#003B21] text-white font-extrabold text-sm rounded-xl shadow-md transition active:scale-[0.99]">
+                Return to Online Dashboard →
+            </button>
+        </div>
+
+    </main>
+
+    <!-- OTP Verification Modal -->
+    <div id="otp-modal-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 flex items-center justify-center hidden">
+        <div class="bg-white w-[90%] max-w-sm rounded-[24px] shadow-2xl overflow-hidden p-6 text-center">
+            <div class="w-16 h-16 rounded-full bg-[#004D2B]/10 text-[#004D2B] mx-auto flex items-center justify-center mb-4">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </div>
+            
+            <h3 class="text-lg font-black text-[#111713]">Verify Delivery</h3>
+            <p class="text-xs text-[#526056] mt-1 mb-5">Ask the customer for their 6-digit delivery PIN to complete this order.</p>
+            
+            <input type="text" id="delivery-otp-input" class="w-full text-center text-2xl font-black tracking-widest p-3 bg-[#FAF9F3] border border-[#E8E7DF] rounded-xl focus:outline-none focus:border-[#004D2B]" placeholder="------" maxlength="6" />
+            <p id="otp-error-msg" class="text-xs text-red-500 font-bold mt-2 hidden">Invalid PIN. Please try again.</p>
+            
+            <div class="mt-6 flex gap-3">
+                <button type="button" onclick="cancelOtpModal()" class="flex-1 py-3 bg-[#E6F0EB] text-[#004D2B] font-extrabold rounded-xl hover:bg-[#D1E6DB] transition active:scale-95">Cancel</button>
+                <button type="button" onclick="verifyAndCompleteOrder()" id="otp-verify-btn" class="flex-1 py-3 bg-[#004D2B] text-white font-extrabold rounded-xl hover:bg-[#003B21] transition active:scale-95 shadow-md">Verify</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-xs text-[#8A988E] border-t border-[#E8E7DF] bg-white mt-auto">
+        Campus Rider Module &copy; 2026 — Isolated Frontend State (Demo)
+    </footer>
+
+    <script src="js/rider.js"></script>
+    <script>
+        let isProcessingSlide = false;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (!localStorage.getItem('campus_rider_access_token') || !state.user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            if (state.user.status === 'PENDING') {
+                window.location.href = 'pending.html';
+                return;
+            }
+
+            if (!state.activeOrder) {
+                renderEmptyState();
+                return;
+            }
+
+            await renderOrderWorkflowState();
+
+            // Initialize Slide to Picked
+            initSlideToAction('slide-picked-track', 'slide-picked-thumb', 'slide-picked-progress', async () => {
+                if (isProcessingSlide) return;
+                isProcessingSlide = true;
+
+                const activeOrder = state.activeOrder;
+                await updateOrderStatusApi(activeOrder.id, 'OUT_FOR_DELIVERY');
+                
+                if (state.activeOrder) {
+                    state.activeOrder.status = 'OUT_FOR_DELIVERY';
+                    saveState();
+                }
+                
+                await renderOrderWorkflowState();
+                isProcessingSlide = false;
+            });
+
+            // Initialize Slide to Complete Delivery
+            initSlideToAction('slide-deliver-track', 'slide-deliver-thumb', 'slide-deliver-progress', async () => {
+                if (isProcessingSlide) return;
+                // Open OTP Modal instead of completing immediately
+                document.getElementById('otp-modal-backdrop').classList.remove('hidden');
+                document.getElementById('delivery-otp-input').value = '';
+                document.getElementById('otp-error-msg').classList.add('hidden');
+                document.getElementById('delivery-otp-input').focus();
+            });
+        });
+
+        function cancelOtpModal() {
+            document.getElementById('otp-modal-backdrop').classList.add('hidden');
+            // Reset slider thumb
+            const thumb = document.getElementById('slide-deliver-thumb');
+            const progress = document.getElementById('slide-deliver-progress');
+            if(thumb && progress) {
+                thumb.style.transform = 'translateX(0px)';
+                progress.style.width = '0px';
+                thumb.classList.remove('success');
+            }
+        }
+
+        async function verifyAndCompleteOrder() {
+            if (isProcessingSlide) return;
+            
+            const otpInput = document.getElementById('delivery-otp-input').value.trim();
+            if (otpInput.length < 4) {
+                const errMsg = document.getElementById('otp-error-msg');
+                errMsg.textContent = "Please enter the full PIN.";
+                errMsg.classList.remove('hidden');
+                return;
+            }
+
+            isProcessingSlide = true;
+            const btn = document.getElementById('otp-verify-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Verifying...';
+            btn.disabled = true;
+
+            const activeOrder = state.activeOrder;
+            try {
+                await updateOrderStatusApi(activeOrder.id, 'COMPLETED', otpInput);
+
+                // Render Completed Overlay
+                if (state.activeOrder) {
+                    document.getElementById('completed-order-id').textContent = activeOrder.orderId || activeOrder.id;
+                    document.getElementById('completed-reward').textContent = activeOrder.reward || '₹20';
+                    document.getElementById('completed-store-name').textContent = activeOrder.store_name || "Campus Outlet";
+                    document.getElementById('completed-dest').textContent = activeOrder.destination || "Campus Location";
+                }
+                
+                // Add earnings
+                if (state.user) {
+                    state.user.earnings = (parseFloat(state.user.earnings) || 0) + 20;
+                }
+                
+                state.activeOrder = null;
+                saveState();
+
+                document.getElementById('otp-modal-backdrop').classList.add('hidden');
+                document.getElementById('active-order-container').classList.add('hidden');
+                document.getElementById('completed-order-container').classList.remove('hidden');
+            } catch (err) {
+                const errMsg = document.getElementById('otp-error-msg');
+                errMsg.textContent = err.message || "Invalid PIN. Please try again.";
+                errMsg.classList.remove('hidden');
+                cancelOtpModal();
+            } finally {
+                isProcessingSlide = false;
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        function renderEmptyState() {
+            document.getElementById('no-order-container').classList.remove('hidden');
+            document.getElementById('active-order-container').classList.add('hidden');
+            document.getElementById('completed-order-container').classList.hidden;
+        }
+
+        async function renderOrderWorkflowState() {
+            const activeOrder = state.activeOrder;
+            if (!activeOrder) {
+                renderEmptyState();
+                return;
+            }
+
+            document.getElementById('no-order-container').classList.add('hidden');
+            document.getElementById('completed-order-container').classList.add('hidden');
+            document.getElementById('active-order-container').classList.remove('hidden');
+
+            // Set Header Order Values
+            document.getElementById('order-id-text').textContent = activeOrder.orderId || activeOrder.id;
+            document.getElementById('order-reward-text').textContent = activeOrder.reward || '₹20';
+
+            // Load Store Details strictly from the API order details
+            const matchedStore = {
+                name: activeOrder.store_name || "Campus Outlet",
+                location: activeOrder.store_address || "Delivery Location",
+                contact: "Manager Ext",
+                instructions: "Show your digital Rider ID at pickup."
+            };
+
+            document.getElementById('store-name-text').textContent = matchedStore.name;
+            document.getElementById('store-location-text').textContent = matchedStore.location;
+            document.getElementById('store-contact-text').textContent = matchedStore.contact;
+            document.getElementById('store-instructions-text').textContent = matchedStore.instructions;
+
+            // Set Destination Details
+            document.getElementById('dest-address-text').textContent = activeOrder.destination || 'Campus Location';
+            document.getElementById('dest-notes-text').textContent = activeOrder.customerNotes || 'Call upon arrival';
+
+            // Render Items
+            const itemsList = document.getElementById('items-list');
+            const itemsCount = document.getElementById('items-count-text');
+            itemsList.innerHTML = '';
+            
+            if (activeOrder.items && activeOrder.items.length > 0) {
+                itemsCount.textContent = `${activeOrder.items.length} Item(s)`;
+                activeOrder.items.forEach(item => {
+                    itemsList.innerHTML += `
+                    <div class="flex items-center justify-between p-2.5 rounded-xl bg-[#FAF9F3] border border-[#E8E7DF]">
+                        <span class="font-extrabold text-[#111713] truncate max-w-[220px]">${item.quantity}x ${item.name}</span>
+                        <span class="item-status-pill px-2 py-0.5 rounded text-[10px] font-extrabold bg-[#E6F0EB] text-[#004D2B]">Ready</span>
+                    </div>`;
+                });
+            } else {
+                itemsCount.textContent = '0 Items';
+                itemsList.innerHTML = '<span class="text-gray-400">No items</span>';
+            }
+
+            // Render details based on status ('ACCEPTED' vs 'PICKED')
+            const stepLabel = document.getElementById('step-indicator-label');
+            const statusBadge = document.getElementById('order-status-badge');
+            const checklistTitle = document.getElementById('checklist-title');
+            const checklistItems = document.getElementById('checklist-items');
+            const slidePickedWrapper = document.getElementById('slide-picked-wrapper');
+            const slideDeliverWrapper = document.getElementById('slide-deliver-wrapper');
+            const itemStatusPill = document.getElementById('item-status-pill');
+
+            // Populate Customer Contact Block
+            const nameToDisplay = activeOrder.customerName || "Customer";
+            document.getElementById('customer-name-text').textContent = nameToDisplay;
+            document.getElementById('customer-initial').textContent = nameToDisplay.charAt(0).toUpperCase();
+            
+            const callBtn = document.getElementById('customer-call-btn');
+            if (activeOrder.customerPhone) {
+                callBtn.href = `tel:${activeOrder.customerPhone}`;
+                callBtn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                callBtn.removeAttribute('href');
+                callBtn.classList.add('opacity-50', 'pointer-events-none');
+            }
+
+            if (activeOrder.status === 'OUT_FOR_DELIVERY') {
+                stepLabel.textContent = 'STEP 2: EN ROUTE TO CUSTOMER';
+                stepLabel.className = 'step-indicator bg-[#D7F000] text-[#111713] border border-amber-300';
+                
+                statusBadge.textContent = 'ORDER PICKED';
+                statusBadge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#D7F000] text-[#111713]';
+
+                checklistTitle.textContent = 'Delivery Checklist';
+                checklistItems.innerHTML = `
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#004D2B] font-bold">✓</span>
+                        <p>Navigate safely to ${activeOrder.destination || 'customer location'}.</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#004D2B] font-bold">✓</span>
+                        <p>Call customer upon arrival at destination.</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#004D2B] font-bold">✓</span>
+                        <p>Hand over food package and slide below to complete.</p>
+                    </div>
+                `;
+
+                document.querySelectorAll('.item-status-pill').forEach(pill => {
+                    pill.textContent = 'In Thermal Bag';
+                    pill.className = 'item-status-pill px-2 py-0.5 rounded text-[10px] font-extrabold bg-blue-100 text-blue-800';
+                });
+
+                document.getElementById('customer-contact-block').classList.remove('hidden');
+                slidePickedWrapper.classList.add('hidden');
+                slideDeliverWrapper.classList.remove('hidden');
+            } else {
+                stepLabel.textContent = 'STEP 1: STORE COLLECTION';
+                stepLabel.className = 'step-indicator bg-[#E6F0EB] text-[#004D2B] border border-[#A3D1B9]';
+
+                statusBadge.textContent = 'PROCESSING';
+                statusBadge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#004D2B] text-white border border-[#A3D1B9]';
+
+                checklistTitle.textContent = 'Pickup Checklist';
+                checklistItems.innerHTML = `
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#004D2B] font-bold">✓</span>
+                        <p>Proceed to canteen pickup counter.</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#004D2B] font-bold">✓</span>
+                        <p>Verify item contents with canteen staff.</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <span class="text-[#004D2B] font-bold">✓</span>
+                        <p>Store meal securely in thermal insulated bag.</p>
+                    </div>
+                `;
+
+                if (itemStatusPill) {
+                    itemStatusPill.textContent = 'Ready';
+                    itemStatusPill.className = 'px-2 py-0.5 rounded text-[10px] font-extrabold bg-[#E6F0EB] text-[#004D2B]';
+                }
+
+                document.getElementById('customer-contact-block').classList.add('hidden');
+                slidePickedWrapper.classList.remove('hidden');
+                slideDeliverWrapper.classList.add('hidden');
+            }
+        }
+
+        function finishCompletedOrder() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
