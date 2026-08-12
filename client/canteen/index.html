@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Canteen — Order Food</title>
+    <meta name="description" content="Order from your campus canteen outlets and get a real-time token.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .slide-in { animation: slideIn 0.3s ease; }
+    </style>
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] min-h-screen font-sans">
+
+    <div id="header-container"></div>
+
+    <main class="max-w-5xl mx-auto px-4 py-6 pb-32">
+
+        <!-- Hero Banner -->
+        <div class="campus-hero-banner p-6 mb-6 flex items-center justify-between gap-4">
+            <div>
+                <span class="inline-block bg-[#D7F000] text-[#111713] text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2">Campus Canteen</span>
+                <h1 class="text-2xl font-extrabold text-white tracking-tight">Order & Get Your Token</h1>
+                <p class="text-xs text-[#E6F0EB] mt-1">Select an outlet, add items, place order — token ready instantly.</p>
+            </div>
+            <div class="hidden sm:flex flex-col items-center gap-1">
+                <div class="text-3xl font-extrabold text-[#D7F000]">#</div>
+                <span class="text-[10px] text-[#E6F0EB] font-bold uppercase tracking-wider">Your Token</span>
+            </div>
+        </div>
+
+        <!-- Outlet Selector -->
+        <div class="campus-card p-4 mb-6">
+            <h2 class="text-xs font-extrabold text-[#526056] uppercase tracking-wider mb-3">Choose Outlet</h2>
+            <div id="outlets-row" class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+                <p class="text-xs text-[#8A988E] py-2">Loading outlets...</p>
+            </div>
+        </div>
+
+        <!-- Menu + Cart Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Menu Items -->
+            <div class="lg:col-span-2 space-y-4">
+                <div id="menu-section" class="campus-card p-5">
+                    <p class="text-sm text-[#526056] text-center py-6">Select an outlet above to see the menu.</p>
+                </div>
+            </div>
+
+            <!-- Cart Sidebar -->
+            <div class="campus-card p-4 h-fit space-y-4 sticky top-20">
+                <h2 class="text-xs font-extrabold text-[#526056] uppercase tracking-wider border-b border-[#E8E7DF] pb-3">Your Order</h2>
+                <div id="cart-items-list" class="space-y-2 min-h-[80px]">
+                    <p class="text-xs text-[#8A988E] py-4 text-center">Cart empty</p>
+                </div>
+                <div class="border-t border-[#E8E7DF] pt-3 space-y-2">
+                    <div class="flex justify-between text-xs font-bold">
+                        <span class="text-[#526056]">Total</span>
+                        <span class="text-[#111713]" id="cart-total">₹0</span>
+                    </div>
+                    <button onclick="proceedToCheckout()" id="checkout-btn" class="w-full bg-[#004D2B] hover:bg-[#003B21] text-white font-bold py-3 rounded-xl text-sm transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        Place Order & Get Token
+                    </button>
+                    <button onclick="clearCanteenCart()" class="w-full text-xs font-bold text-rose-600 hover:underline py-1">Clear Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Token Success Modal -->
+    <div id="token-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 hidden">
+        <div class="campus-card max-w-sm w-full p-8 text-center space-y-4 slide-in">
+            <div class="w-20 h-20 rounded-full bg-emerald-50 border-4 border-white shadow-xl flex items-center justify-center mx-auto">
+                <svg class="w-10 h-10 text-[#004D2B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <div>
+                <p class="text-xs font-extrabold text-[#526056] uppercase tracking-wider">Your Token Number</p>
+                <div class="text-7xl font-extrabold text-[#004D2B] my-2" id="token-number-display">--</div>
+                <p class="text-sm font-bold text-[#111713]" id="token-outlet-name">at Nescafe</p>
+            </div>
+            <p class="text-xs text-[#526056]">Show this number at the counter. You can also view it in <strong>My Tokens</strong> tab in your profile.</p>
+            <div class="flex gap-3">
+                <button onclick="closeTokenModal()" class="flex-1 py-2.5 rounded-xl border border-[#E8E7DF] text-sm font-bold text-[#526056] hover:bg-[#FAF9F3] transition">Done</button>
+                <a href="/student/dashboard.html?tab=tokens" class="flex-1 py-2.5 rounded-xl bg-[#004D2B] text-white text-sm font-bold text-center hover:bg-[#003B21] transition">View My Tokens</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Out of Stock Modal -->
+    <div id="out-of-stock-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 hidden">
+        <div class="campus-card max-w-sm w-full p-8 text-center space-y-4 slide-in border border-rose-100">
+            <div class="w-20 h-20 rounded-full bg-rose-50 border-4 border-white shadow-xl flex items-center justify-center mx-auto">
+                <svg class="w-10 h-10 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+            </div>
+            <div>
+                <p class="text-xs font-extrabold text-rose-500 uppercase tracking-wider">Out of Stock</p>
+                <div class="text-lg font-extrabold text-[#111713] mt-2 leading-tight" id="oos-message-display">Not enough stock available.</div>
+            </div>
+            <p class="text-xs text-[#526056]">Please reduce the quantity or remove this item from your cart to proceed with your order.</p>
+            <div class="pt-2">
+                <button onclick="closeOosModal()" class="w-full py-2.5 rounded-xl bg-[#111713] text-white text-sm font-bold text-center hover:bg-[#2b3a30] transition shadow-xs">Okay, got it</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="../shared/js/icons.js"></script>
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api.js"></script>
+    <script src="../shared/js/toast.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="./js/canteen-order.js"></script>
+</body>
+</html>

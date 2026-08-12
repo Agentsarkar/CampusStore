@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operations Console — Campus Admin</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] flex flex-col min-h-screen pb-16 sm:pb-0">
+
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Admin Workspace -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-6 flex flex-col sm:flex-row gap-6">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full sm:w-60 flex-shrink-0 campus-card p-4 h-fit space-y-4">
+            <div class="border-b border-[#E8E7DF] pb-3">
+                <h4 class="font-extrabold text-sm text-[#111713]" id="sidebar-user-name">Admin Console</h4>
+                <span class="text-[10px] font-extrabold text-amber-600 uppercase tracking-wider">CampusOps</span>
+            </div>
+            
+            <nav class="flex sm:flex-col gap-1.5 overflow-x-auto no-scrollbar text-xs">
+                <button onclick="switchTab('products')" id="btn-products" class="tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition flex items-center gap-2">
+                    <i class="fa-solid fa-box-open text-[#8A988E]"></i> Products
+                </button>
+                <button onclick="switchTab('categories')" id="btn-categories" class="tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open text-[#8A988E]"></i> Categories
+                </button>
+                <button onclick="switchTab('riders')" id="btn-riders" class="tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition flex items-center gap-2">
+                    <i class="fa-solid fa-motorcycle text-[#8A988E]"></i> Rider Verifications
+                </button>
+                <button onclick="switchTab('outlets')" id="btn-outlets" class="tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition flex items-center gap-2">
+                    <i class="fa-solid fa-store text-[#8A988E]"></i> Canteen Outlets
+                </button>
+                <a href="../print-operator.html" class="tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#004D2B] bg-[#E6F0EB] hover:bg-[#004D2B] hover:text-white transition flex items-center justify-between group">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-print"></i>
+                        <span>Printing Panel</span>
+                    </div>
+                    <span class="bg-[#004D2B] group-hover:bg-white group-hover:text-[#004D2B] text-white text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase">OPERATOR</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Right Content Section -->
+        <section class="flex-grow campus-card p-6 min-h-[500px]">
+            
+            <!-- 1. Products Tab -->
+            <div id="tab-products" class="tab-content hidden space-y-5">
+                <div class="border-b border-[#E8E7DF] pb-3 flex justify-between items-center">
+                    <h2 class="text-base font-extrabold text-[#111713]">Product Catalog</h2>
+                    <button onclick="toggleProductForm()" class="bg-[#004D2B] hover:bg-[#003B21] text-white font-bold py-1.5 px-3 rounded-xl text-xs transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> Add Product
+                    </button>
+                </div>
+
+                <!-- Add New Product Form -->
+                <form id="product-form" class="hidden space-y-4 p-4 rounded-2xl bg-[#FAF9F3] border border-[#E8E7DF] mb-4">
+                    <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-[#111713]">Create New Product</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="sm:col-span-2">
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Product Name</label>
+                            <input type="text" id="prod-name" required placeholder="e.g. Maggi Masala Noodles" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Category</label>
+                            <select id="prod-category" required class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                                <option value="">Select Category...</option>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Unit</label>
+                            <input type="text" id="prod-unit" required placeholder="e.g. 1 Pack, 500ml" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Price (₹)</label>
+                            <input type="number" id="prod-price" required min="0" placeholder="e.g. 20" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Stock Amount</label>
+                            <input type="number" id="prod-stock" required min="0" placeholder="e.g. 100" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                        </div>
+                        <div class="sm:col-span-1">
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Image URL</label>
+                            <input type="url" id="prod-image" placeholder="https://example.com/image.png" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                        </div>
+                        <div class="sm:col-span-1">
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Or Upload Image</label>
+                            <input type="file" id="prod-image-file" accept="image/*" class="w-full px-3 py-1.5 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B] file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-bold file:bg-[#FAF9F3] file:text-[#004D2B] hover:file:bg-[#E8E7DF]">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Description</label>
+                            <textarea id="prod-desc" required rows="2" placeholder="Brief product description..." class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B] resize-none"></textarea>
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" onclick="toggleProductForm()" class="bg-white border border-[#E8E7DF] text-[#111713] font-bold py-2 px-4 rounded-xl text-xs transition hover:bg-[#FAF9F3]">
+                            Cancel
+                        </button>
+                        <button type="submit" class="bg-[#004D2B] hover:bg-[#003B21] text-white font-bold py-2 px-4 rounded-xl text-xs transition">
+                            Save Product
+                        </button>
+                    </div>
+                </form>
+
+                <div class="overflow-x-auto rounded-xl border border-[#E8E7DF]">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-[#FAF9F3] text-[#526056]">
+                            <tr class="border-b border-[#E8E7DF] text-[10px] font-extrabold uppercase tracking-wider">
+                                <th class="px-4 py-3">Product Name</th>
+                                <th class="px-4 py-3">Category</th>
+                                <th class="px-4 py-3">Price</th>
+                                <th class="px-4 py-3">Stock</th>
+                                <th class="px-4 py-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-tbody" class="divide-y divide-[#E8E7DF]">
+                            <tr><td colspan="5" class="px-4 py-6 text-center text-[#526056]">Loading products...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 3. Riders Tab -->
+            <div id="tab-riders" class="tab-content hidden space-y-5">
+                <div class="border-b border-[#E8E7DF] pb-3 flex justify-between items-center">
+                    <h2 class="text-base font-extrabold text-[#111713]">Pending Rider Applications</h2>
+                </div>
+
+                <div class="overflow-x-auto rounded-xl border border-[#E8E7DF]">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-[#FAF9F3] text-[#526056]">
+                            <tr class="border-b border-[#E8E7DF] text-[10px] font-extrabold uppercase tracking-wider">
+                                <th class="px-4 py-3">Applicant Name</th>
+                                <th class="px-4 py-3">Roll Number</th>
+                                <th class="px-4 py-3">Email / Phone</th>
+                                <th class="px-4 py-3">ID Card</th>
+                                <th class="px-4 py-3 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="riders-tbody" class="divide-y divide-[#E8E7DF]">
+                            <tr><td colspan="5" class="px-4 py-6 text-center text-[#526056]">Loading pending riders...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2. Categories Tab -->
+            <div id="tab-categories" class="tab-content hidden space-y-5">
+                <div class="border-b border-[#E8E7DF] pb-3 flex justify-between items-center">
+                    <h2 class="text-base font-extrabold text-[#111713]">Categories</h2>
+                    <button onclick="toggleCategoryForm()" class="bg-[#004D2B] hover:bg-[#003B21] text-white font-bold py-1.5 px-3 rounded-xl text-xs transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus"></i> Add Category
+                    </button>
+                </div>
+
+                <!-- Add New Category Form -->
+                <form id="category-form" class="hidden space-y-4 p-4 rounded-2xl bg-[#FAF9F3] border border-[#E8E7DF] mb-4">
+                    <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-[#111713]">Create New Category</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Category Name</label>
+                            <input type="text" id="cat-name" required placeholder="e.g. Snacks & Munchies" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Image URL</label>
+                            <input type="url" id="cat-image" placeholder="https://example.com/icon.png" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Or Upload Image</label>
+                            <input type="file" id="cat-image-file" accept="image/*" class="w-full px-3 py-1.5 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B] file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-bold file:bg-[#FAF9F3] file:text-[#004D2B] hover:file:bg-[#E8E7DF]">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Section <span class="text-[9px] font-bold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded ml-1">Required</span></label>
+                            <select id="cat-section" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                                <option value="flash">🛒 Campus Flash (Delivery Store)</option>
+                                <option value="canteen">🍽️ Campus Canteen (Token Outlet)</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Outlet Physical Address (For Riders)</label>
+                            <textarea id="cat-address" rows="2" placeholder="e.g. Campus Canteen, Block B Ground Floor" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B] resize-none"></textarea>
+                        </div>
+                    </div>
+                    <div class="flex justify-end gap-2 pt-2">
+                        <button type="button" onclick="toggleCategoryForm()" class="bg-white border border-[#E8E7DF] text-[#111713] font-bold py-2 px-4 rounded-xl text-xs transition hover:bg-[#FAF9F3]">
+                            Cancel
+                        </button>
+                        <button type="submit" class="bg-[#004D2B] hover:bg-[#003B21] text-white font-bold py-2 px-4 rounded-xl text-xs transition">
+                            Save Category
+                        </button>
+                    </div>
+                </form>
+
+                <div id="categories-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                    <p class="col-span-full text-[#526056] text-xs py-6 text-center">Loading categories...</p>
+                </div>
+            </div>
+
+            <!-- 4. Outlets Tab -->
+            <div id="tab-outlets" class="tab-content hidden space-y-5">
+                <div class="border-b border-[#E8E7DF] pb-3 flex justify-between items-center">
+                    <h2 class="text-base font-extrabold text-[#111713]">Manage Outlet Addresses</h2>
+                </div>
+                
+                <div class="overflow-x-auto rounded-xl border border-[#E8E7DF]">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-[#FAF9F3] text-[#526056]">
+                            <tr class="border-b border-[#E8E7DF] text-[10px] font-extrabold uppercase tracking-wider">
+                                <th class="px-4 py-3">Outlet Name</th>
+                                <th class="px-4 py-3">Physical Address</th>
+                                <th class="px-4 py-3 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="outlets-tbody" class="divide-y divide-[#E8E7DF]">
+                            <tr><td colspan="3" class="px-4 py-6 text-center text-[#526056]">Loading outlets...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Application Scripts -->
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api.js"></script>
+    <script src="../shared/js/toast.js"></script>
+    <script src="../js/app.js"></script>
+    
+    <script>
+        let allCategories = [];
+        let allProducts = [];
+        let currentEditingCategoryId = null;
+        let currentEditingProductId = null;
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            if (!window.campusAuth.requireAdminAuth()) return;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get("tab") || "products";
+            switchTab(tabParam);
+
+            // Fetch user info using existing app.js logic to setup header
+            await window.fetchUserDetails();
+            
+            // Load initial admin data
+            await loadCategories();
+            loadProducts();
+            loadRiders();
+        });
+
+        function switchTab(tabId) {
+            document.querySelectorAll(".tab-content").forEach(el => el.classList.add("hidden"));
+            document.querySelectorAll(".tab-btn").forEach(btn => {
+                btn.className = "tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition flex items-center gap-2";
+                const icon = btn.querySelector("i");
+                if (icon) icon.className = icon.className.replace("text-[#004D2B]", "text-[#8A988E]");
+            });
+
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            const targetBtn = document.getElementById(`btn-${tabId}`);
+            
+            if (targetTab) targetTab.classList.remove("hidden");
+            if (targetBtn) {
+                targetBtn.className = "tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-extrabold bg-[#FAF9F3] text-[#004D2B] border border-[#E8E7DF] transition flex items-center gap-2";
+                const icon = targetBtn.querySelector("i");
+                if (icon) icon.className = icon.className.replace("text-[#8A988E]", "text-[#004D2B]");
+            }
+        }
+
+        // --- FORM TOGGLES ---
+        function toggleProductForm(isEditing = false) {
+            const form = document.getElementById("product-form");
+            form.classList.toggle("hidden");
+            if (!form.classList.contains("hidden")) {
+                populateCategorySelect();
+                if (isEditing !== true) {
+                    form.reset();
+                    currentEditingProductId = null;
+                    form.querySelector("h3").innerText = "Create New Product";
+                }
+            } else {
+                form.reset();
+                currentEditingProductId = null;
+            }
+        }
+
+        function toggleCategoryForm(isEditing = false) {
+            const form = document.getElementById("category-form");
+            form.classList.toggle("hidden");
+            if (!form.classList.contains("hidden")) {
+                if (isEditing !== true) {
+                    form.reset();
+                    currentEditingCategoryId = null;
+                    form.querySelector("h3").innerText = "Create New Category";
+                }
+            } else {
+                form.reset();
+                currentEditingCategoryId = null;
+            }
+        }
+
+        // --- LOAD DATA ---
+        async function loadCategories() {
+            const res = await window.apiFetch("/api/category/get");
+            const grid = document.getElementById("categories-grid");
+            
+            if (res.success && Array.isArray(res.data)) {
+                allCategories = res.data;
+                populateCategorySelect();
+                
+                if (allCategories.length === 0) {
+                    grid.innerHTML = `<p class="col-span-full text-[#526056] text-xs py-6 text-center">No categories found.</p>`;
+                    return;
+                }
+                
+                grid.innerHTML = allCategories.map(cat => `
+                    <div class="border border-[#E8E7DF] rounded-2xl p-3 flex flex-col items-center gap-2 bg-white relative group">
+                        <div class="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                            <button onclick="editCategory('${cat._id}')" class="text-blue-500 hover:bg-blue-50 p-1.5 rounded-full" title="Edit">
+                                <i class="fa-solid fa-pen text-3xs"></i>
+                            </button>
+                            <button onclick="deleteCategory('${cat._id}')" class="text-rose-500 hover:bg-rose-50 p-1.5 rounded-full" title="Delete">
+                                <i class="fa-solid fa-trash text-3xs"></i>
+                            </button>
+                        </div>
+                        ${cat.section === 'canteen' ? '<span class="absolute top-2 left-2 text-[8px] font-bold bg-[#FAF9F3] text-amber-600 px-1 rounded-sm border border-[#E8E7DF]">CANTEEN</span>' : ''}
+                        <img src="${cat.image}" alt="${cat.name}" class="w-12 h-12 object-contain" onerror="this.src='https://placehold.co/100x100?text=Icon'">
+                        <span class="text-[11px] font-bold text-center text-[#111713]">${cat.name}</span>
+                    </div>
+                `).join("");
+                loadOutlets();
+            } else {
+                grid.innerHTML = `<p class="col-span-full text-rose-600 text-xs py-6 text-center">Failed to load categories.</p>`;
+            }
+        }
+
+        function loadOutlets() {
+            const tbody = document.getElementById("outlets-tbody");
+            const outlets = allCategories.filter(c => c.section === 'canteen');
+            
+            if (outlets.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" class="px-4 py-6 text-center text-[#526056]">No canteen outlets found. Add one in Categories tab.</td></tr>`;
+                return;
+            }
+            
+            tbody.innerHTML = outlets.map(o => `
+                <tr class="hover:bg-[#FAF9F3] transition">
+                    <td class="px-4 py-3">
+                        <div class="flex items-center gap-2">
+                            <img src="${o.image}" alt="${o.name}" class="w-8 h-8 rounded-full border border-[#E8E7DF] object-cover" onerror="this.src='https://placehold.co/100x100?text=Icon'">
+                            <span class="font-bold text-[#111713]">${o.name}</span>
+                        </div>
+                    </td>
+                    <td class="px-4 py-3">
+                        <input type="text" id="address-input-${o._id}" value="${o.address || ''}" placeholder="e.g. Block C, Floor 1" class="w-full px-3 py-1.5 border border-[#E8E7DF] rounded-lg text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                    </td>
+                    <td class="px-4 py-3 text-right">
+                        <button onclick="updateOutletAddress('${o._id}')" class="bg-[#004D2B] hover:bg-[#003B21] text-white font-bold py-1 px-3 rounded-lg text-xs transition">
+                            Save Address
+                        </button>
+                    </td>
+                </tr>
+            `).join("");
+        }
+
+        async function updateOutletAddress(id) {
+            const input = document.getElementById(`address-input-${id}`);
+            const newAddress = input.value.trim();
+            
+            const res = await window.apiFetch("/api/category/update", {
+                method: "PUT",
+                body: { id: id, address: newAddress }
+            });
+            
+            if (res.success) {
+                window.toast.success("Address updated successfully!");
+                await loadCategories(); // Refetch to update allCategories state
+            } else {
+                window.toast.error(res.message || "Failed to update address");
+            }
+        }
+
+        async function loadProducts() {
+            const tbody = document.getElementById("products-tbody");
+            const res = await window.apiFetch("/api/product/get", {
+                method: "POST",
+                body: { limit: 100 }
+            });
+            
+            if (res.success && Array.isArray(res.data)) {
+                allProducts = res.data;
+                if (res.data.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="5" class="px-4 py-6 text-center text-[#526056]">No products found.</td></tr>`;
+                    return;
+                }
+                
+                tbody.innerHTML = res.data.map(p => {
+                    const catName = p.category && p.category.length > 0 ? p.category[0].name : "Uncategorized";
+                    return `
+                        <tr class="hover:bg-[#FAF9F3] transition">
+                            <td class="px-4 py-3">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-8 h-8 rounded border border-[#E8E7DF] overflow-hidden flex-shrink-0 bg-white">
+                                        <img src="${p.image && p.image[0] ? p.image[0] : 'https://placehold.co/100x100?text=IMG'}" class="w-full h-full object-cover">
+                                    </div>
+                                    <span class="font-bold text-[#111713]">${p.name}</span>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-[#526056]">${catName}</td>
+                            <td class="px-4 py-3 font-semibold text-[#111713]">₹${p.price}</td>
+                            <td class="px-4 py-3 text-[#526056]">${p.stock} <span class="text-[9px] uppercase tracking-wider text-[#8A988E]">${p.unit}</span></td>
+                            <td class="px-4 py-3 text-right flex justify-end gap-3">
+                                <button onclick="editProduct('${p._id}')" class="text-blue-600 hover:underline font-semibold" title="Edit">Edit</button>
+                                <button onclick="deleteProduct('${p._id}')" class="text-rose-600 hover:underline font-semibold" title="Delete">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join("");
+            } else {
+                window.toast.error("Failed to load products");
+                tbody.innerHTML = `<tr><td colspan="5" class="px-4 py-4 text-center text-rose-500">Error loading products</td></tr>`;
+            }
+        }
+
+        async function loadRiders() {
+            const res = await window.apiFetch("/api/admin/riders/pending");
+            const tbody = document.getElementById("riders-tbody");
+            
+            if (res.success && Array.isArray(res.data)) {
+                if (res.data.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="5" class="px-4 py-6 text-center text-[#526056]">No pending verifications.</td></tr>`;
+                    return;
+                }
+                
+                tbody.innerHTML = res.data.map(rider => `
+                    <tr class="hover:bg-[#FAF9F3] transition group">
+                        <td class="px-4 py-3 border-r border-[#E8E7DF]/50">
+                            <span class="font-bold text-[#111713] block">${rider.name}</span>
+                        </td>
+                        <td class="px-4 py-3 border-r border-[#E8E7DF]/50">
+                            <span class="font-mono text-[#004D2B] bg-[#E6F0EB] px-1.5 py-0.5 rounded text-[11px] font-bold">${rider.roll_number || 'N/A'}</span>
+                        </td>
+                        <td class="px-4 py-3 border-r border-[#E8E7DF]/50">
+                            <span class="block text-[#111713]">${rider.email}</span>
+                            <span class="block text-[#526056]">${rider.phone}</span>
+                        </td>
+                        <td class="px-4 py-3 border-r border-[#E8E7DF]/50">
+                            <a href="${rider.campus_id_url}" target="_blank" class="text-blue-600 hover:underline inline-flex items-center gap-1">
+                                <i class="fa-solid fa-external-link-alt text-[10px]"></i> View ID
+                            </a>
+                        </td>
+                        <td class="px-4 py-3 text-right">
+                            <button onclick="verifyRider('${rider.id}')" class="bg-[#004D2B] hover:bg-[#003B21] text-white font-bold py-1 px-3 rounded-lg text-xs transition">
+                                Verify
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            } else {
+                window.toast.error("Failed to load riders");
+                tbody.innerHTML = `<tr><td colspan="5" class="px-4 py-4 text-center text-rose-500">Error loading riders</td></tr>`;
+            }
+        }
+
+        async function verifyRider(id) {
+            if (!confirm("Are you sure you want to approve this rider?")) return;
+            const res = await window.apiFetch(`/api/admin/riders/${id}/verify`, { method: "POST" });
+            if (res.success) {
+                window.toast.success("Rider verified!");
+                loadRiders();
+            } else {
+                window.toast.error(res.message || "Verification failed");
+            }
+        }
+
+        function populateCategorySelect() {
+            const select = document.getElementById("prod-category");
+            if (!select) return;
+            
+            let html = '<option value="">Select Category...</option>';
+            allCategories.forEach(c => {
+                html += `<option value="${c._id}">${c.name}</option>`;
+            });
+            select.innerHTML = html;
+        }
+
+        window.editCategory = (id) => {
+            const cat = allCategories.find(c => c._id === id);
+            if (!cat) return;
+            currentEditingCategoryId = id;
+            
+            document.getElementById("cat-name").value = cat.name;
+            document.getElementById("cat-image").value = cat.image || "";
+            document.getElementById("cat-section").value = cat.section || "flash";
+            document.getElementById("cat-address").value = cat.address || "";
+            
+            toggleCategoryForm(true);
+            const form = document.getElementById("category-form");
+            form.classList.remove("hidden");
+            form.querySelector("h3").innerText = "Edit Category";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
+        window.editProduct = (id) => {
+            const prod = allProducts.find(p => p._id === id);
+            if (!prod) return;
+            currentEditingProductId = id;
+            
+            populateCategorySelect();
+            document.getElementById("prod-name").value = prod.name;
+            document.getElementById("prod-category").value = (prod.category && prod.category.length > 0) ? prod.category[0]._id : "";
+            document.getElementById("prod-unit").value = prod.unit;
+            document.getElementById("prod-price").value = prod.price;
+            document.getElementById("prod-stock").value = prod.stock;
+            document.getElementById("prod-image").value = (prod.image && prod.image.length > 0) ? prod.image[0] : "";
+            document.getElementById("prod-desc").value = prod.description || "";
+            
+            toggleProductForm(true);
+            const form = document.getElementById("product-form");
+            form.classList.remove("hidden");
+            form.querySelector("h3").innerText = "Edit Product";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
+        // --- IMAGE UPLOAD HELPER ---
+        async function uploadImageFile(fileInputId) {
+            const fileInput = document.getElementById(fileInputId);
+            if (!fileInput || !fileInput.files || fileInput.files.length === 0) return null;
+            
+            window.toast.info("Uploading image...");
+            const formData = new FormData();
+            formData.append("image", fileInput.files[0]);
+            
+            try {
+                const token = localStorage.getItem("campus_access_token");
+                const res = await fetch("/api/file/upload", {
+                    method: "POST",
+                    headers: { "Authorization": `Bearer ${token}` },
+                    body: formData
+                });
+                const data = await res.json();
+                if (data.success && data.data && data.data.url) {
+                    return data.data.url;
+                }
+                throw new Error(data.message || "Upload failed");
+            } catch (err) {
+                console.error("Upload error:", err);
+                window.toast.error("Image upload failed");
+                return null;
+            }
+        }
+
+        // --- SUBMIT HANDLERS ---
+        document.getElementById("category-form")?.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Saving...";
+
+            const name = document.getElementById("cat-name").value.trim();
+            let image = document.getElementById("cat-image").value.trim();
+            
+            // Handle file upload if provided
+            const uploadedUrl = await uploadImageFile("cat-image-file");
+            if (uploadedUrl) {
+                image = uploadedUrl;
+            }
+            
+            if (!image) {
+                window.toast.error("Please provide an Image URL or Upload an image.");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Save Category";
+                return;
+            }
+            
+            const section = document.getElementById("cat-section").value;
+            const address = document.getElementById("cat-address").value.trim();
+            const payload = { name, image, section, address };
+            let url = "/api/category/add-category";
+            let method = "POST";
+            if (currentEditingCategoryId) {
+                payload.id = currentEditingCategoryId;
+                url = "/api/category/update";
+                method = "PUT";
+            }
+            
+            const res = await window.apiFetch(url, {
+                method: method,
+                body: payload
+            });
+            
+            if (res.success) {
+                window.toast.success(currentEditingCategoryId ? "Category updated!" : "Category created!");
+                toggleCategoryForm();
+                loadCategories();
+            } else {
+                window.toast.error(res.message || "Error creating category");
+            }
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "Save Category";
+        });
+
+        document.getElementById("product-form")?.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Saving...";
+
+            let imageUrl = document.getElementById("prod-image").value.trim();
+            
+            // Handle file upload if provided
+            const uploadedUrl = await uploadImageFile("prod-image-file");
+            if (uploadedUrl) {
+                imageUrl = uploadedUrl;
+            }
+
+            if (!imageUrl) {
+                window.toast.error("Please provide an Image URL or Upload an image.");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Save Product";
+                return;
+            }
+
+            const selectedCategoryId = document.getElementById("prod-category").value;
+            const selectedCategory = allCategories.find(c => c._id === selectedCategoryId);
+            const sectionValue = selectedCategory ? (selectedCategory.section || "flash") : "flash";
+
+            const payload = {
+                name: document.getElementById("prod-name").value.trim(),
+                category: [selectedCategoryId],
+                unit: document.getElementById("prod-unit").value.trim(),
+                price: parseFloat(document.getElementById("prod-price").value),
+                stock: parseInt(document.getElementById("prod-stock").value),
+                image: [imageUrl],
+                description: document.getElementById("prod-desc").value.trim(),
+                discount: 0,
+                section: sectionValue
+            };
+            
+            let url = "/api/product/create";
+            let method = "POST";
+            if (currentEditingProductId) {
+                payload.id = currentEditingProductId;
+                url = "/api/product/update-product-details";
+                method = "PUT";
+            }
+            
+            const res = await window.apiFetch(url, {
+                method: method,
+                body: payload
+            });
+            
+            if (res.success) {
+                window.toast.success(currentEditingProductId ? "Product updated!" : "Product created!");
+                toggleProductForm();
+                loadProducts();
+            } else {
+                window.toast.error(res.message || "Error creating product");
+            }
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "Save Product";
+        });
+
+        // --- DELETE HANDLERS ---
+        window.deleteCategory = async (id) => {
+            if (!confirm("Are you sure you want to delete this category?")) return;
+            const res = await window.apiFetch("/api/category/delete", {
+                method: "DELETE",
+                body: { id: id }
+            });
+            if (res.success) {
+                window.toast.info("Category deleted");
+                loadCategories();
+            } else {
+                window.toast.error(res.message || "Error deleting");
+            }
+        };
+
+        window.deleteProduct = async (id) => {
+            if (!confirm("Are you sure you want to delete this product?")) return;
+            const res = await window.apiFetch("/api/product/delete-product", {
+                method: "DELETE",
+                body: { id: id }
+            });
+            if (res.success) {
+                window.toast.info("Product deleted");
+                loadProducts();
+            } else {
+                window.toast.error(res.message || "Error deleting");
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category — CampusStore</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] flex flex-col min-h-screen pb-16 sm:pb-0">
+
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-5 space-y-4">
+        <div class="flex items-center justify-between border-b border-[#E8E7DF] pb-3">
+            <div>
+                <h1 class="text-lg font-extrabold text-[#111713]" id="cat-title-heading">Category</h1>
+                <p class="text-xs text-[#526056] mt-0.5" id="cat-section-subtitle">Catalog items</p>
+            </div>
+            <a href="index.html" class="text-xs font-bold text-[#004D2B] hover:underline">
+                &larr; Back to store
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5" id="category-products-grid">
+            <p class="text-[#526056] text-xs py-6 col-span-full text-center">Loading items...</p>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Application Scripts -->
+    <script src="../shared/js/icons.js"></script>
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api.js"></script>
+    <script src="../shared/js/toast.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="js/token-notif.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const catId = urlParams.get("id");
+            const catName = urlParams.get("name") || "Category";
+            const section = urlParams.get("section") || "flash";
+
+            document.getElementById("cat-title-heading").innerText = catName;
+            document.getElementById("cat-section-subtitle").innerText = section === "canteen" ? "Campus Canteen Menu" : "Campus Flash Essentials";
+
+            window.addEventListener("productsLoaded", () => renderProducts(catId, section));
+            renderProducts(catId, section);
+        });
+
+        function renderProducts(catId, section) {
+            const grid = document.getElementById("category-products-grid");
+            if (!grid) return;
+
+            const allProds = window.getProductsBySection(section);
+            const filtered = catId ? allProds.filter(p => p.category_id === catId || (p.category && p.category.some(c => c._id === catId))) : allProds;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p class="text-[#526056] text-xs py-6 col-span-full text-center">No products found in this category.</p>`;
+                return;
+            }
+
+            grid.innerHTML = "";
+            filtered.forEach(prod => {
+                grid.innerHTML += window.renderProductCardHtml(prod);
+            });
+        }
+    </script>
+</body>
+</html>

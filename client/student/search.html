@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results — CampusStore</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] flex flex-col min-h-screen pb-16 sm:pb-0">
+
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-5 space-y-4">
+        <div class="flex items-center justify-between border-b border-[#E8E7DF] pb-3">
+            <div>
+                <h1 class="text-lg font-extrabold text-[#111713]" id="search-query-heading">Search Results</h1>
+                <p class="text-xs text-[#526056] mt-0.5" id="search-query-subtitle">Matching items</p>
+            </div>
+            <a href="index.html" class="text-xs font-bold text-[#004D2B] hover:underline">
+                &larr; Back to store
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5" id="search-products-grid">
+            <p class="text-[#526056] text-xs py-6 col-span-full text-center">Searching campus store...</p>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Application Scripts -->
+    <script src="../shared/js/icons.js"></script>
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api.js"></script>
+    <script src="../shared/js/toast.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="js/token-notif.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get("q") || "";
+
+            document.getElementById("search-query-heading").innerText = query ? `Search: "${query}"` : "Catalog";
+            document.getElementById("search-query-subtitle").innerText = query ? `Matching items across Flash & Canteen` : "All campus items";
+
+            window.addEventListener("productsLoaded", () => performSearch(query));
+            performSearch(query);
+        });
+
+        function performSearch(query) {
+            const grid = document.getElementById("search-products-grid");
+            if (!grid) return;
+
+            const allProds = [...(window.appState.products || []), ...(window.dummyProducts || [])];
+            const q = query.toLowerCase().trim();
+
+            const filtered = q 
+                ? allProds.filter(p => p.name.toLowerCase().includes(q) || (p.description && p.description.toLowerCase().includes(q)))
+                : allProds;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<p class="text-[#526056] text-xs py-6 col-span-full text-center">No matching items found for "${query}".</p>`;
+                return;
+            }
+
+            grid.innerHTML = "";
+            filtered.forEach(prod => {
+                grid.innerHTML += window.renderProductCardHtml(prod);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Campus Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Login Card Container -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4">
+        <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-100 transition duration-300">
+            <div class="text-center mb-8">
+                <span class="text-3xl font-black text-green-600 tracking-tight">CAMPUS<span class="text-yellow-500 font-bold">STORE</span></span>
+                <h2 class="text-xl font-bold text-gray-800 mt-4">Welcome Back</h2>
+                <p class="text-gray-400 text-sm mt-1">Log in to order fresh snacks & stationeries</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="name@campus.edu" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-green-600 text-sm bg-gray-50 focus:bg-white transition duration-200">
+                </div>
+                <div>
+                    <div class="flex justify-between items-center mb-1.5">
+                        <label class="text-sm font-semibold text-gray-700" for="password">Password</label>
+                        <a href="forgot-password.html" class="text-xs text-green-600 hover:text-green-700 font-bold">Forgot Password?</a>
+                    </div>
+                    <input type="password" id="password" required placeholder="••••••••" 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-green-600 text-sm bg-gray-50 focus:bg-white transition duration-200">
+                </div>
+
+                <button type="submit" id="submit-btn" 
+                    class="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-4 rounded-lg shadow-md transition duration-200 flex items-center justify-center gap-2">
+                    Log In
+                </button>
+            </form>
+
+            <div class="text-center mt-6 pt-6 border-t border-gray-100 text-sm text-gray-500">
+                Don't have an account? 
+                <a href="register.html" class="text-green-600 hover:text-green-700 font-bold">Register here</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        document.getElementById("login-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const submitBtn = document.getElementById("submit-btn");
+
+            // Disable button during load
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `Logging in...`;
+
+            console.log("[Login] Attempting login for:", email);
+            const res = await apiFetch("/api/user/login", {
+                method: "POST",
+                body: { email, password }
+            });
+            console.log("[Login] API response:", JSON.stringify(res));
+
+            if (res.success) {
+                window.toast.success("Login Successful!");
+                
+                // Store tokens in localStorage (both key variations for compatibility)
+                localStorage.setItem("accesstoken", res.data.accessToken);
+                localStorage.setItem("campus_access_token", res.data.accessToken);
+                localStorage.setItem("refreshToken", res.data.refreshToken);
+                
+                // Fetch user role for smart redirection
+                const detailsRes = await apiFetch("/api/user/user-details");
+                let targetUrl = "index.html";
+
+                if (detailsRes.success && detailsRes.data) {
+                    const role = (detailsRes.data.role || "").toUpperCase();
+                    if (role === "PRINT" || role === "PRINT_OP") {
+                        targetUrl = "print-operator.html";
+                    } else if (role === "CANTEEN_OP") {
+                        targetUrl = "canteen/operator.html";
+                    } else if (role === "ADMIN") {
+                        targetUrl = "admin/index.html";
+                    }
+                }
+                
+                setTimeout(() => {
+                    window.location.href = targetUrl;
+                }, 1000);
+            } else {
+                console.log("[Login] Failed:", res.message);
+                window.toast.error(res.message || "Invalid credentials");
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Log In";
+            }
+        });
+    </script>
+</body>
+</html>

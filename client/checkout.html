@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Campus Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
+        html.light body { background-color: #f8fafc !important; color: #0f172a !important; }
+        html.light .bg-slate-900 { background-color: #ffffff !important; border-color: #e2e8f0 !important; }
+        html.light .bg-slate-950 { background-color: #f8fafc !important; }
+        html.light .text-white { color: #0f172a !important; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 flex flex-col min-h-screen">
+
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Checkout Workspace -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-5xl">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight flex items-center gap-2">
+                    <i class="fa-solid fa-cart-shopping text-cyan-400"></i> Campus Checkout
+                </h2>
+                <p class="text-xs text-slate-400 mt-1">Review items and set your hostel delivery or canteen counter pickup location</p>
+            </div>
+            <a href="index.html" class="bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold text-xs px-3.5 py-2 rounded-xl transition border border-slate-800">
+                <i class="fa-solid fa-arrow-left"></i> Back to Portal
+            </a>
+        </div>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Panel: Location & Items Review -->
+            <div class="flex-grow space-y-6">
+                
+                <!-- 1. Delivery Details (Campus Format) -->
+                <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800 shadow-xl">
+                    <h3 class="font-black text-white text-base mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot text-emerald-400"></i> Delivery / Pickup Location
+                    </h3>
+                    
+                    <!-- Saved Addresses List -->
+                    <div id="address-list" class="grid gap-3 mb-4">
+                        <div class="p-4 border border-cyan-500/40 rounded-2xl bg-cyan-950/20 flex items-start gap-3">
+                            <input type="radio" name="checkout-address" checked class="mt-1 accent-cyan-500">
+                            <div class="flex-grow">
+                                <p class="font-extrabold text-white text-xs">Room 104, Hostel Block B (Main Campus)</p>
+                                <p class="text-[11px] text-slate-400 mt-0.5">Campus Express Express Delivery (8 Mins)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New Address Form Toggle -->
+                    <button onclick="toggleAddressForm(true)" id="add-addr-toggle-btn" 
+                        class="text-cyan-400 hover:text-cyan-300 font-bold text-xs flex items-center gap-1.5 mt-2">
+                        <i class="fa-solid fa-plus text-2xs"></i> Add Custom Hostel Room / Lab
+                    </button>
+
+                    <!-- Simple Address Form -->
+                    <form id="address-form" class="hidden mt-4 space-y-4 border-t border-slate-800 pt-4">
+                        <h4 class="font-bold text-white text-xs">New Campus Location</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div>
+                                <label class="block text-3xs font-black uppercase text-slate-400 mb-1">Room Number (3-4 Digits Only)</label>
+                                <input type="number" id="room_number" required min="100" max="9999" placeholder="e.g. 204 or 1208" pattern="\d{3,4}" oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4);"
+                                    class="w-full px-3 py-2 border border-slate-700 rounded-xl focus:outline-none focus:border-cyan-400 text-xs bg-slate-950 text-white">
+                            </div>
+                            <div>
+                                <label class="block text-3xs font-black uppercase text-slate-400 mb-1">Building / Hostel Name</label>
+                                <select id="building_name" required 
+                                    class="w-full px-3 py-2 border border-slate-700 rounded-xl focus:outline-none focus:border-cyan-400 text-xs bg-slate-950 text-white">
+                                    <option value="" disabled selected>Select Building / Hostel</option>
+                                    <option value="AU 1" data-code="1">AU 1</option>
+                                    <option value="AU 2" data-code="2">AU 2</option>
+                                    <option value="AU 3" data-code="3">AU 3</option>
+                                    <option value="AU 4" data-code="4">AU 4</option>
+                                    <option value="AU 5" data-code="5">AU 5</option>
+                                    <option value="AU 6" data-code="6">AU 6</option>
+                                    <option value="AU 7" data-code="7">AU 7</option>
+                                    <option value="AU 8" data-code="8">AU 8</option>
+                                    <option value="AU 9" data-code="9">AU 9</option>
+                                    <option value="Girls Hostel" data-code="10">Girls Hostel</option>
+                                    <option value="International Girls Hostel" data-code="11">International Girls Hostel</option>
+                                    <option value="Boys Hostel" data-code="12">Boys Hostel</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-3xs font-black uppercase text-slate-400 mb-1">Branch / Dept</label>
+                                <input type="text" id="branch" required placeholder="e.g. CSE Dept" 
+                                    class="w-full px-3 py-2 border border-slate-700 rounded-xl focus:outline-none focus:border-cyan-400 text-xs bg-slate-950 text-white">
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-black px-4 py-2 rounded-xl text-xs transition">Save Location</button>
+                            <button type="button" onclick="toggleAddressForm(false)" class="bg-slate-800 text-slate-300 font-bold px-4 py-2 rounded-xl text-xs transition">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 2. Review Cart Items -->
+                <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800 shadow-xl">
+                    <h3 class="font-black text-white text-base mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-basket-shopping text-cyan-400"></i> Review Order Items
+                    </h3>
+                    <div id="checkout-items-list" class="divide-y divide-slate-800/80">
+                        <!-- Dynamic items rendered here -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Panel: Bill Summary & Order Button -->
+            <div class="w-full lg:w-96 flex-shrink-0">
+                <div class="bg-slate-900 p-6 rounded-3xl border border-slate-800 shadow-xl sticky top-28">
+                    <h3 class="font-black text-white text-base mb-4 border-b border-slate-800 pb-3">Bill Summary</h3>
+                    
+                    <div class="space-y-3 text-xs border-b border-slate-800 pb-4 mb-4">
+                        <div class="flex justify-between text-slate-400">
+                            <span>Item Subtotal</span>
+                            <span id="bill-subtotal" class="font-bold text-white">₹0</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>Campus Delivery Fee</span>
+                            <span id="bill-delivery" class="text-emerald-400 font-bold">₹15</span>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between font-black text-xl text-white mb-6">
+                        <span>Grand Total</span>
+                        <span id="bill-total" class="text-cyan-400">₹0</span>
+                    </div>
+
+                    <!-- Payment Mode Label -->
+                    <div class="mb-4 p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs font-semibold text-slate-300 flex items-center justify-between">
+                        <span>Payment Mode:</span>
+                        <span class="text-emerald-400 font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-hand-holding-dollar"></i> Pay on Delivery / Pickup
+                        </span>
+                    </div>
+
+                    <button id="place-order-btn" onclick="placeOrder()" 
+                        class="w-full bg-gradient-to-r from-cyan-500 via-emerald-400 to-amber-400 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-black py-3.5 px-4 rounded-xl shadow-xl transition-all duration-200 text-center block text-sm active:scale-98">
+                        Confirm & Place Order ⚡
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        let selectedAddressId = "addr_default";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchAddresses();
+        });
+
+        window.toggleAddressForm = function(show) {
+            const form = document.getElementById("address-form");
+            const toggleBtn = document.getElementById("add-addr-toggle-btn");
+            if (show) {
+                form.classList.remove("hidden");
+                toggleBtn.classList.add("hidden");
+            } else {
+                form.classList.add("hidden");
+                toggleBtn.classList.remove("hidden");
+                form.reset();
+            }
+        };
+
+        document.getElementById("address-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const room_number = document.getElementById("room_number").value.trim();
+            const buildingSelect = document.getElementById("building_name");
+            const building_name = buildingSelect.value.trim();
+            const selectedOpt = buildingSelect.options[buildingSelect.selectedIndex];
+            const building_code = selectedOpt ? parseInt(selectedOpt.getAttribute("data-code") || "1") : 1;
+            const branch = document.getElementById("branch").value.trim();
+
+            if (!building_name) {
+                if (window.toast) window.toast.error("Please select a building / hostel");
+                else alert("Please select a building / hostel");
+                return;
+            }
+
+            if (!/^\d{3,4}$/.test(room_number)) {
+                if (window.toast) window.toast.error("Room number must be a 3-digit or 4-digit number (e.g. 204 or 1208)");
+                else alert("Room number must be a 3-digit or 4-digit number (e.g. 204 or 1208)");
+                return;
+            }
+
+            try {
+                await apiFetch("/api/address/create", {
+                    method: "POST",
+                    body: { building_name, room_number, branch, building_code }
+                });
+            } catch (err) {
+                console.error(err);
+            }
+
+            if (window.toast) window.toast.success("Delivery location saved!");
+            toggleAddressForm(false);
+            
+            const list = document.getElementById("address-list");
+            list.innerHTML += `
+                <div class="p-4 border border-slate-700 rounded-2xl bg-slate-950 flex items-start gap-3 mt-2">
+                    <input type="radio" name="checkout-address" checked class="mt-1 accent-cyan-500">
+                    <div class="flex-grow">
+                        <p class="font-extrabold text-white text-xs">Room: ${room_number}</p>
+                        <p class="text-[11px] text-slate-400 mt-0.5">${building_name} (${branch})</p>
+                    </div>
+                </div>
+            `;
+        });
+
+        async function fetchAddresses() {
+            // Optional API call
+            const res = await apiFetch("/api/address/get");
+            if (res.success && res.data && res.data.length > 0) {
+                const list = document.getElementById("address-list");
+                list.innerHTML = "";
+                res.data.forEach((addr, i) => {
+                    list.innerHTML += `
+                        <div class="p-3 border border-slate-800 rounded-xl bg-slate-950 flex items-start gap-3">
+                            <input type="radio" name="checkout-address" ${i === 0 ? 'checked' : ''} class="mt-1 accent-cyan-500">
+                            <div>
+                                <p class="font-bold text-white text-xs">Room: ${addr.room_number}</p>
+                                <p class="text-[11px] text-slate-400">${addr.building_name} (${addr.branch})</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        function computeDeliveryFee(buildingCodeOrName, roomNumber) {
+            const room = String(roomNumber || "").trim();
+            let floor = 0;
+            if (room.length === 3) floor = Math.max(0, parseInt(room[0]) - 1);
+            else if (room.length === 4) floor = Math.max(0, parseInt(room[1]));
+            
+            const baseMap = { 1:15, 2:15, 3:18, 4:18, 5:20, 6:20, 7:22, 8:22, 9:25, 10:25, 11:30, 12:25 };
+            const codeMap = { "AU 1":1, "AU 2":2, "AU 3":3, "AU 4":4, "AU 5":5, "AU 6":6, "AU 7":7, "AU 8":8, "AU 9":9, "Girls Hostel":10, "International Girls Hostel":11, "Boys Hostel":12 };
+            
+            const code = codeMap[buildingCodeOrName] || Number(buildingCodeOrName) || 1;
+            const base = baseMap[code] || 20;
+            return Math.round(base * (1 + floor * 0.15));
+        }
+
+        // Cart Sync
+        window.addEventListener("cartUpdated", (e) => {
+            const { cart, totalPrice } = e.detail;
+            
+            const itemsContainer = document.getElementById("checkout-items-list");
+            const billSub = document.getElementById("bill-subtotal");
+            const billDel = document.getElementById("bill-delivery");
+            const billTot = document.getElementById("bill-total");
+            
+            const roomEl = document.getElementById("room_number");
+            const bEl = document.getElementById("building_name");
+            const roomVal = roomEl ? roomEl.value.trim() : "104";
+            const bVal = bEl ? bEl.value.trim() : "AU 1";
+
+            const deliveryFee = computeDeliveryFee(bVal, roomVal);
+            
+            if (billSub) billSub.innerText = `₹${totalPrice}`;
+            if (billDel) billDel.innerText = `₹${deliveryFee}`;
+            if (billTot) billTot.innerText = `₹${totalPrice > 0 ? totalPrice + deliveryFee : 0}`;
+
+            if (!itemsContainer) return;
+
+            if (cart.length === 0) {
+                itemsContainer.innerHTML = `<p class="text-slate-400 text-xs py-4">Your checkout basket is empty.</p>`;
+                return;
+            }
+
+            itemsContainer.innerHTML = "";
+            cart.forEach(item => {
+                const prod = item.productId;
+                if (!prod || typeof prod !== "object") return;
+
+                const price = prod.price || 0;
+                const discount = prod.discount || 0;
+                const discountedPrice = Math.max(0, price - Math.ceil((price * discount) / 100));
+                const isCanteen = (prod.section === "canteen");
+
+                const itemRow = document.createElement("div");
+                itemRow.className = "flex justify-between items-center py-3";
+                itemRow.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <img src="${(prod.image && prod.image[0]) || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=100'}" class="w-12 h-12 object-contain border border-slate-800 rounded-xl bg-slate-950 p-1">
+                        <div>
+                            <p class="font-bold text-white text-xs line-clamp-1">${prod.name}</p>
+                            <div class="flex items-center gap-2 mt-0.5">
+                                <span class="text-[10px] text-slate-400 font-semibold">Qty: ${item.quantity} × ₹${discountedPrice}</span>
+                                <span class="text-[9px] font-black uppercase px-1.5 py-0.2 rounded ${isCanteen ? 'bg-amber-950 text-amber-400' : 'bg-cyan-950 text-cyan-400'}">
+                                    ${isCanteen ? 'CANTEEN' : 'FLASH'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="font-black text-white text-xs">₹${discountedPrice * item.quantity}</span>
+                `;
+                itemsContainer.appendChild(itemRow);
+            });
+        });
+
+        // Place Order
+        window.placeOrder = async function() {
+            const btn = document.getElementById("place-order-btn");
+            if (window.appState.cart.length === 0) {
+                window.toast.error("Your cart is empty!");
+                return;
+            }
+            if (!window.appState.activeAddress) {
+                window.toast.error("Please select a delivery address.");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Confirming Order...`;
+
+            try {
+                // Calculate total again for payload
+                let subTotalAmt = 0;
+                const list_items = window.appState.cart.map(item => {
+                    const price = item.productId.price || 0;
+                    const discount = item.productId.discount || 0;
+                    const discountedPrice = Math.max(0, price - Math.ceil((price * discount) / 100));
+                    subTotalAmt += discountedPrice * item.quantity;
+                    return {
+                        productId: item.productId,
+                        quantity: item.quantity
+                    };
+                const activeAddr = window.appState.activeAddress || {};
+                const deliveryFee = activeAddr.delivery_fee || computeDeliveryFee(activeAddr.building_name || "AU 1", activeAddr.room_number || "104");
+                const totalAmt = subTotalAmt + deliveryFee;
+
+                const res = await apiFetch("/api/order/checkout", {
+                    method: "POST",
+                    body: {
+                        list_items,
+                        subTotalAmt,
+                        totalAmt,
+                        addressId: window.appState.activeAddress._id
+                    }
+                });
+
+                if (res.success) {
+                    localStorage.removeItem("guest_cart");
+                    window.appState.cart = [];
+                    window.toast.success("Order Placed Successfully!");
+                    setTimeout(() => {
+                        const oid = (res.data && res.data[0]) ? res.data[0].order_number || res.data[0].order_id : '';
+                        window.location.href = "student/tracking.html?order_id=" + oid;
+                    }, 500);
+                } else {
+                    window.toast.error(res.message || res.detail || "Failed to place order.");
+                    btn.disabled = false;
+                    btn.innerHTML = `Complete Checkout <i class="fa-solid fa-arrow-right ml-1"></i>`;
+                }
+            } catch (err) {
+                window.toast.error("Network error occurred.");
+                btn.disabled = false;
+                btn.innerHTML = `Complete Checkout <i class="fa-solid fa-arrow-right ml-1"></i>`;
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "stores": [
+    {
+      "id": "canteen-central",
+      "name": "Central Campus Canteen",
+      "location": "Student Activity Center, Ground Floor, Counter 3",
+      "contact": "Counter Ext 401",
+      "instructions": "Collect order from Counter 3. Verify item count with canteen supervisor before packaging."
+    },
+    {
+      "id": "foodcourt-north",
+      "name": "North Campus Food Court",
+      "location": "Block C, Food Court Counter 2",
+      "contact": "Counter Ext 402",
+      "instructions": "Collect from Counter 2. Present Order ID on arrival."
+    },
+    {
+      "id": "campus-express",
+      "name": "Campus Express Store",
+      "location": "Hostel Complex 4, Ground Level",
+      "contact": "Counter Ext 403",
+      "instructions": "Collect package from Express pickup shelf near checkout register."
+    }
+  ]
+}

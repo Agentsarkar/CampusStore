@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Account — CampusStore</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] flex flex-col min-h-screen pb-16 sm:pb-0">
+
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Student Dashboard Workspace -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-6 flex flex-col sm:flex-row gap-6">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full sm:w-60 flex-shrink-0 campus-card p-4 h-fit space-y-4">
+            <div class="border-b border-[#E8E7DF] pb-3">
+                <h4 class="font-extrabold text-sm text-[#111713]" id="sidebar-user-name">Student Account</h4>
+                <span class="text-[10px] font-extrabold text-[#004D2B] uppercase tracking-wider">Campus Student</span>
+            </div>
+            
+            <nav class="flex sm:flex-col gap-1.5 overflow-x-auto no-scrollbar text-xs">
+                <button onclick="switchTab('orders')" id="btn-orders" class="tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition">
+                    Orders & History
+                </button>
+                <button onclick="switchTab('tokens')" id="btn-tokens" class="tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition">
+                    🎟 My Tokens
+                </button>
+                <button onclick="switchTab('address')" id="btn-address" class="tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition">
+                    Delivery Locations
+                </button>
+                <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition">
+                    Profile Details
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Right Content Section -->
+        <section class="flex-grow campus-card p-6 min-h-[400px]">
+            
+            <!-- 1. Orders Tab -->
+            <div id="tab-orders" class="tab-content hidden space-y-4">
+                <div class="border-b border-[#E8E7DF] pb-3">
+                    <h2 class="text-base font-extrabold text-[#111713]">Orders & History</h2>
+                </div>
+                <div id="orders-list-container" class="space-y-3">
+                    <p class="text-[#526056] text-xs py-6 text-center">Loading orders...</p>
+                </div>
+            </div>
+
+            <!-- 2. Canteen Tokens Tab -->
+            <div id="tab-tokens" class="tab-content hidden space-y-4">
+                <div class="border-b border-[#E8E7DF] pb-3 flex items-center justify-between">
+                    <h2 class="text-base font-extrabold text-[#111713]">My Canteen Tokens</h2>
+                    <a href="/canteen/index.html" class="px-3 py-1.5 rounded-xl bg-[#004D2B] text-white text-xs font-bold hover:bg-[#003B21] transition">Order Food</a>
+                </div>
+                <div id="tokens-list-container" class="space-y-3">
+                    <p class="text-[#526056] text-xs py-6 text-center">Loading canteen tokens...</p>
+                </div>
+            </div>
+
+            <!-- 2. Address Tab -->
+            <div id="tab-address" class="tab-content hidden space-y-5">
+                <div class="border-b border-[#E8E7DF] pb-3 flex justify-between items-center">
+                    <h2 class="text-base font-extrabold text-[#111713]">Delivery Locations</h2>
+                </div>
+
+                <!-- Add New Address Form -->
+                <form id="address-form" class="space-y-3 p-4 rounded-2xl bg-[#FAF9F3] border border-[#E8E7DF]">
+                    <h3 class="text-[11px] font-extrabold uppercase tracking-wider text-[#111713]">Add New Location</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Hostel / Building</label>
+                            <select id="addr-building" required class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                                <option value="" disabled selected>Select Building / Hostel</option>
+                                <option value="AU 1" data-code="1">AU 1</option>
+                                <option value="AU 2" data-code="2">AU 2</option>
+                                <option value="AU 3" data-code="3">AU 3</option>
+                                <option value="AU 4" data-code="4">AU 4</option>
+                                <option value="AU 5" data-code="5">AU 5</option>
+                                <option value="AU 6" data-code="6">AU 6</option>
+                                <option value="AU 7" data-code="7">AU 7</option>
+                                <option value="AU 8" data-code="8">AU 8</option>
+                                <option value="AU 9" data-code="9">AU 9</option>
+                                <option value="Girls Hostel" data-code="10">Girls Hostel</option>
+                                <option value="International Girls Hostel" data-code="11">International Girls Hostel</option>
+                                <option value="Boys Hostel" data-code="12">Boys Hostel</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Room Number (3-4 Digits Only)</label>
+                            <input type="number" id="addr-room" required min="100" max="9999" placeholder="e.g. 304 or 1208" pattern="\d{3,4}" oninput="if(this.value.length > 4) this.value = this.value.slice(0, 4);" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Branch / Campus</label>
+                            <input type="text" id="addr-branch" required placeholder="e.g. Main Campus" class="w-full px-3 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                        </div>
+                    </div>
+                    <button type="submit" class="bg-[#004D2B] hover:bg-[#003B21] text-white font-bold py-2 px-4 rounded-xl text-xs transition">
+                        Save Location
+                    </button>
+                </form>
+
+                <div id="addresses-list-container" class="space-y-2.5"></div>
+            </div>
+
+            <!-- 3. Profile Tab -->
+            <div id="tab-profile" class="tab-content hidden space-y-4">
+                <div class="border-b border-[#E8E7DF] pb-3">
+                    <h2 class="text-base font-extrabold text-[#111713]">Student Profile</h2>
+                </div>
+                <form id="profile-form" class="space-y-3.5 max-w-sm">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Full Name</label>
+                        <input type="text" id="prof-name" required class="w-full px-3.5 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Campus Email</label>
+                        <input type="email" id="prof-email" required class="w-full px-3.5 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase text-[#526056] mb-1">Mobile</label>
+                        <input type="text" id="prof-mobile" placeholder="Mobile number" class="w-full px-3.5 py-2 border border-[#E8E7DF] rounded-xl text-xs bg-white text-[#111713] focus:outline-none focus:border-[#004D2B]">
+                    </div>
+                    <button type="submit" class="bg-[#004D2B] hover:bg-[#003B21] text-white font-bold py-2 px-4 rounded-xl text-xs transition">
+                        Update Profile
+                    </button>
+                </form>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Application Scripts -->
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api.js"></script>
+    <script src="../shared/js/toast.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="js/token-notif.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            if (!window.campusAuth.requireStudentAuth()) return;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get("tab") || "orders";
+            switchTab(tabParam);
+
+            // Wait for user details (which also fetches addresses) to load completely
+            await window.fetchUserDetails();
+            
+            loadUserData();
+            loadAddressData();
+            loadOrderData();
+            loadTokenData();
+        });
+
+        function switchTab(tabId) {
+            document.querySelectorAll(".tab-content").forEach(el => el.classList.add("hidden"));
+            document.querySelectorAll(".tab-btn").forEach(btn => {
+                btn.className = "tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-bold text-[#526056] hover:bg-[#FAF9F3] transition";
+            });
+
+            const targetTab = document.getElementById(`tab-${tabId}`);
+            const targetBtn = document.getElementById(`btn-${tabId}`);
+            
+            if (targetTab) targetTab.classList.remove("hidden");
+            if (targetBtn) targetBtn.className = "tab-btn flex-1 sm:w-full text-left px-3.5 py-2 rounded-xl font-extrabold bg-[#FAF9F3] text-[#004D2B] border border-[#E8E7DF] transition";
+        }
+
+        function loadUserData() {
+            const user = window.appState.user;
+            if (!user) return;
+            
+            document.getElementById("sidebar-user-name").innerText = user.name || "Student Account";
+            document.getElementById("prof-name").value = user.name || "";
+            document.getElementById("prof-email").value = user.email || "";
+            document.getElementById("prof-mobile").value = user.mobile || "";
+        }
+
+        async function loadAddressData() {
+            const addresses = await window.appState.addresses;
+            const container = document.getElementById("addresses-list-container");
+            if (!container) return;
+
+            if (!addresses || addresses.length === 0) {
+                container.innerHTML = `<p class="text-[#526056] text-xs py-2 text-center">No locations added yet.</p>`;
+                return;
+            }
+
+            container.innerHTML = "";
+            addresses.forEach(addr => {
+                const card = document.createElement("div");
+                card.className = "p-3 rounded-xl border border-[#E8E7DF] flex justify-between items-center bg-white text-xs";
+                card.innerHTML = `
+                    <div>
+                        <h4 class="font-bold text-[#111713]">${addr.building_name}</h4>
+                        <p class="text-[#526056] mt-0.5">Room ${addr.room_number}, ${addr.branch || "N/A"}</p>
+                    </div>
+                    <button onclick="disableAddress('${addr._id || addr.id}')" class="text-rose-600 font-bold px-2 py-1 hover:bg-rose-50 rounded transition">Remove</button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        async function loadOrderData() {
+            if (!window.appState.user) return;
+            try {
+                const res = await window.apiFetch("/api/order/order-list");
+                const container = document.getElementById("orders-list-container");
+                if (!container) return;
+
+                if (!res.success || !res.data || res.data.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-8">
+                            <span class="text-4xl block mb-2">🛍️</span>
+                            <p class="text-[#526056] text-sm font-medium">No orders yet.</p>
+                            <a href="index.html" class="inline-block mt-3 text-xs font-bold text-[#004D2B] hover:underline">Start Exploring</a>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = res.data.map(order => {
+                    const orderId = order.order_id || order.orderId;
+                    const status = order.order_status || order.status || "PENDING";
+                    const d = new Date(order.createdAt || order.created_at);
+                    const dateStr = d.toLocaleDateString("en-IN", { month: "short", day: "numeric" });
+                    const timeStr = d.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
+
+                    let statusBadge = "";
+                    if (status === "PENDING") statusBadge = `<span class="bg-amber-100 text-amber-800 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">Pending</span>`;
+                    else if (status === "CONFIRMED") statusBadge = `<span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">Confirmed</span>`;
+                    else if (status === "READY") statusBadge = `<span class="bg-[#D7F000] text-[#111713] px-2 py-0.5 rounded text-[10px] font-extrabold uppercase border border-[#B8CC00]">Ready</span>`;
+                    else if (status === "DELIVERED" || status === "COMPLETED") statusBadge = `<span class="bg-[#E6F0EB] text-[#004D2B] px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">Delivered</span>`;
+                    else if (status === "CANCELLED") statusBadge = `<span class="bg-rose-100 text-rose-800 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">Cancelled</span>`;
+                    else statusBadge = `<span class="bg-gray-100 text-gray-800 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">${status}</span>`;
+
+                    let items = "";
+                    if (typeof order.product_details === "string") {
+                        try {
+                            const parsed = JSON.parse(order.product_details);
+                            items = parsed.map(i => `${i.quantity}x ${i.name}`).join(", ");
+                        } catch (e) { items = "Items"; }
+                    } else if (Array.isArray(order.product_details)) {
+                        items = order.product_details.map(i => `${i.quantity}x ${i.name}`).join(", ");
+                    }
+
+                    const amount = order.totalAmt || order.total_amount || 0;
+                    const paymentStatus = order.payment_status || "CAMPUS DELIVERY";
+                    
+                    return `
+                        <div class="p-4 rounded-2xl border border-[#E8E7DF] flex flex-col sm:flex-row justify-between gap-3 items-start sm:items-center bg-white hover:border-[#004D2B] transition cursor-pointer" onclick="window.location.href='tracking.html?order_id=${orderId}'">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="font-extrabold text-sm text-[#111713]">${orderId}</span>
+                                    ${statusBadge}
+                                </div>
+                                <p class="text-xs text-[#526056] mb-0.5">${dateStr} • ${timeStr}</p>
+                                <p class="text-[11px] text-[#8A988E] truncate max-w-xs">${items}</p>
+                            </div>
+                            <div class="text-right flex-shrink-0">
+                                <span class="font-bold text-[#004D2B] text-sm block">₹${amount}</span>
+                                <span class="text-[10px] font-extrabold text-[#8A988E] uppercase tracking-wider">${paymentStatus}</span>
+                            </div>
+                        </div>`;
+                }).join("");
+            } catch (err) {
+                console.error("Load orders error:", err);
+            }
+        }
+
+        async function loadTokenData() {
+            try {
+                const res = await window.apiFetch("/api/canteen/my-tokens");
+                const container = document.getElementById("tokens-list-container");
+                if (!container) return;
+
+                if (!res.success || !res.data || res.data.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center py-8">
+                            <span class="text-4xl block mb-2">🎟️</span>
+                            <p class="text-[#526056] text-sm font-medium">No canteen tokens generated.</p>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = res.data.map(token => {
+                    let statusBadge = "";
+                    let cardBg = "bg-white border-[#E8E7DF]";
+                    let tokenColor = "text-[#111713]";
+
+                    if (token.status === "ACTIVE") {
+                        statusBadge = `<span class="bg-[#D7F000] text-[#111713] px-2 py-0.5 rounded text-[10px] font-extrabold uppercase border border-[#B8CC00]">Waiting</span>`;
+                        cardBg = "bg-[#FAF9F3] border-[#D7F000]";
+                        tokenColor = "text-[#004D2B]";
+                    } else if (token.status === "DONE") {
+                        statusBadge = `<span class="bg-[#E6F0EB] text-[#004D2B] px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">Served</span>`;
+                        tokenColor = "text-[#526056]";
+                    } else if (token.status === "CANCELLED") {
+                        statusBadge = `<span class="bg-rose-100 text-rose-800 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">Cancelled</span>`;
+                        tokenColor = "text-[#8A988E]";
+                    }
+
+                    let items = "";
+                    if (typeof token.order_items === "string") {
+                        try {
+                            const parsed = JSON.parse(token.order_items);
+                            items = parsed.map(i => `${i.quantity}x ${i.name}`).join(", ");
+                        } catch (e) { items = "Items"; }
+                    } else if (Array.isArray(token.order_items)) {
+                        items = token.order_items.map(i => `${i.quantity}x ${i.name}`).join(", ");
+                    }
+
+                    return `
+                        <div class="p-4 rounded-2xl border ${cardBg} flex items-start gap-4">
+                            <div class="flex flex-col items-center flex-shrink-0">
+                                <span class="text-[10px] font-extrabold text-[#526056] uppercase tracking-wider">Token</span>
+                                <span class="text-3xl font-extrabold ${tokenColor}">#${token.token_number}</span>
+                            </div>
+                            <div class="flex-grow min-w-0">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="font-extrabold text-sm text-[#111713]">${token.outlet ? token.outlet.name : "Canteen"}</span>
+                                    ${statusBadge}
+                                </div>
+                                <p class="text-[11px] text-[#526056] truncate">${items}</p>
+                                <p class="text-xs font-bold text-[#004D2B] mt-1">₹${token.total_amt}</p>
+                            </div>
+                        </div>`;
+                }).join("");
+            } catch (err) {
+                console.error("Load tokens error:", err);
+            }
+        }
+
+        document.getElementById("address-form")?.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const buildingSelect = document.getElementById("addr-building");
+            const building_name = buildingSelect.value.trim();
+            const selectedOpt = buildingSelect.options[buildingSelect.selectedIndex];
+            const building_code = selectedOpt ? parseInt(selectedOpt.getAttribute("data-code") || "1") : 1;
+            const room_number = document.getElementById("addr-room").value.trim();
+            const branch = document.getElementById("addr-branch").value.trim();
+
+            if (!building_name) {
+                window.toast.error("Please select a building / hostel");
+                return;
+            }
+
+            if (!/^\d{3,4}$/.test(room_number)) {
+                window.toast.error("Room number must be a 3-digit or 4-digit number (e.g. 304 or 1208)");
+                return;
+            }
+
+            const res = await window.apiFetch("/api/address/create", {
+                method: "POST",
+                body: { building_name, room_number, branch, building_code }
+            });
+
+            if (res.success) {
+                window.toast.success("Location added");
+                document.getElementById("address-form").reset();
+                await window.fetchUserAddresses();
+                loadAddressData();
+            } else {
+                window.toast.error(res.message || "Failed to save address");
+            }
+        });
+
+        async function disableAddress(addressId) {
+            if (!addressId) return;
+            const res = await window.apiFetch(`/api/address/disable/${addressId}`, {
+                method: "DELETE"
+            });
+
+            if (res.success) {
+                window.toast.info("Location removed");
+                await window.fetchUserAddresses();
+                loadAddressData();
+            } else {
+                window.toast.error(res.message || "Failed to remove location");
+            }
+        }
+
+        document.getElementById("profile-form")?.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const name = document.getElementById("prof-name").value.trim();
+            const email = document.getElementById("prof-email").value.trim();
+            const mobile = document.getElementById("prof-mobile").value.trim();
+
+            const res = await window.apiFetch("/api/user/update-user", {
+                method: "PUT",
+                body: { name, email, mobile }
+            });
+
+            if (res.success) {
+                window.toast.success("Profile updated");
+                await window.fetchUserDetails();
+                loadUserData();
+            } else {
+                window.toast.error(res.message || "Failed to update profile");
+            }
+        });
+    </script>
+</body>
+</html>

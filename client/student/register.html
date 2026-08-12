@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account — CampusStore</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] flex flex-col min-h-screen">
+
+    <!-- Header Navigation -->
+    <header class="py-4 px-6 max-w-6xl mx-auto w-full flex items-center justify-between">
+        <a href="index.html" class="font-extrabold text-lg tracking-tight text-[#111713]">
+            Campus<span class="text-[#004D2B]">Store</span>
+        </a>
+        <a href="index.html" class="text-xs font-bold text-[#004D2B] hover:underline">
+            &larr; Back to Store
+        </a>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 md:p-8">
+        <div class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-12 overflow-hidden shadow-xl border border-[#E8E7DF] rounded-3xl bg-white min-h-[500px]">
+            
+            <!-- Left Hero Section (Deep Forest Green, Aesthetic Minimal Typographic Highlights) -->
+            <div class="md:col-span-5 bg-[#004D2B] text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+                <!-- Top Brand info -->
+                <div class="space-y-6 relative z-10">
+                    <span class="inline-block bg-[#D7F000] text-[#111713] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                        JOIN CAMPUSSTORE
+                    </span>
+                    
+                    <div class="space-y-2">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold leading-tight text-white">
+                            Hostel essentials.<br>Delivered fast.
+                        </h2>
+                        <p class="text-xs text-[#E6F0EB] font-normal leading-relaxed pt-1">
+                            Create your student account to unlock direct hostel block delivery and food pickups.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Aesthetic Minimal Bullet Highlights -->
+                <div class="space-y-3 pt-6 relative z-10 border-t border-white/10 mt-6 text-xs text-[#E6F0EB]">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D7F000] flex-shrink-0"></span>
+                        <span class="font-semibold text-white">Fast 10-Minute Room Delivery</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D7F000] flex-shrink-0"></span>
+                        <span class="font-semibold text-white">Canteen Counter Pickup</span>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#D7F000] flex-shrink-0"></span>
+                        <span class="font-semibold text-white">Cash on Delivery Supported</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form Section -->
+            <div class="md:col-span-7 bg-white p-8 sm:p-10 flex flex-col justify-between space-y-6">
+                
+                <div class="space-y-5">
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-extrabold text-[#111713]">Create Account</h1>
+                        <p class="text-xs text-[#526056] mt-1">Fill in your details to register as a student.</p>
+                    </div>
+
+                    <form id="register-form" class="space-y-3.5">
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-wider text-[#526056] mb-1">Full Name</label>
+                            <input type="text" id="name" required placeholder="Your Full Name" 
+                                class="w-full px-4 py-2.5 border border-[#E8E7DF] rounded-xl text-xs bg-[#FAF9F3] text-[#111713] focus:bg-white focus:outline-none focus:border-[#004D2B] transition">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-wider text-[#526056] mb-1">Campus Email</label>
+                            <input type="email" id="email" required placeholder="student@campus.edu" 
+                                class="w-full px-4 py-2.5 border border-[#E8E7DF] rounded-xl text-xs bg-[#FAF9F3] text-[#111713] focus:bg-white focus:outline-none focus:border-[#004D2B] transition">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-wider text-[#526056] mb-1">Mobile Number <span class="text-red-500">*</span></label>
+                            <input type="tel" id="mobile" required placeholder="+91 98765 43210" 
+                                class="w-full px-4 py-2.5 border border-[#E8E7DF] rounded-xl text-xs bg-[#FAF9F3] text-[#111713] focus:bg-white focus:outline-none focus:border-[#004D2B] transition">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold uppercase tracking-wider text-[#526056] mb-1">Password</label>
+                            <input type="password" id="password" required placeholder="Minimum 6 characters" 
+                                class="w-full px-4 py-2.5 border border-[#E8E7DF] rounded-xl text-xs bg-[#FAF9F3] text-[#111713] focus:bg-white focus:outline-none focus:border-[#004D2B] transition">
+                        </div>
+
+                        <button type="submit" id="btn-register" 
+                            class="w-full bg-[#004D2B] hover:bg-[#003B21] text-white font-extrabold py-3 px-4 rounded-xl text-xs transition active:scale-98 shadow-sm">
+                            Create Student Account
+                        </button>
+                    </form>
+                </div>
+
+                <div class="border-t border-[#E8E7DF] pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-[#526056] gap-2">
+                    <div>
+                        <span>Already registered?</span>
+                        <a href="login.html" class="font-extrabold text-[#004D2B] hover:underline ml-1">Log in</a>
+                    </div>
+                    <a href="index.html" class="text-[11px] font-semibold text-[#8A988E] hover:text-[#111713]">Continue as Guest &rarr;</a>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-xs text-[#8A988E]">
+        &copy; CampusStore Platform · Student Portal
+    </footer>
+
+    <!-- Application Scripts -->
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api.js"></script>
+    <script src="../shared/js/toast.js"></script>
+    <script>
+        document.getElementById("register-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const mobile = document.getElementById("mobile").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const btn = document.getElementById("btn-register");
+
+            if (!mobile || mobile.length < 8) {
+                window.toast.error("Please enter a valid mobile number.");
+                return;
+            }
+
+            if (password.length < 6) {
+                window.toast.error("Password must be at least 6 characters long.");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerText = "Creating Account...";
+
+            const res = await window.apiFetch("/api/user/register", {
+                method: "POST",
+                body: { name, email, password, mobile }
+            });
+
+            if (res.success) {
+                window.toast.success("Account created! Please log in.");
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 600);
+            } else {
+                btn.disabled = false;
+                btn.innerText = "Create Student Account";
+                window.toast.error(res.message || "Failed to register");
+            }
+        });
+    </script>
+</body>
+</html>

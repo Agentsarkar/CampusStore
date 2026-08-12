@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Campus Operations</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+</head>
+<body class="bg-[#0b0f17] text-slate-100 flex flex-col min-h-screen">
+
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="campus-card p-6 md:p-8 max-w-sm w-full space-y-6">
+            <div class="text-center space-y-1">
+                <div class="w-10 h-10 rounded bg-amber-600 text-white flex items-center justify-center font-bold text-lg mx-auto shadow-sm">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <h1 class="text-xl font-bold text-white mt-2">Operations Console</h1>
+                <p class="text-xs text-slate-400">Campus Admin Log In</p>
+            </div>
+
+            <form id="admin-login-form" class="space-y-4">
+                <div>
+                    <label class="block text-[10px] font-semibold uppercase text-slate-400 mb-1">Admin Email</label>
+                    <input type="email" id="email" required placeholder="admin@campus.edu" class="w-full px-3 py-2 border border-slate-800 rounded-md focus:outline-none focus:border-amber-500 text-xs bg-slate-950 text-white">
+                </div>
+                <div>
+                    <label class="block text-[10px] font-semibold uppercase text-slate-400 mb-1">Password</label>
+                    <input type="password" id="password" required placeholder="••••••••" class="w-full px-3 py-2 border border-slate-800 rounded-md focus:outline-none focus:border-amber-500 text-xs bg-slate-950 text-white">
+                </div>
+                <button type="submit" id="btn-admin-login" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2.5 px-4 rounded-md text-xs transition shadow-sm active:scale-95">
+                    Log In to Console
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Application Scripts -->
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api.js"></script>
+    <script src="../shared/js/toast.js"></script>
+    <script>
+        document.getElementById("admin-login-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const btn = document.getElementById("btn-admin-login");
+
+            btn.disabled = true;
+            btn.innerText = "Authenticating...";
+
+            const res = await window.apiFetch("/api/user/login", {
+                method: "POST",
+                body: { email, password }
+            });
+
+            if (res.success && res.data) {
+                window.campusAuth.setToken(res.data.accessToken);
+                window.campusAuth.setUser({ name: "Admin Ops", email, role: res.data.role || "ADMIN" });
+                if (res.data.refreshToken) localStorage.setItem("refreshToken", res.data.refreshToken);
+                window.toast.success("Admin login successful");
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 500);
+            } else {
+                btn.disabled = false;
+                btn.innerText = "Log In to Console";
+                window.toast.error(res.message || "Invalid admin credentials");
+            }
+        });
+    </script>
+</body>
+</html>
