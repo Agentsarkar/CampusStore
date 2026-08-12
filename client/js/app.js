@@ -642,10 +642,16 @@ function updateFloatingCartBar(totalQty, totalPrice) {
                 View Cart &rarr;
             </button>
         `;
-        bar.classList.remove("hidden", "translate-y-10", "opacity-0");
-        bar.classList.add("translate-y-0", "opacity-100");
+        const drawer = document.getElementById("cart-drawer");
+        const isDrawerOpen = drawer && !drawer.classList.contains("translate-x-full");
+        if (!isDrawerOpen) {
+            bar.classList.remove("hidden", "translate-y-10", "opacity-0", "pointer-events-none");
+            bar.classList.add("translate-y-0", "opacity-100");
+        } else {
+            bar.classList.add("opacity-0", "pointer-events-none");
+        }
     } else {
-        bar.classList.add("hidden", "translate-y-10", "opacity-0");
+        bar.classList.add("hidden", "translate-y-10", "opacity-0", "pointer-events-none");
         bar.classList.remove("translate-y-0", "opacity-100");
     }
 }
@@ -766,8 +772,8 @@ function injectLayouts() {
         </header>
 
         <!-- Cart Drawer Panel -->
-        <div id="cart-drawer-backdrop" class="fixed inset-0 bg-[#111713]/40 z-50 transition-opacity duration-200 opacity-0 pointer-events-none" onclick="toggleCartDrawer(false)"></div>
-        <div id="cart-drawer" class="fixed right-0 top-0 h-full w-full max-w-xs bg-white text-[#111713] shadow-2xl z-50 transform translate-x-full transition-transform duration-200 flex flex-col border-l border-[#E8E7DF]">
+        <div id="cart-drawer-backdrop" class="fixed inset-0 bg-[#111713]/40 z-[70] transition-opacity duration-200 opacity-0 pointer-events-none" onclick="toggleCartDrawer(false)"></div>
+        <div id="cart-drawer" class="fixed right-0 top-0 h-full w-full max-w-xs bg-white text-[#111713] shadow-2xl z-[75] transform translate-x-full transition-transform duration-200 flex flex-col border-l border-[#E8E7DF]">
             <div class="p-4 border-b border-[#E8E7DF] flex justify-between items-center bg-[#FAF9F3]">
                 <div class="flex items-center gap-1.5">
                     ${cartIcon}
@@ -776,12 +782,12 @@ function injectLayouts() {
                 <button onclick="toggleCartDrawer(false)" class="text-[#8A988E] hover:text-[#111713] font-bold text-xs">Close</button>
             </div>
             <div class="flex-1 overflow-y-auto p-4 flex flex-col gap-2.5" id="cart-drawer-items"></div>
-            <div class="p-4 border-t border-[#E8E7DF] bg-[#FAF9F3]">
+            <div class="p-4 pb-8 sm:pb-4 border-t border-[#E8E7DF] bg-[#FAF9F3] sticky bottom-0">
                 <div class="flex justify-between font-bold text-sm mb-3">
                     <span>Total:</span>
                     <span id="cart-drawer-total" class="text-[#004D2B]">₹0</span>
                 </div>
-                <a href="checkout.html" class="block w-full bg-[#004D2B] hover:bg-[#003B21] text-white text-center py-2.5 rounded-xl font-bold text-xs transition">
+                <a href="checkout.html" class="block w-full bg-[#004D2B] hover:bg-[#003B21] text-white text-center py-3 rounded-xl font-bold text-xs transition active:scale-98 shadow-sm">
                     Proceed to Checkout
                 </a>
             </div>
@@ -916,14 +922,30 @@ function setupHeaderInteractions() {
 window.toggleCartDrawer = function(open) {
     const backdrop = document.getElementById("cart-drawer-backdrop");
     const drawer = document.getElementById("cart-drawer");
+    const floatingBar = document.getElementById("floating-bottom-cart-bar");
+
     if (open) {
-        backdrop.classList.remove("pointer-events-none", "opacity-0");
-        backdrop.classList.add("opacity-100");
-        drawer.classList.remove("translate-x-full");
+        if (backdrop) {
+            backdrop.classList.remove("pointer-events-none", "opacity-0");
+            backdrop.classList.add("opacity-100");
+        }
+        if (drawer) {
+            drawer.classList.remove("translate-x-full");
+        }
+        if (floatingBar) {
+            floatingBar.classList.add("opacity-0", "pointer-events-none");
+        }
     } else {
-        backdrop.classList.add("pointer-events-none", "opacity-0");
-        backdrop.classList.remove("opacity-100");
-        drawer.classList.add("translate-x-full");
+        if (backdrop) {
+            backdrop.classList.add("pointer-events-none", "opacity-0");
+            backdrop.classList.remove("opacity-100");
+        }
+        if (drawer) {
+            drawer.classList.add("translate-x-full");
+        }
+        if (floatingBar && window.appState && window.appState.cart && window.appState.cart.length > 0) {
+            floatingBar.classList.remove("opacity-0", "pointer-events-none");
+        }
     }
 };
 
