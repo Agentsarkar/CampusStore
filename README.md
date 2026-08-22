@@ -4,6 +4,10 @@
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/JavaScript.svg" height="60" alt="JavaScript" />
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Supabase-Dark.svg" height="60" alt="Supabase" />
 </div>
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-AGPL%20v3-blue.svg" alt="License: AGPL v3"></a>
+  <img src="https://img.shields.io/badge/Award-2nd%20Place%20Winner-gold.svg" alt="Hackathon Award">
+</p>
 
 <h1 align="center">Campus Ecosystem Platform & AI Consumer Shield</h1>
 
