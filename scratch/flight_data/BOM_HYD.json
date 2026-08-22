@@ -1,0 +1,1629 @@
+{
+  "search_metadata": {
+    "id": "search_WDz0ZKeWNOcRgB1DbkQyABpo",
+    "status": "Success",
+    "created_at": "2026-08-22T08:58:27Z",
+    "request_time_taken": 1.42,
+    "parsing_time_taken": 0.04,
+    "total_time_taken": 1.46,
+    "request_url": "https://www.google.com/travel/flights/search?tfs=CBwQAhoeEgoyMDI2LTA5LTE1agcIARIDQk9NcgcIARIDSFlEQAFIAXABggELCP___________wGYAQI&hl=en&gl=us&curr=INR",
+    "html_url": "https://www.searchapi.io/api/v1/searches/search_WDz0ZKeWNOcRgB1DbkQyABpo.html",
+    "json_url": "https://www.searchapi.io/api/v1/searches/search_WDz0ZKeWNOcRgB1DbkQyABpo"
+  },
+  "search_parameters": {
+    "engine": "google_flights",
+    "departure_id": "BOM",
+    "arrival_id": "HYD",
+    "currency": "INR",
+    "hl": "en",
+    "gl": "us",
+    "outbound_date": "2026-09-15",
+    "flight_type": "one_way",
+    "travel_class": "economy",
+    "stops": "any",
+    "adults": "1",
+    "children": "0",
+    "infants_in_seat": "0",
+    "infants_on_lap": "0"
+  },
+  "best_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "00:30"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "02:10"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6187",
+          "is_overnight": true,
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 72 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 72
+          }
+        }
+      ],
+      "total_duration": 100,
+      "carbon_emissions": {
+        "this_flight": 73000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 26,
+        "lowest_route": 70000
+      },
+      "price": 5645,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRZeE9EY2FDZ2lOTEJBQUdnTkpUbEk0SFhDTExnPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNjE4NyJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "10:15"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "11:40"
+          },
+          "duration": 85,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 5318",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 59 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 59
+          }
+        }
+      ],
+      "total_duration": 85,
+      "carbon_emissions": {
+        "this_flight": 59000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 2,
+        "lowest_route": 70000
+      },
+      "price": 5960,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRVek1UZ2FDZ2pJTGhBQUdnTkpUbEk0SFhEVU1BPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNTMxOCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "11:40"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "13:20"
+          },
+          "duration": 100,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 5178",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 59 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 59
+          }
+        }
+      ],
+      "total_duration": 100,
+      "carbon_emissions": {
+        "this_flight": 59000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 2,
+        "lowest_route": 70000
+      },
+      "price": 5960,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRVeE56Z2FDZ2pJTGhBQUdnTkpUbEk0SFhEVU1BPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNTE3OCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "15:10"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "16:45"
+          },
+          "duration": 95,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 5386",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 59 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 59
+          }
+        }
+      ],
+      "total_duration": 95,
+      "carbon_emissions": {
+        "this_flight": 59000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 2,
+        "lowest_route": 70000
+      },
+      "price": 5960,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRVek9EWWFDZ2pJTGhBQUdnTkpUbEk0SFhEVU1BPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNTM4NiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "10:50"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "12:25"
+          },
+          "duration": 95,
+          "airplane": "Airbus A320neo",
+          "airline": "Air India",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+          "travel_class": "Economy",
+          "flight_number": "AI 2444",
+          "extensions": [
+            "In-seat USB outlet",
+            "Stream video to own device",
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 70 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "has_stream_video_to_own_device": true,
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 70
+          }
+        }
+      ],
+      "total_duration": 95,
+      "carbon_emissions": {
+        "this_flight": 70000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 21,
+        "lowest_route": 70000
+      },
+      "price": 6113,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1pCU1RJME5EUWFDZ2poTHhBQUdnTkpUbEk0SFhEME1RPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIkFJIiwiMjQ0NCJdXV0="
+    }
+  ],
+  "other_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "19:40"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "21:20"
+          },
+          "duration": 100,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 5326",
+          "is_often_delayed": true,
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 59 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 59
+          }
+        }
+      ],
+      "total_duration": 100,
+      "carbon_emissions": {
+        "this_flight": 59000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 2,
+        "lowest_route": 70000
+      },
+      "price": 5645,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRVek1qWWFDZ2lOTEJBQUdnTkpUbEk0SFhDTExnPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNTMyNiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "21:10"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "22:45"
+          },
+          "duration": 95,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 5056",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 59 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 59
+          }
+        }
+      ],
+      "total_duration": 95,
+      "carbon_emissions": {
+        "this_flight": 59000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 2,
+        "lowest_route": 70000
+      },
+      "price": 5645,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRVd05UWWFDZ2lOTEJBQUdnTkpUbEk0SFhDTExnPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNTA1NiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "23:00"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-16",
+            "time": "00:35"
+          },
+          "duration": 95,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6195",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 59 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 59
+          }
+        }
+      ],
+      "total_duration": 95,
+      "carbon_emissions": {
+        "this_flight": 59000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 2,
+        "lowest_route": 70000
+      },
+      "price": 5645,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRZeE9UVWFDZ2lOTEJBQUdnTkpUbEk0SFhDTExnPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNjE5NSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "19:35"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "21:05"
+          },
+          "duration": 90,
+          "airplane": "Airbus A320neo",
+          "airline": "Air India",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+          "travel_class": "Economy",
+          "flight_number": "AI 2875",
+          "extensions": [
+            "In-seat USB outlet",
+            "Stream video to own device",
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 70 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "has_stream_video_to_own_device": true,
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 70
+          }
+        }
+      ],
+      "total_duration": 90,
+      "carbon_emissions": {
+        "this_flight": 70000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 21,
+        "lowest_route": 70000
+      },
+      "price": 5803,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1pCU1RJNE56VWFDZ2lyTFJBQUdnTkpUbEk0SFhDd0x3PT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIkFJIiwiMjg3NSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "21:25"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "23:05"
+          },
+          "duration": 100,
+          "airplane": "Airbus A320neo",
+          "airline": "Air India",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+          "travel_class": "Economy",
+          "flight_number": "AI 2869",
+          "extensions": [
+            "In-seat USB outlet",
+            "Stream video to own device",
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 70 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "has_stream_video_to_own_device": true,
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 70
+          }
+        }
+      ],
+      "total_duration": 100,
+      "carbon_emissions": {
+        "this_flight": 70000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 21,
+        "lowest_route": 70000
+      },
+      "price": 5803,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1pCU1RJNE5qa2FDZ2lyTFJBQUdnTkpUbEk0SFhDd0x3PT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIkFJIiwiMjg2OSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "18:00"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "19:35"
+          },
+          "duration": 95,
+          "airplane": "Airbus A320neo",
+          "airline": "Air India",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+          "travel_class": "Economy",
+          "flight_number": "AI 2619",
+          "extensions": [
+            "In-seat USB outlet",
+            "Stream video to own device",
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 70 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "has_stream_video_to_own_device": true,
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 70
+          }
+        }
+      ],
+      "total_duration": 95,
+      "carbon_emissions": {
+        "this_flight": 70000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 21,
+        "lowest_route": 70000
+      },
+      "price": 5898,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1pCU1RJMk1Ua2FDZ2lLTGhBQUdnTkpUbEk0SFhDVE1BPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIkFJIiwiMjYxOSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "05:45"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "07:20"
+          },
+          "duration": 95,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6362",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 59 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 59
+          }
+        }
+      ],
+      "total_duration": 95,
+      "carbon_emissions": {
+        "this_flight": 59000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 2,
+        "lowest_route": 70000
+      },
+      "price": 5960,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRZek5qSWFDZ2pJTGhBQUdnTkpUbEk0SFhEVU1BPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNjM2MiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "16:45"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "18:20"
+          },
+          "duration": 95,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 5228",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 59 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 59
+          }
+        }
+      ],
+      "total_duration": 95,
+      "carbon_emissions": {
+        "this_flight": 59000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 2,
+        "lowest_route": 70000
+      },
+      "price": 5960,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRVeU1qZ2FDZ2pJTGhBQUdnTkpUbEk0SFhEVU1BPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNTIyOCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "06:00"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "07:35"
+          },
+          "duration": 95,
+          "airplane": "Airbus A320neo",
+          "airline": "Air India",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+          "travel_class": "Economy",
+          "flight_number": "AI 2625",
+          "extensions": [
+            "In-seat USB outlet",
+            "Stream video to own device",
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 70 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "has_stream_video_to_own_device": true,
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 70
+          }
+        }
+      ],
+      "total_duration": 95,
+      "carbon_emissions": {
+        "this_flight": 70000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 21,
+        "lowest_route": 70000
+      },
+      "price": 6113,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1pCU1RJMk1qVWFDZ2poTHhBQUdnTkpUbEk0SFhEME1RPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIkFJIiwiMjYyNSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "08:55"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "10:35"
+          },
+          "duration": 100,
+          "airplane": "Airbus A319",
+          "airline": "Air India",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+          "travel_class": "Economy",
+          "flight_number": "AI 417",
+          "extensions": [
+            "Stream video to own device",
+            "Seat type Average Legroom",
+            "Legroom 31 inches",
+            "Carbon emission: 99 kg"
+          ],
+          "detected_extensions": {
+            "has_stream_video_to_own_device": true,
+            "seat_type": "Average Legroom",
+            "legroom_short": "31 in",
+            "legroom_long": "31 inches",
+            "carbon_emission": 99
+          }
+        }
+      ],
+      "total_duration": 100,
+      "carbon_emissions": {
+        "this_flight": 100000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 72,
+        "lowest_route": 70000
+      },
+      "price": 6213,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1ZCU1RReE54b0tDTVV3RUFBYUEwbE9VamdkY053eSIsW1siQk9NIiwiMjAyNi0wOS0xNSIsIkhZRCIsbnVsbCwiQUkiLCI0MTciXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "15:05"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "16:35"
+          },
+          "duration": 90,
+          "airplane": "Airbus A320neo",
+          "airline": "Air India",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+          "travel_class": "Economy",
+          "flight_number": "AI 2531",
+          "extensions": [
+            "In-seat USB outlet",
+            "Stream video to own device",
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 70 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "has_stream_video_to_own_device": true,
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 70
+          }
+        }
+      ],
+      "total_duration": 90,
+      "carbon_emissions": {
+        "this_flight": 70000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 21,
+        "lowest_route": 70000
+      },
+      "price": 6213,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/AI.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1pCU1RJMU16RWFDZ2pGTUJBQUdnTkpUbEk0SFhEY01nPT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIkFJIiwiMjUzMSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "07:15"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "08:50"
+          },
+          "duration": 95,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 5246",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 59 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 59
+          }
+        }
+      ],
+      "total_duration": 95,
+      "carbon_emissions": {
+        "this_flight": 59000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 2,
+        "lowest_route": 70000
+      },
+      "price": 8795,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ1kyUlRVeU5EWWFDZ2piUkJBQUdnTkpUbEk0SFhEbVJ3PT0iLFtbIkJPTSIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIjZFIiwiNTI0NiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "20:40"
+          },
+          "arrival_airport": {
+            "name": "Colombo Bandaranaike International Airport",
+            "id": "CMB",
+            "date": "2026-09-15",
+            "time": "23:10"
+          },
+          "duration": 150,
+          "airplane": "Airbus A320",
+          "airline": "SriLankan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/UL.png",
+          "travel_class": "Economy",
+          "flight_number": "UL 144",
+          "is_often_delayed": true,
+          "extensions": [
+            "In-seat USB outlet",
+            "On-demand video",
+            "Seat type Average Legroom",
+            "Legroom 31 inches",
+            "Carbon emission: 166 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "has_on_demand_video": true,
+            "seat_type": "Average Legroom",
+            "legroom_short": "31 in",
+            "legroom_long": "31 inches",
+            "carbon_emission": 166
+          }
+        },
+        {
+          "departure_airport": {
+            "name": "Colombo Bandaranaike International Airport",
+            "id": "CMB",
+            "date": "2026-09-16",
+            "time": "07:25"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-16",
+            "time": "09:20"
+          },
+          "duration": 115,
+          "airplane": "Airbus A320",
+          "airline": "SriLankan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/UL.png",
+          "travel_class": "Economy",
+          "flight_number": "UL 177",
+          "extensions": [
+            "Stream video to own device",
+            "Seat type Average Legroom",
+            "Legroom 30 inches",
+            "Carbon emission: 123 kg"
+          ],
+          "detected_extensions": {
+            "has_stream_video_to_own_device": true,
+            "seat_type": "Average Legroom",
+            "legroom_short": "30 in",
+            "legroom_long": "30 inches",
+            "carbon_emission": 123
+          }
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 495,
+          "name": "Colombo Bandaranaike International Airport",
+          "id": "CMB",
+          "is_overnight": true
+        }
+      ],
+      "total_duration": 760,
+      "carbon_emissions": {
+        "this_flight": 290000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 400,
+        "lowest_route": 70000
+      },
+      "price": 24447,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/UL.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ3RWVERFME5IeFZUREUzTnhvTENQKytBUkFBR2dOSlRsSTRIWERKeHdFPSIsW1siQk9NIiwiMjAyNi0wOS0xNSIsIkNNQiIsbnVsbCwiVUwiLCIxNDQiXSxbIkNNQiIsIjIwMjYtMDktMTYiLCJIWUQiLG51bGwsIlVMIiwiMTc3Il1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai",
+            "id": "BOM",
+            "date": "2026-09-15",
+            "time": "11:15"
+          },
+          "arrival_airport": {
+            "name": "Zayed International Airport",
+            "id": "AUH",
+            "date": "2026-09-15",
+            "time": "12:55"
+          },
+          "duration": 190,
+          "airplane": "Airbus A321neo",
+          "airline": "Etihad",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/EY.png",
+          "travel_class": "Economy",
+          "flight_number": "EY 201",
+          "extensions": [
+            "In-seat USB outlet",
+            "On-demand video",
+            "Wi-Fi for fee",
+            "Seat type Average Legroom",
+            "Legroom 30 inches",
+            "Carbon emission: 180 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "has_on_demand_video": true,
+            "wifi": "for fee",
+            "seat_type": "Average Legroom",
+            "legroom_short": "30 in",
+            "legroom_long": "30 inches",
+            "carbon_emission": 180
+          }
+        },
+        {
+          "departure_airport": {
+            "name": "Zayed International Airport",
+            "id": "AUH",
+            "date": "2026-09-15",
+            "time": "14:20"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "19:40"
+          },
+          "duration": 230,
+          "airplane": "Boeing 787",
+          "airline": "Etihad",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/EY.png",
+          "travel_class": "Economy",
+          "flight_number": "EY 358",
+          "is_often_delayed": true,
+          "extensions": [
+            "In-seat USB outlet",
+            "On-demand video",
+            "Wi-Fi for fee",
+            "Seat type Average Legroom",
+            "Legroom 31 inches",
+            "Carbon emission: 159 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "has_on_demand_video": true,
+            "wifi": "for fee",
+            "seat_type": "Average Legroom",
+            "legroom_short": "31 in",
+            "legroom_long": "31 inches",
+            "carbon_emission": 159
+          }
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 85,
+          "name": "Zayed International Airport",
+          "id": "AUH"
+        }
+      ],
+      "total_duration": 505,
+      "carbon_emissions": {
+        "this_flight": 340000,
+        "typical_for_this_route": 58000,
+        "difference_percent": 486,
+        "lowest_route": 70000
+      },
+      "price": 30409,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/EY.png",
+      "booking_token": "WyJDalJJVW5KSVJYaEVSVTF2VURoQlNGbFNXSGRDUnkwdExTMHRMUzB0TFhsc2JuY3hPVUZCUVVGQlIzRktXa3hOVGt0QllsbEJFZ3RGV1RJd01YeEZXVE0xT0JvTENNbnRBUkFBR2dOSlRsSTRIWENmK0FFPSIsW1siQk9NIiwiMjAyNi0wOS0xNSIsIkFVSCIsbnVsbCwiRVkiLCIyMDEiXSxbIkFVSCIsIjIwMjYtMDktMTUiLCJIWUQiLG51bGwsIkVZIiwiMzU4Il1dXQ=="
+    }
+  ],
+  "price_insights": {
+    "lowest_price": 5645,
+    "price_level": "high",
+    "typical_price_range": {
+      "low_price": 3100,
+      "high_price": 5400
+    },
+    "price_history": [
+      {
+        "price": 3786,
+        "iso_date": "2026-06-21T18:30:00Z"
+      },
+      {
+        "price": 3786,
+        "iso_date": "2026-06-22T18:30:00Z"
+      },
+      {
+        "price": 3786,
+        "iso_date": "2026-06-23T18:30:00Z"
+      },
+      {
+        "price": 3786,
+        "iso_date": "2026-06-24T18:30:00Z"
+      },
+      {
+        "price": 3786,
+        "iso_date": "2026-06-25T18:30:00Z"
+      },
+      {
+        "price": 3786,
+        "iso_date": "2026-06-26T18:30:00Z"
+      },
+      {
+        "price": 3786,
+        "iso_date": "2026-06-27T18:30:00Z"
+      },
+      {
+        "price": 3786,
+        "iso_date": "2026-06-28T18:30:00Z"
+      },
+      {
+        "price": 3786,
+        "iso_date": "2026-06-29T18:30:00Z"
+      },
+      {
+        "price": 3786,
+        "iso_date": "2026-06-30T18:30:00Z"
+      },
+      {
+        "price": 4895,
+        "iso_date": "2026-07-01T18:30:00Z"
+      },
+      {
+        "price": 4895,
+        "iso_date": "2026-07-02T18:30:00Z"
+      },
+      {
+        "price": 4895,
+        "iso_date": "2026-07-03T18:30:00Z"
+      },
+      {
+        "price": 4895,
+        "iso_date": "2026-07-04T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-05T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-06T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-07T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-08T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-09T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-10T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-11T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-12T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-13T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-14T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-15T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-16T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-17T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-18T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-19T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-20T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-21T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-22T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-23T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-24T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-25T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-26T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-27T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-28T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-29T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-30T18:30:00Z"
+      },
+      {
+        "price": 4570,
+        "iso_date": "2026-07-31T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-01T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-02T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-03T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-04T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-05T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-06T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-07T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-08T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-09T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-10T18:30:00Z"
+      },
+      {
+        "price": 5046,
+        "iso_date": "2026-08-11T18:30:00Z"
+      },
+      {
+        "price": 5393,
+        "iso_date": "2026-08-12T18:30:00Z"
+      },
+      {
+        "price": 5498,
+        "iso_date": "2026-08-13T18:30:00Z"
+      },
+      {
+        "price": 5498,
+        "iso_date": "2026-08-14T18:30:00Z"
+      },
+      {
+        "price": 5498,
+        "iso_date": "2026-08-15T18:30:00Z"
+      },
+      {
+        "price": 5629,
+        "iso_date": "2026-08-16T18:30:00Z"
+      },
+      {
+        "price": 5645,
+        "iso_date": "2026-08-17T18:30:00Z"
+      },
+      {
+        "price": 5645,
+        "iso_date": "2026-08-18T18:30:00Z"
+      },
+      {
+        "price": 5645,
+        "iso_date": "2026-08-19T18:30:00Z"
+      },
+      {
+        "price": 5645,
+        "iso_date": "2026-08-20T18:30:00Z"
+      },
+      {
+        "price": 5645,
+        "iso_date": "2026-08-21T18:30:00Z"
+      }
+    ]
+  },
+  "airports": [
+    {
+      "departure": [
+        {
+          "airport": {
+            "id": "BOM",
+            "name": "Chhatrapati Shivaji Maharaj International Airport Mumbai"
+          },
+          "city": "Mumbai",
+          "country": "India",
+          "country_code": "IN",
+          "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTJ5Q0R5IIxjWsuWKt6lnlBIOlNfNwTqC8yBtOP_uMdzFrluYmn3jZ-6dyEWo6AbIH3x57scrUgF3gvWA",
+          "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRMqVWevN4qkQ8u4HrxtHbv2Oy7UigPckL8bgZUJQWQgjvmJxG7oggYxd2Rw5MwjiBYzZFpr939opSbON9CxkwdD-7DK9it3TPq1ea8pxU"
+        }
+      ],
+      "arrival": [
+        {
+          "airport": {
+            "id": "HYD",
+            "name": "Rajiv Gandhi International Airport"
+          },
+          "city": "Hyderabad",
+          "country": "India",
+          "country_code": "IN",
+          "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZYggVzDR3bBmFCtOJtoteR8sbLdQi7YWrBt50w4pdtQCKQZj7EtTiNrLM6eUDaJqmo7-_seEsSyuA0g",
+          "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSguPRMPWcZhK7VZ5lMPYaqwY8CakryY29B4zKHqfsL5SWkeNjLUBPR7wUiWA6dS2QMNQVpinMxrpUoC14UvLkgJ9aaekuKY1YotySb4vI"
+        }
+      ]
+    }
+  ],
+  "airlines": {
+    "alliances": [
+      {
+        "code": "ONEWORLD",
+        "name": "Oneworld"
+      },
+      {
+        "code": "SKYTEAM",
+        "name": "SkyTeam"
+      },
+      {
+        "code": "STAR_ALLIANCE",
+        "name": "Star Alliance"
+      }
+    ],
+    "airlines": [
+      {
+        "code": "G9",
+        "name": "Air Arabia"
+      },
+      {
+        "code": "AI",
+        "name": "Air India"
+      },
+      {
+        "code": "IX",
+        "name": "Air India Express"
+      },
+      {
+        "code": "QP",
+        "name": "Akasa Air"
+      },
+      {
+        "code": "MS",
+        "name": "EgyptAir"
+      },
+      {
+        "code": "EK",
+        "name": "Emirates"
+      },
+      {
+        "code": "EY",
+        "name": "Etihad"
+      },
+      {
+        "code": "F3",
+        "name": "flyadeal"
+      },
+      {
+        "code": "FZ",
+        "name": "flydubai"
+      },
+      {
+        "code": "XY",
+        "name": "Flynas"
+      },
+      {
+        "code": "GF",
+        "name": "Gulf Air"
+      },
+      {
+        "code": "6E",
+        "name": "IndiGo"
+      },
+      {
+        "code": "JL",
+        "name": "JAL"
+      },
+      {
+        "code": "J9",
+        "name": "Jazeera"
+      },
+      {
+        "code": "KU",
+        "name": "Kuwait Airways"
+      },
+      {
+        "code": "MH",
+        "name": "Malaysia Airlines"
+      },
+      {
+        "code": "WY",
+        "name": "Oman Air"
+      },
+      {
+        "code": "QR",
+        "name": "Qatar Airways"
+      },
+      {
+        "code": "OV",
+        "name": "SalamAir"
+      },
+      {
+        "code": "SV",
+        "name": "Saudia"
+      },
+      {
+        "code": "SQ",
+        "name": "Singapore Airlines"
+      },
+      {
+        "code": "SG",
+        "name": "SpiceJet"
+      },
+      {
+        "code": "UL",
+        "name": "SriLankan"
+      },
+      {
+        "code": "S5",
+        "name": "Star Air"
+      },
+      {
+        "code": "TG",
+        "name": "THAI"
+      },
+      {
+        "code": "VN",
+        "name": "Vietnam Airlines"
+      }
+    ],
+    "hubs": [
+      {
+        "code": "AUH",
+        "name": "Abu Dhabi"
+      },
+      {
+        "code": "AMD",
+        "name": "Ahmedabad"
+      },
+      {
+        "code": "ATQ",
+        "name": "Amritsar"
+      },
+      {
+        "code": "BAH",
+        "name": "Bahrain"
+      },
+      {
+        "code": "BLR",
+        "name": "Bengaluru"
+      },
+      {
+        "code": "BHO",
+        "name": "Bhopal"
+      },
+      {
+        "code": "BHJ",
+        "name": "Bhuj"
+      },
+      {
+        "code": "MAA",
+        "name": "Chennai"
+      },
+      {
+        "code": "IXU",
+        "name": "Chhatrapati Sambhajinagar"
+      },
+      {
+        "code": "CMB",
+        "name": "Colombo"
+      },
+      {
+        "code": "DXB",
+        "name": "Dubai"
+      },
+      {
+        "code": "GOI",
+        "name": "Goa"
+      },
+      {
+        "code": "GOX",
+        "name": "Goa"
+      },
+      {
+        "code": "KWI",
+        "name": "Kuwait City"
+      },
+      {
+        "code": "IXE",
+        "name": "Mangaluru"
+      },
+      {
+        "code": "NAG",
+        "name": "Nagpur"
+      },
+      {
+        "code": "DEL",
+        "name": "New Delhi"
+      },
+      {
+        "code": "RPR",
+        "name": "Raipur"
+      },
+      {
+        "code": "RJA",
+        "name": "Rajamahendravaram"
+      },
+      {
+        "code": "HSR",
+        "name": "Rajkot"
+      },
+      {
+        "code": "VGA",
+        "name": "Vijayawada"
+      }
+    ]
+  },
+  "baggage_allowance_links": [
+    {
+      "airline_code": "AI",
+      "airline": "Air India",
+      "url": "https://www.airindia.com/in/en/travel-information/baggage-guidelines.html"
+    },
+    {
+      "airline_code": "EY",
+      "airline": "Etihad",
+      "url": "https://www.etihad.com/en/fly-etihad/baggage"
+    },
+    {
+      "airline_code": "6E",
+      "airline": "IndiGo",
+      "url": "https://www.goindigo.in/baggage/baggage-allowance.html"
+    },
+    {
+      "airline_code": "UL",
+      "airline": "SriLankan",
+      "url": "https://www.srilankan.com/en_uk/plan-and-book/luggage"
+    }
+  ],
+  "passenger_assistance_links": [
+    {
+      "airline_code": "6E",
+      "airline": "IndiGo",
+      "url": "https://www.goindigo.in/information/special-disability-assistance/disability-assistance.html"
+    },
+    {
+      "airline_code": "AI",
+      "airline": "Air India",
+      "url": "https://www.airindia.com/in/en/travel-information/health-medical-assistance.html"
+    },
+    {
+      "airline_code": "UL",
+      "airline": "SriLankan",
+      "url": "https://www.srilankan.com/en_uk/flying-with-us/special-assistance"
+    },
+    {
+      "airline_code": "EY",
+      "airline": "Etihad",
+      "url": "https://www.etihad.com/en-ae/manage/special-assistance"
+    }
+  ]
+}

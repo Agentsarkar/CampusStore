@@ -1,0 +1,1725 @@
+{
+  "search_metadata": {
+    "id": "search_mOgBEZe50gHZjQpV5kzwL3jW",
+    "status": "Success",
+    "created_at": "2026-08-22T08:57:54Z",
+    "request_time_taken": 1.36,
+    "parsing_time_taken": 0.05,
+    "total_time_taken": 1.41,
+    "request_url": "https://www.google.com/travel/flights/search?tfs=CBwQAhoeEgoyMDI2LTA5LTE1agcIARIDQ0NVcgcIARIDQkxSQAFIAXABggELCP___________wGYAQI&hl=en&gl=us&curr=INR",
+    "html_url": "https://www.searchapi.io/api/v1/searches/search_mOgBEZe50gHZjQpV5kzwL3jW.html",
+    "json_url": "https://www.searchapi.io/api/v1/searches/search_mOgBEZe50gHZjQpV5kzwL3jW"
+  },
+  "search_parameters": {
+    "engine": "google_flights",
+    "departure_id": "CCU",
+    "arrival_id": "BLR",
+    "currency": "INR",
+    "hl": "en",
+    "gl": "us",
+    "outbound_date": "2026-09-15",
+    "flight_type": "one_way",
+    "travel_class": "economy",
+    "stops": "any",
+    "adults": "1",
+    "children": "0",
+    "infants_in_seat": "0",
+    "infants_on_lap": "0"
+  },
+  "best_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "11:45"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "14:25"
+          },
+          "duration": 160,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 235",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 111 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 111
+          }
+        }
+      ],
+      "total_duration": 160,
+      "carbon_emissions": {
+        "this_flight": 111000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 2,
+        "lowest_route": 131000
+      },
+      "price": 6551,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1UyUlRJek5Sb0tDSmN6RUFBYUEwbE9VamdkY0wwMSIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkJMUiIsbnVsbCwiNkUiLCIyMzUiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "18:50"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "21:30"
+          },
+          "duration": 160,
+          "airplane": "Airbus A320neo",
+          "airline": "Air India Express",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/IX.png",
+          "travel_class": "Economy",
+          "flight_number": "IX 1371",
+          "extensions": [
+            "In-seat USB outlet",
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 130 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 130
+          }
+        }
+      ],
+      "total_duration": 160,
+      "carbon_emissions": {
+        "this_flight": 130000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 19,
+        "lowest_route": 131000
+      },
+      "price": 6632,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/IX.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1pKV0RFek56RWFDZ2pvTXhBQUdnTkpUbEk0SFhDU05nPT0iLFtbIkNDVSIsIjIwMjYtMDktMTUiLCJCTFIiLG51bGwsIklYIiwiMTM3MSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "20:20"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "23:05"
+          },
+          "duration": 165,
+          "airplane": "Boeing 737MAX 8 Passenger",
+          "airline": "Akasa Air",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/QP.png",
+          "travel_class": "Economy",
+          "flight_number": "QP 1564",
+          "extensions": [
+            "In-seat USB outlet",
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 116 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 116
+          }
+        }
+      ],
+      "total_duration": 165,
+      "carbon_emissions": {
+        "this_flight": 116000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 6,
+        "lowest_route": 131000
+      },
+      "price": 7007,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/QP.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1pSVURFMU5qUWFDZ2pmTmhBQUdnTkpUbEk0SFhDYU9RPT0iLFtbIkNDVSIsIjIwMjYtMDktMTUiLCJCTFIiLG51bGwsIlFQIiwiMTU2NCJdXV0="
+    }
+  ],
+  "other_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "05:05"
+          },
+          "arrival_airport": {
+            "name": "Chennai International Airport",
+            "id": "MAA",
+            "date": "2026-09-15",
+            "time": "07:20"
+          },
+          "duration": 135,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 344",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 100 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 100
+          }
+        },
+        {
+          "departure_airport": {
+            "name": "Chennai International Airport",
+            "id": "MAA",
+            "date": "2026-09-15",
+            "time": "08:55"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "10:05"
+          },
+          "duration": 70,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6815",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 36 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 36
+          }
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 95,
+          "name": "Chennai International Airport",
+          "id": "MAA"
+        }
+      ],
+      "total_duration": 300,
+      "carbon_emissions": {
+        "this_flight": 137000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 26,
+        "lowest_route": 131000
+      },
+      "price": 6517,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ3cyUlRNME5IdzJSVFk0TVRVYUNnajFNaEFBR2dOSlRsSTRIWENhTlE9PSIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIk1BQSIsbnVsbCwiNkUiLCIzNDQiXSxbIk1BQSIsIjIwMjYtMDktMTUiLCJCTFIiLG51bGwsIjZFIiwiNjgxNSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "05:20"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "07:30"
+          },
+          "duration": 130,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6623",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 92 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 92
+          }
+        },
+        {
+          "departure_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "09:35"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "10:55"
+          },
+          "duration": 80,
+          "airplane": "Airbus A320neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6066",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 52 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 52
+          }
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 125,
+          "name": "Rajiv Gandhi International Airport",
+          "id": "HYD"
+        }
+      ],
+      "total_duration": 335,
+      "carbon_emissions": {
+        "this_flight": 145000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 33,
+        "lowest_route": 131000
+      },
+      "price": 6517,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZzAyUlRZMk1qTjhOa1UyTURZMkdnb0k5VElRQUJvRFNVNVNPQjF3bWpVPSIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkhZRCIsbnVsbCwiNkUiLCI2NjIzIl0sWyJIWUQiLCIyMDI2LTA5LTE1IiwiQkxSIixudWxsLCI2RSIsIjYwNjYiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "08:35"
+          },
+          "arrival_airport": {
+            "name": "Chennai International Airport",
+            "id": "MAA",
+            "date": "2026-09-15",
+            "time": "10:55"
+          },
+          "duration": 140,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 563",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 100 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 100
+          }
+        },
+        {
+          "departure_airport": {
+            "name": "Chennai International Airport",
+            "id": "MAA",
+            "date": "2026-09-15",
+            "time": "14:35"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "15:40"
+          },
+          "duration": 65,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6209",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 36 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 36
+          }
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 220,
+          "name": "Chennai International Airport",
+          "id": "MAA"
+        }
+      ],
+      "total_duration": 425,
+      "carbon_emissions": {
+        "this_flight": 137000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 26,
+        "lowest_route": 131000
+      },
+      "price": 6517,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ3cyUlRVMk0zdzJSVFl5TURrYUNnajFNaEFBR2dOSlRsSTRIWENhTlE9PSIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIk1BQSIsbnVsbCwiNkUiLCI1NjMiXSxbIk1BQSIsIjIwMjYtMDktMTUiLCJCTFIiLG51bGwsIjZFIiwiNjIwOSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "08:40"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "11:00"
+          },
+          "duration": 140,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6513",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 92 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 92
+          }
+        },
+        {
+          "departure_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "14:30"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "15:50"
+          },
+          "duration": 80,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6405",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 48 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 48
+          }
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 210,
+          "name": "Rajiv Gandhi International Airport",
+          "id": "HYD"
+        }
+      ],
+      "total_duration": 430,
+      "carbon_emissions": {
+        "this_flight": 140000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 28,
+        "lowest_route": 131000
+      },
+      "price": 6517,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZzAyUlRZMU1UTjhOa1UyTkRBMUdnb0k5VElRQUJvRFNVNVNPQjF3bWpVPSIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkhZRCIsbnVsbCwiNkUiLCI2NTEzIl0sWyJIWUQiLCIyMDI2LTA5LTE1IiwiQkxSIixudWxsLCI2RSIsIjY0MDUiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "15:00"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "17:10"
+          },
+          "duration": 130,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6908",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 92 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 92
+          }
+        },
+        {
+          "departure_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "18:45"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "20:05"
+          },
+          "duration": 80,
+          "airplane": "Airbus A320neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6783",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 52 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 52
+          }
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 95,
+          "name": "Rajiv Gandhi International Airport",
+          "id": "HYD"
+        }
+      ],
+      "total_duration": 305,
+      "carbon_emissions": {
+        "this_flight": 145000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 33,
+        "lowest_route": 131000
+      },
+      "price": 6517,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZzAyUlRZNU1EaDhOa1UyTnpnekdnb0k5VElRQUJvRFNVNVNPQjF3bWpVPSIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkhZRCIsbnVsbCwiNkUiLCI2OTA4Il0sWyJIWUQiLCIyMDI2LTA5LTE1IiwiQkxSIixudWxsLCI2RSIsIjY3ODMiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "17:00"
+          },
+          "arrival_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "19:15"
+          },
+          "duration": 135,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6528",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 92 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 92
+          }
+        },
+        {
+          "departure_airport": {
+            "name": "Rajiv Gandhi International Airport",
+            "id": "HYD",
+            "date": "2026-09-15",
+            "time": "21:25"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "22:45"
+          },
+          "duration": 80,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6505",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 48 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 48
+          }
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 130,
+          "name": "Rajiv Gandhi International Airport",
+          "id": "HYD"
+        }
+      ],
+      "total_duration": 345,
+      "carbon_emissions": {
+        "this_flight": 140000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 28,
+        "lowest_route": 131000
+      },
+      "price": 6517,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZzAyUlRZMU1qaDhOa1UyTlRBMUdnb0k5VElRQUJvRFNVNVNPQjF3bWpVPSIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkhZRCIsbnVsbCwiNkUiLCI2NTI4Il0sWyJIWUQiLCIyMDI2LTA5LTE1IiwiQkxSIixudWxsLCI2RSIsIjY1MDUiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "18:10"
+          },
+          "arrival_airport": {
+            "name": "Chennai International Airport",
+            "id": "MAA",
+            "date": "2026-09-15",
+            "time": "20:30"
+          },
+          "duration": 140,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 234",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 100 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 100
+          }
+        },
+        {
+          "departure_airport": {
+            "name": "Chennai International Airport",
+            "id": "MAA",
+            "date": "2026-09-15",
+            "time": "22:00"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "23:00"
+          },
+          "duration": 60,
+          "airplane": "Airbus A320neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 796",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 40 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 40
+          }
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 90,
+          "name": "Chennai International Airport",
+          "id": "MAA"
+        }
+      ],
+      "total_duration": 290,
+      "carbon_emissions": {
+        "this_flight": 141000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 29,
+        "lowest_route": 131000
+      },
+      "price": 6517,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ3MyUlRJek5IdzJSVGM1TmhvS0NQVXlFQUFhQTBsT1VqZ2RjSm8xIixbWyJDQ1UiLCIyMDI2LTA5LTE1IiwiTUFBIixudWxsLCI2RSIsIjIzNCJdLFsiTUFBIiwiMjAyNi0wOS0xNSIsIkJMUiIsbnVsbCwiNkUiLCI3OTYiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "08:20"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "11:00"
+          },
+          "duration": 160,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 496",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 111 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 111
+          }
+        }
+      ],
+      "total_duration": 160,
+      "carbon_emissions": {
+        "this_flight": 111000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 2,
+        "lowest_route": 131000
+      },
+      "price": 6551,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1UyUlRRNU5ob0tDSmN6RUFBYUEwbE9VamdkY0wwMSIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkJMUiIsbnVsbCwiNkUiLCI0OTYiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "10:15"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "13:00"
+          },
+          "duration": 165,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 386",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 111 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 111
+          }
+        }
+      ],
+      "total_duration": 165,
+      "carbon_emissions": {
+        "this_flight": 111000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 2,
+        "lowest_route": 131000
+      },
+      "price": 6551,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1UyUlRNNE5ob0tDSmN6RUFBYUEwbE9VamdkY0wwMSIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkJMUiIsbnVsbCwiNkUiLCIzODYiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "19:00"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "21:40"
+          },
+          "duration": 160,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6251",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 111 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 111
+          }
+        }
+      ],
+      "total_duration": 160,
+      "carbon_emissions": {
+        "this_flight": 111000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 2,
+        "lowest_route": 131000
+      },
+      "price": 6551,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1kyUlRZeU5URWFDZ2lYTXhBQUdnTkpUbEk0SFhDOU5RPT0iLFtbIkNDVSIsIjIwMjYtMDktMTUiLCJCTFIiLG51bGwsIjZFIiwiNjI1MSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "20:35"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "23:20"
+          },
+          "duration": 165,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 6314",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 111 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 111
+          }
+        }
+      ],
+      "total_duration": 165,
+      "carbon_emissions": {
+        "this_flight": 111000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 2,
+        "lowest_route": 131000
+      },
+      "price": 6551,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1kyUlRZek1UUWFDZ2lYTXhBQUdnTkpUbEk0SFhDOU5RPT0iLFtbIkNDVSIsIjIwMjYtMDktMTUiLCJCTFIiLG51bGwsIjZFIiwiNjMxNCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "17:00"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "19:40"
+          },
+          "duration": 160,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 757",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 111 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 111
+          }
+        }
+      ],
+      "total_duration": 160,
+      "carbon_emissions": {
+        "this_flight": 111000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 2,
+        "lowest_route": 131000
+      },
+      "price": 6866,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1UyUlRjMU54b0tDTkkxRUFBYUEwbE9VamdkY0ljNCIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkJMUiIsbnVsbCwiNkUiLCI3NTciXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "11:15"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "13:55"
+          },
+          "duration": 160,
+          "airplane": "Boeing 737MAX 8 Passenger",
+          "airline": "Air India Express",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/IX.png",
+          "travel_class": "Economy",
+          "flight_number": "IX 1496",
+          "extensions": [
+            "In-seat USB outlet",
+            "Seat type Average Legroom",
+            "Legroom 30 inches",
+            "Carbon emission: 133 kg"
+          ],
+          "detected_extensions": {
+            "has_in_seat_usb_outlet": true,
+            "seat_type": "Average Legroom",
+            "legroom_short": "30 in",
+            "legroom_long": "30 inches",
+            "carbon_emission": 133
+          }
+        }
+      ],
+      "total_duration": 160,
+      "carbon_emissions": {
+        "this_flight": 134000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 23,
+        "lowest_route": 131000
+      },
+      "price": 6882,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/IX.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1pKV0RFME9UWWFDZ2ppTlJBQUdnTkpUbEk0SFhDWE9BPT0iLFtbIkNDVSIsIjIwMjYtMDktMTUiLCJCTFIiLG51bGwsIklYIiwiMTQ5NiJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "22:00"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-16",
+            "time": "00:40"
+          },
+          "duration": 160,
+          "airplane": "Airbus A320",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 573",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 137 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 137
+          }
+        }
+      ],
+      "total_duration": 160,
+      "carbon_emissions": {
+        "this_flight": 138000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 27,
+        "lowest_route": 131000
+      },
+      "price": 6971,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1UyUlRVM014b0tDTHMyRUFBYUEwbE9VamdkY1BRNCIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkJMUiIsbnVsbCwiNkUiLCI1NzMiXV1d"
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "15:15"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "17:55"
+          },
+          "duration": 160,
+          "airplane": "Boeing 737MAX 8 Passenger",
+          "airline": "Air India Express",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/IX.png",
+          "travel_class": "Economy",
+          "flight_number": "IX 1543",
+          "extensions": [
+            "Seat type Average Legroom",
+            "Legroom 30 inches",
+            "Carbon emission: 130 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Average Legroom",
+            "legroom_short": "30 in",
+            "legroom_long": "30 inches",
+            "carbon_emission": 130
+          }
+        }
+      ],
+      "total_duration": 160,
+      "carbon_emissions": {
+        "this_flight": 131000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 20,
+        "lowest_route": 131000
+      },
+      "price": 7168,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/IX.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1pKV0RFMU5ETWFDZ2lBT0JBQUdnTkpUbEk0SFhEQ09nPT0iLFtbIkNDVSIsIjIwMjYtMDktMTUiLCJCTFIiLG51bGwsIklYIiwiMTU0MyJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Netaji Subhash Chandra Bose International Airport",
+            "id": "CCU",
+            "date": "2026-09-15",
+            "time": "06:20"
+          },
+          "arrival_airport": {
+            "name": "Kempegowda International Airport Bengaluru",
+            "id": "BLR",
+            "date": "2026-09-15",
+            "time": "09:00"
+          },
+          "duration": 160,
+          "airplane": "Airbus A321neo",
+          "airline": "IndiGo",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+          "travel_class": "Economy",
+          "flight_number": "6E 771",
+          "extensions": [
+            "Seat type Below Average Legroom",
+            "Legroom 28 inches",
+            "Carbon emission: 111 kg"
+          ],
+          "detected_extensions": {
+            "seat_type": "Below Average Legroom",
+            "legroom_short": "28 in",
+            "legroom_long": "28 inches",
+            "carbon_emission": 111
+          }
+        }
+      ],
+      "total_duration": 160,
+      "carbon_emissions": {
+        "this_flight": 111000,
+        "typical_for_this_route": 109000,
+        "difference_percent": 2,
+        "lowest_route": 131000
+      },
+      "price": 7391,
+      "type": "One way",
+      "extensions": [
+        "Bag and fare conditions depend on the return flight"
+      ],
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/6E.png",
+      "booking_token": "WyJDalJJYmsxTlMxbDRYekZLTUhOQlRGRTNVM2RDUnkwdExTMHRMUzB0TFMxdmVXWnlPRUZCUVVGQlIzRktXa3BOVFZkaFNIVkJFZ1UyUlRjM01Sb0tDTjg1RUFBYUEwbE9VamdkY0tzOCIsW1siQ0NVIiwiMjAyNi0wOS0xNSIsIkJMUiIsbnVsbCwiNkUiLCI3NzEiXV1d"
+    }
+  ],
+  "price_insights": {
+    "lowest_price": 6517,
+    "price_level": "high",
+    "typical_price_range": {
+      "low_price": 4850,
+      "high_price": 6500
+    },
+    "price_history": [
+      {
+        "price": 6236,
+        "iso_date": "2026-06-21T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-06-22T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-06-23T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-06-24T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-06-25T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-06-26T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-06-27T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-06-28T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-06-29T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-06-30T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-01T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-02T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-03T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-04T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-05T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-06T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-07T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-08T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-09T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-10T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-11T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-12T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-13T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-14T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-15T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-16T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-17T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-18T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-19T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-20T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-21T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-22T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-23T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-24T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-25T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-26T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-27T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-28T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-29T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-30T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-07-31T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-01T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-02T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-03T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-04T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-05T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-06T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-07T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-08T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-09T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-10T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-11T18:30:00Z"
+      },
+      {
+        "price": 6115,
+        "iso_date": "2026-08-12T18:30:00Z"
+      },
+      {
+        "price": 6115,
+        "iso_date": "2026-08-13T18:30:00Z"
+      },
+      {
+        "price": 6115,
+        "iso_date": "2026-08-14T18:30:00Z"
+      },
+      {
+        "price": 6115,
+        "iso_date": "2026-08-15T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-16T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-17T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-18T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-19T18:30:00Z"
+      },
+      {
+        "price": 6236,
+        "iso_date": "2026-08-20T18:30:00Z"
+      },
+      {
+        "price": 6517,
+        "iso_date": "2026-08-21T18:30:00Z"
+      }
+    ]
+  },
+  "airports": [
+    {
+      "departure": [
+        {
+          "airport": {
+            "id": "CCU",
+            "name": "Netaji Subhash Chandra Bose International Airport"
+          },
+          "city": "Kolkata",
+          "country": "India",
+          "country_code": "IN",
+          "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSecDvisIigWFhZfc6_t7zuRjY6CguemYu7TcnMn8NLYeGQo73sD4Iil-ZVxlK_ySWd8ZbzQ8fsiRsiaQ",
+          "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQfUYGOAsN4MK8aZeUx8Nsg9Gh9SnPM1QWODebr4jtn0sJ8018bFwzMPTCIPv2sugOgVQ3cj_x--Tk2s5A6IH4vnILmH57hvoEdwL-Dj1k"
+        }
+      ],
+      "arrival": [
+        {
+          "airport": {
+            "id": "BLR",
+            "name": "Kempegowda International Airport Bengaluru"
+          },
+          "city": "Bengaluru",
+          "country": "India",
+          "country_code": "IN",
+          "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQIQIUfZg6v3rdHMVD96D5vTNuXwVO7zsdZy0l7s2uiyV-xuK8nJlokAp_ChoLy9r0vjJWcOOBkEvBI2g",
+          "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSFrS_QMxzjURYrYSPiuRW9uR9imYuBAhdE49jwKag7Ucgl0en4CNAtP0hf1MDSGdvhAw2s1-2w71_b-pcIyFOM1F1yMSPQLO5_XlgJc_4"
+        }
+      ]
+    }
+  ],
+  "airlines": {
+    "alliances": [
+      {
+        "code": "ONEWORLD",
+        "name": "Oneworld"
+      },
+      {
+        "code": "SKYTEAM",
+        "name": "SkyTeam"
+      },
+      {
+        "code": "STAR_ALLIANCE",
+        "name": "Star Alliance"
+      }
+    ],
+    "airlines": [
+      {
+        "code": "AI",
+        "name": "Air India"
+      },
+      {
+        "code": "IX",
+        "name": "Air India Express"
+      },
+      {
+        "code": "NZ",
+        "name": "Air New Zealand"
+      },
+      {
+        "code": "AK",
+        "name": "AirAsia"
+      },
+      {
+        "code": "QP",
+        "name": "Akasa Air"
+      },
+      {
+        "code": "EK",
+        "name": "Emirates"
+      },
+      {
+        "code": "EY",
+        "name": "Etihad"
+      },
+      {
+        "code": "GA",
+        "name": "Garuda Indonesia"
+      },
+      {
+        "code": "6E",
+        "name": "IndiGo"
+      },
+      {
+        "code": "MH",
+        "name": "Malaysia Airlines"
+      },
+      {
+        "code": "QF",
+        "name": "Qantas"
+      },
+      {
+        "code": "QR",
+        "name": "Qatar Airways"
+      },
+      {
+        "code": "SQ",
+        "name": "Singapore Airlines"
+      },
+      {
+        "code": "SG",
+        "name": "SpiceJet"
+      },
+      {
+        "code": "UL",
+        "name": "SriLankan"
+      },
+      {
+        "code": "TG",
+        "name": "THAI"
+      },
+      {
+        "code": "FD",
+        "name": "Thai AirAsia"
+      },
+      {
+        "code": "SL",
+        "name": "Thai Lion Air"
+      },
+      {
+        "code": "VA",
+        "name": "Virgin Australia"
+      }
+    ],
+    "hubs": [
+      {
+        "code": "AUH",
+        "name": "Abu Dhabi"
+      },
+      {
+        "code": "AMD",
+        "name": "Ahmedabad"
+      },
+      {
+        "code": "BKK",
+        "name": "Bangkok"
+      },
+      {
+        "code": "BBI",
+        "name": "Bhubaneswar"
+      },
+      {
+        "code": "MAA",
+        "name": "Chennai"
+      },
+      {
+        "code": "CMB",
+        "name": "Colombo"
+      },
+      {
+        "code": "DOH",
+        "name": "Doha"
+      },
+      {
+        "code": "DXB",
+        "name": "Dubai"
+      },
+      {
+        "code": "KUL",
+        "name": "Federal Territory of Kuala Lumpur"
+      },
+      {
+        "code": "GAU",
+        "name": "Guwahati"
+      },
+      {
+        "code": "HYD",
+        "name": "Hyderabad"
+      },
+      {
+        "code": "LKO",
+        "name": "Lucknow"
+      },
+      {
+        "code": "BOM",
+        "name": "Mumbai"
+      },
+      {
+        "code": "NMI",
+        "name": "Navi Mumbai"
+      },
+      {
+        "code": "DEL",
+        "name": "New Delhi"
+      },
+      {
+        "code": "PNQ",
+        "name": "Pune"
+      },
+      {
+        "code": "SIN",
+        "name": "Singapore"
+      },
+      {
+        "code": "IXZ",
+        "name": "Sri Vijaya Puram"
+      },
+      {
+        "code": "STV",
+        "name": "Surat"
+      }
+    ]
+  },
+  "baggage_allowance_links": [
+    {
+      "airline_code": "IX",
+      "airline": "Air India Express",
+      "url": "https://www.airindiaexpress.com/carry-on-xtra"
+    },
+    {
+      "airline_code": "QP",
+      "airline": "Akasa Air",
+      "url": "https://www.akasaair.com/add-ons/excess-baggage"
+    },
+    {
+      "airline_code": "6E",
+      "airline": "IndiGo",
+      "url": "https://www.goindigo.in/baggage/baggage-allowance.html"
+    }
+  ],
+  "passenger_assistance_links": [
+    {
+      "airline_code": "6E",
+      "airline": "IndiGo",
+      "url": "https://www.goindigo.in/information/special-disability-assistance/disability-assistance.html"
+    },
+    {
+      "airline_code": "IX",
+      "airline": "Air India Express",
+      "url": "https://www.airindiaexpress.com/support/faqs/special-guests"
+    }
+  ]
+}
