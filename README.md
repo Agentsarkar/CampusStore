@@ -32,7 +32,7 @@
 
 ## 👨‍💻 System Architecture & Lead Authorship
 
-* **Core Maintainer & Lead Systems Architect**: **Anurag Sarkar** ([@your-github-username](https://github.com/your-github-username))
+* **Core Maintainer & Lead Systems Architect**: **Anurag Sarkar** ([@Agentsarkar](https://github.com/Agentsarkar))
   * Solely engineered the monolithic FastAPI backend, database schema, JWT auth lifecycle, and external API pipelines.
   * Designed the proprietary **Dynamic Pricing Manipulation Index (DPMI)** and **Cohort-Based Scarcity Auditor**.
 * **Frontend Designer**: Keshav Rajesh Maheshwari *(Client UI layout support)*
