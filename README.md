@@ -5,105 +5,92 @@
   <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/main/icons/Supabase-Dark.svg" height="60" alt="Supabase" />
 </div>
 
-<h1 align="center">Campus Ecosystem Platform</h1>
+<h1 align="center">Campus Ecosystem Platform & AI Consumer Shield</h1>
 
 <p align="center">
-  <strong>A unified hyper-local delivery, printing, and e-commerce network built for university campuses.</strong>
+  <strong>A unified hyper-local delivery, printing, and e-commerce network with integrated algorithmic consumer defense built for university campuses.</strong>
 </p>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/Architecture-FastAPI%20%7C%20Supabase-green.svg" alt="Stack">
+  <img src="https://img.shields.io/badge/Award-2nd%20Place%20Winner-gold.svg" alt="Hackathon Award">
+</p>
+
+---
+
+## 🏆 Hackathon Recognition & Validation
+
+- **2nd Place Winner** at the Inter-College Hackathon Finals (August 2026).
+- **Enterprise System Validation**: Evaluated and commended by engineers as an *"IIT-grade production architecture"* for its real-time API integrations, resilient background task handling, and forensic dynamic pricing detection engine.
+
+---
+
+## 👨‍💻 System Architecture & Lead Authorship
+
+* **Core Maintainer & Lead Systems Architect**: **Anurag Sarkar** ([@your-github-username](https://github.com/your-github-username))
+  * Solely engineered the monolithic FastAPI backend, database schema, JWT auth lifecycle, and external API pipelines.
+  * Designed the proprietary **Dynamic Pricing Manipulation Index (DPMI)** and **Cohort-Based Scarcity Auditor**.
+* **Frontend Designer**: Keshav Rajesh Maheshwari *(Client UI layout support)*
 
 ---
 
 ## 🚀 Overview
 
-The **Campus Ecosystem Platform** is a monolithic architecture designed to solve real-world logistical friction within university campuses. It replaces fragmented WhatsApp groups, physical queues, and cash transactions with a seamless digital experience. 
+The **Campus Ecosystem Platform** resolves operational and financial friction within university campuses. It replaces fragmented WhatsApp groups, physical queues, cash transactions, and predatory third-party aggregator pricing with a unified digital ecosystem.
 
-It powers three distinct interconnected verticals:
+It powers four distinct interconnected verticals:
 1. **Campus Flash**: Hyper-local food delivery matching students with on-campus student riders.
-2. **Campus Print Express**: Remote document printing and direct-to-dorm delivery.
-3. **Canteen Fast-Track**: Digital tokens and queue management for physical cafeteria outlets.
+2. **Campus Print Express**: Remote document printing with direct-to-dorm delivery.
+3. **Canteen Fast-Track**: Digital queue management and real-time token synchronization.
+4. **Campus Concierge & AI Trust Shield**: An active consumer protection engine auditing third-party ticketing/travel vendors against cookie tracking, artificial scarcity, and predatory dynamic pricing.
+
+---
 
 ## ✨ Key Features
 
-- **⚡ Live Order Tracking**: Real-time status updates bridging the student, the outlet, and the rider.
-- **🔐 Secure Delivery Handoffs**: OTP PIN verification required for riders to complete deliveries.
-- **🖨️ Remote Printing**: Students upload PDFs, select color/BW, and print operators receive jobs in a unified queue. 
-- **🛵 Peer-to-Peer Rider Network**: Students can toggle "Online" to become riders, accept flash orders, manage checklists, and earn money. 
-- **💸 Razorpay Integration**: Secure digital payments processing.
-- **🎨 Custom UI/UX**: Built with bespoke Vanilla CSS featuring glassmorphism, dynamic micro-animations, and a responsive bottom-sheet modal architecture.
+### 📦 Campus Logistics & Commerce
+- **⚡ Live Order Tracking**: Real-time status updates bridging student, merchant, and rider.
+- **🔐 Secure Delivery Handoffs**: Cryptographic OTP PIN verification required for delivery completion.
+- **🖨️ Remote Print Queue**: Student PDF ingestion with automated page metrics and operator queues.
+- **🛵 Peer-to-Peer Rider Network**: Dynamic student rider toggle with real-time checklist state machines.
+- **💸 Integrated Checkout**: Razorpay API handling seamless payment flows.
+
+### 🛡️ Algorithmic Consumer Defense (AI Trust Shield)
+- **Mathematical Surge Anomaly Detection (DPMI)**: Computes a standardized Z-Score deviation against historical price arrays, penalizing high-frequency view counts and false countdown timers:
+  $$\text{DPMI} = \text{Sigmoid}\left( w_1 \cdot Z_{\text{score}} + w_2 \cdot \log(1 + V_{\text{views}}) + w_3 \cdot S_{\text{FOMO}} \right)$$
+- **Cohort-Based Scarcity Auditing**: Verifies "Only 1 Seat Left" claims against a rolling 3-month snapshot baseline to distinguish genuine capacity crunches from artificial dark patterns.
+- **Clean-Room Proxy Buying**: Client-side counter-purchasing tool that strips tracking cookies and queries fresh API sessions directly.
+
+---
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: Vanilla HTML5, CSS3, JavaScript (Zero-build architecture for maximum speed)
-- **Backend**: Python 3, FastAPI
-- **Database**: PostgreSQL hosted on [Supabase](https://supabase.com)
-- **Storage**: Supabase Buckets (for PDF print jobs and product images)
-- **Payments**: Razorpay Gateway
-- **Deployment**: Configured out-of-the-box for [Vercel](https://vercel.com) Serverless
+- **Frontend**: Vanilla HTML5, CSS3, JavaScript (Zero-build client architecture)
+- **Backend**: Python 3.11, FastAPI, Uvicorn ASGI
+- **Database & Auth**: PostgreSQL hosted on [Supabase](https://supabase.com), Row Level Security (RLS), JWT
+- **Storage**: Supabase Storage Buckets (Encrypted PDF handling)
+- **Intelligence & Telemetry**: SearchApi (Google Flights Engine), OpenRouter LLM API
+- **Payments**: Razorpay Gateway API
+- **Deployment**: Configured for serverless hosting on [Vercel](https://vercel.com)
+
+---
 
 ## 📁 Repository Structure
 
 ```text
 📦 campus-ecosystem
- ┣ 📂 client               # Vanilla JS/HTML Frontend Application
- ┃ ┣ 📂 css                # Custom Design System
- ┃ ┣ 📂 js                 # Application Logic & API calls
- ┃ ┣ 📂 rider              # Isolated Rider Dashboard & Workflow
- ┃ ┣ 📂 student            # Student Facing Dashboards (Print, Flash)
- ┃ ┗ 📜 index.html         # Main Landing Page
- ┣ 📂 server               # FastAPI Python Backend
- ┃ ┣ 📂 routers            # Domain-driven route controllers (Cart, Print, Rider, Order)
- ┃ ┣ 📂 utils              # Auth logic, OTP generation, token verification
- ┃ ┗ 📜 main.py            # ASGI Application Entrypoint
- ┣ 📜 supabase_schema.sql  # Database Schema & Policies
- ┣ 📜 vercel.json          # Serverless deployment configuration
+ ┣ 📂 client                 # Client Application
+ ┃ ┣ 📂 css                  # Custom Design System
+ ┃ ┣ 📂 js                   # Application Logic & API calls
+ ┃ ┣ 📂 rider                # Isolated Rider Dashboard & Workflow
+ ┃ ┣ 📂 student              # Student Facing Dashboards (Print, Flash, Concierge)
+ ┃ ┗ 📜 index.html           # Main Landing Page
+ ┣ 📂 server                 # FastAPI Python Backend
+ ┃ ┣ 📂 routers              # Domain-driven controllers (Cart, Print, Rider, Order, Audit)
+ ┃ ┣ 📂 utils                # Auth logic, OTP generation, DPMI math engine
+ ┃ ┗ 📜 main.py              # ASGI Application Entrypoint
+ ┣ 📜 supabase_schema.sql    # Database Schema, Policies & Cohort Snapshots
+ ┣ 📜 vercel.json            # Serverless deployment configuration
+ ┣ 📜 LICENSE                # MIT License
  ┗ 📜 README.md
-```
-
-## 💻 Local Development Setup
-
-### 1. Database Setup (Supabase)
-1. Create a new project on [Supabase](https://supabase.com).
-2. Navigate to the SQL Editor and run the contents of `supabase_schema.sql` to initialize all tables, triggers, and storage buckets.
-3. Obtain your `Project URL` and `API Key`.
-
-### 2. Backend Setup
-```bash
-# Navigate to backend
-cd server
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure Environment Variables
-# Create a .env file in the server directory
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_api_key
-JWT_SECRET=your_super_secret_jwt_key
-RAZORPAY_KEY_ID=your_razorpay_key
-RAZORPAY_KEY_SECRET=your_razorpay_secret
-```
-
-### 3. Running Locally
-```bash
-# Start the FastAPI server (it automatically serves the static client folder)
-uvicorn main:app --reload
-```
-Navigate to `http://localhost:8000` in your browser.
-
-## 🚀 Vercel Deployment
-
-This repository is pre-configured for automated Vercel deployment. 
-
-1. Push this repository to GitHub.
-2. Log into Vercel and **Import Project**.
-3. Under **Environment Variables**, add the keys defined in the local setup (`SUPABASE_URL`, etc.).
-4. Click **Deploy**.
-
-Vercel will automatically route `/api/*` to the Serverless FastAPI backend and serve the `client/` folder natively on the Edge network!
-
----
-*Built with ❤️ for Campus Hackathons.*
