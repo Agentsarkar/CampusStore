@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rider Login — Campus Store</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/rider.css">
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] min-h-screen flex flex-col font-sans">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-[#E8E7DF] sticky top-0 z-40">
+        <div class="max-w-md mx-auto px-4 py-3.5 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-[#004D2B] text-white flex items-center justify-center font-extrabold text-sm shadow-xs">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="5.5" cy="17.5" r="2.5"/>
+                        <circle cx="18.5" cy="17.5" r="2.5"/>
+                        <path d="M15 6h2.5l2 3 1.5 3.5h-5.5"/>
+                        <path d="M5.5 17.5L8 10h5l2.5 7.5"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-sm font-extrabold tracking-tight text-[#111713] block leading-tight">CAMPUS <span class="text-[#004D2B]">RIDER</span></span>
+                    <span class="text-[10px] font-semibold text-[#526056] tracking-wider uppercase block">Delivery Portal</span>
+                </div>
+            </a>
+            <a href="register.html" class="text-xs font-extrabold text-[#004D2B] hover:underline">
+                Register →
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-md w-full mx-auto px-4 py-8 flex flex-col justify-center">
+        <div class="campus-card p-6 space-y-6">
+
+            <div class="space-y-1">
+                <h1 class="text-xl font-black text-[#111713]">Rider Sign In</h1>
+                <p class="text-xs text-[#526056]">Access your Campus Delivery Partner account</p>
+            </div>
+
+            <!-- Error Banner -->
+            <div id="login-error" class="hidden p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold leading-relaxed">
+                Please enter a valid Email / Rider ID and Password.
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div class="space-y-1.5">
+                    <label for="rider-email" class="text-xs font-extrabold text-[#111713] block">Campus Email or Rider ID <span class="text-red-500">*</span></label>
+                    <input type="text" id="rider-email" placeholder="e.g. alex.rider@campus.edu or RID-2026-88" autocomplete="username" class="w-full px-3.5 py-3 rounded-xl border border-[#D3D2C8] text-xs font-medium text-[#111713] bg-white focus:outline-none focus:border-[#004D2B] focus:ring-1 focus:ring-[#004D2B]">
+                </div>
+
+                <div class="space-y-1.5">
+                    <label for="rider-password" class="text-xs font-extrabold text-[#111713] block">Password <span class="text-red-500">*</span></label>
+                    <input type="password" id="rider-password" placeholder="••••••••" autocomplete="current-password" class="w-full px-3.5 py-3 rounded-xl border border-[#D3D2C8] text-xs font-medium text-[#111713] bg-white focus:outline-none focus:border-[#004D2B] focus:ring-1 focus:ring-[#004D2B]">
+                </div>
+
+                <button type="submit" class="w-full py-3.5 px-4 bg-[#004D2B] hover:bg-[#003B21] text-white font-extrabold text-sm rounded-xl shadow-md transition active:scale-[0.99] flex items-center justify-center gap-2">
+                    Sign In
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+
+            <div class="pt-2 text-center text-xs text-[#526056] border-t border-[#E8E7DF]">
+                New to Campus Delivery? 
+                <a href="register.html" class="font-extrabold text-[#004D2B] hover:underline">Apply to become a Rider</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center text-xs text-[#8A988E] border-t border-[#E8E7DF] bg-white mt-auto">
+        Campus Rider Module &copy; 2026 — Isolated Frontend State (Demo)
+    </footer>
+
+    <script src="js/rider.js"></script>
+    <script>
+        async function handleLoginSubmit(e) {
+            e.preventDefault();
+            const identifier = document.getElementById('rider-email').value.trim();
+            const password = document.getElementById('rider-password').value.trim();
+            const errorDiv = document.getElementById('login-error');
+            const submitBtn = document.querySelector('button[type="submit"]');
+
+            if (!identifier) {
+                errorDiv.classList.remove('hidden');
+                errorDiv.textContent = 'Please enter your Campus Email or Rider ID.';
+                return;
+            }
+
+            if (!password) {
+                errorDiv.classList.remove('hidden');
+                errorDiv.textContent = 'Please enter your password.';
+                return;
+            }
+
+            errorDiv.classList.add('hidden');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Signing In...";
+
+            const result = await riderLogin(identifier, password);
+
+            if (result.success) {
+                // Update local state
+                state.user = result.user;
+                saveState();
+
+                if (state.user.status === 'PENDING') {
+                    window.location.href = 'pending.html';
+                } else {
+                    window.location.href = 'index.html';
+                }
+            } else {
+                errorDiv.classList.remove('hidden');
+                errorDiv.textContent = result.message || 'Login failed';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }
+        }
+    </script>
+</body>
+</html>

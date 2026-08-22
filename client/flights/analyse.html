@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Analysis - Campus Concierge Flights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <style>
+        .verdict-bar {
+            background: linear-gradient(90deg, #22c55e 0%, #eab308 50%, #ef4444 100%);
+            border-radius: 999px;
+            height: 10px;
+            position: relative;
+        }
+        .verdict-bar-marker {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 18px;
+            background: white;
+            border: 3px solid #004D2B;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+            transition: left 0.8s cubic-bezier(.4,0,.2,1);
+        }
+        .pulse-badge {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .skeleton {
+            background: linear-gradient(90deg, #E8E7DF 25%, #F4F3EB 50%, #E8E7DF 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] flex flex-col min-h-screen">
+
+    <div id="header-container"></div>
+
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- Breadcrumb -->
+        <div class="mb-6 flex items-center justify-between">
+            <a href="javascript:history.back()"
+                class="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#004D2B] transition">
+                <i class="fa-solid fa-arrow-left"></i> Back to Search
+            </a>
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1 bg-[#E6F0EB] text-[#004D2B] text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                    ✈️ Price Analysis
+                </span>
+                <span id="mode-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full"></span>
+            </div>
+        </div>
+
+        <!-- Flight Summary Banner -->
+        <div class="bg-[#004D2B] campus-card rounded-3xl p-5 mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div class="flex items-center gap-4">
+                <img id="airline-logo" src="" alt="" class="w-10 h-10 rounded-xl bg-white p-1 object-contain hidden">
+                <div>
+                    <h1 class="font-black text-xl text-white" id="summary-flight-info">Loading...</h1>
+                    <p class="text-xs text-[#E6F0EB] mt-0.5" id="summary-route">—</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="text-center">
+                    <div class="text-2xl font-black text-[#D7F000]" id="summary-price">₹—</div>
+                    <div class="text-[10px] text-[#E6F0EB] font-bold uppercase">Current Price</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-lg font-black text-white" id="summary-days-left">—</div>
+                    <div class="text-[10px] text-[#E6F0EB] font-bold uppercase">Days Left</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- LEFT: Main Analysis -->
+            <div class="lg:col-span-2 space-y-5">
+
+                <!-- AI Verdict Banner (placeholder until loaded) -->
+                <div id="ai-verdict-card" class="campus-card bg-[#111713] rounded-3xl p-5 border border-[#004D2B]">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-xl bg-[#D7F000] flex items-center justify-center flex-shrink-0 text-sm">✨</div>
+                        <div class="flex-grow">
+                            <p class="text-xs font-black text-[#D7F000] uppercase tracking-wider mb-1">AI Verdict</p>
+                            <p id="ai-verdict-text" class="text-sm text-white leading-relaxed">Analysing price trends and seat patterns...</p>
+                            <p id="ai-confidence-text" class="text-[11px] text-[#526056] mt-1"></p>
+                        </div>
+                        <div id="ai-loading-spinner" class="w-5 h-5 border-2 border-[#D7F000] border-t-transparent rounded-full animate-spin flex-shrink-0"></div>
+                    </div>
+                </div>
+
+                <!-- Price Level Meter (like Google Flights) -->
+                <div class="campus-card bg-white border-2 border-[#E8E7DF] rounded-3xl p-6">
+                    <div class="flex items-start gap-3 mb-4">
+                        <i class="fa-solid fa-sparkles text-[#D7F000] mt-0.5"></i>
+                        <div>
+                            <p id="price-level-headline" class="font-black text-base text-[#111713]">Analysing...</p>
+                            <p id="price-typical-text" class="text-xs text-[#526056] mt-0.5"></p>
+                        </div>
+                    </div>
+                    <!-- Colour Bar -->
+                    <div class="mb-2 relative mt-4">
+                        <div class="verdict-bar">
+                            <div class="verdict-bar-marker" id="price-marker" style="left: 50%"></div>
+                        </div>
+                        <div class="flex justify-between mt-1.5">
+                            <span class="text-[10px] font-bold text-[#526056]" id="bar-min">₹—</span>
+                            <span class="text-[10px] font-bold text-[#526056]" id="bar-max">₹—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price History Chart -->
+                <div class="campus-card bg-white border-2 border-[#E8E7DF] rounded-3xl p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h2 class="font-black text-base text-[#111713] flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-[#004D2B]"></i>
+                            Price history for this flight
+                        </h2>
+                        <span id="campus-context-badge" class="hidden text-[10px] font-black uppercase px-2 py-1 rounded bg-[#D7F000]/20 text-[#004D2B] border border-[#D7F000]">Standard Period</span>
+                    </div>
+                    <div class="relative" style="height: 260px">
+                        <canvas id="price-chart"></canvas>
+                        <div id="chart-loading" class="absolute inset-0 flex flex-col gap-3 p-2">
+                            <div class="skeleton h-4 w-3/4"></div>
+                            <div class="skeleton h-40 w-full"></div>
+                            <div class="skeleton h-3 w-1/2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Z-Score & DPMI Stats -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <div class="campus-card bg-white border-2 border-[#E8E7DF] rounded-2xl p-4 text-center">
+                        <div class="text-xl font-black text-[#004D2B]" id="stat-zscore">—</div>
+                        <div class="text-[10px] font-bold text-[#526056] uppercase mt-1">Z-Score</div>
+                    </div>
+                    <div class="campus-card bg-white border-2 border-[#E8E7DF] rounded-2xl p-4 text-center">
+                        <div class="text-xl font-black text-[#004D2B]" id="stat-dpmi">—</div>
+                        <div class="text-[10px] font-bold text-[#526056] uppercase mt-1">DPMI Index</div>
+                    </div>
+                    <div class="campus-card bg-white border-2 border-[#E8E7DF] rounded-2xl p-4 text-center">
+                        <div class="text-xl font-black text-[#004D2B]" id="stat-mean">—</div>
+                        <div class="text-[10px] font-bold text-[#526056] uppercase mt-1">90d Average</div>
+                    </div>
+                    <div class="campus-card bg-white border-2 border-[#E8E7DF] rounded-2xl p-4 text-center">
+                        <div class="text-xl font-black" id="stat-trend-icon">—</div>
+                        <div class="text-[10px] font-bold text-[#526056] uppercase mt-1">Recent Trend</div>
+                    </div>
+                </div>
+
+                <!-- Seat Availability Alerts -->
+                <div class="campus-card bg-white border-2 border-[#E8E7DF] rounded-3xl p-6">
+                    <h2 class="font-black text-base text-[#111713] mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-person-seat text-[#004D2B]"></i>
+                        Seat availability patterns
+                    </h2>
+                    <div id="seat-alerts-container" class="space-y-3">
+                        <div class="skeleton h-12 rounded-xl"></div>
+                        <div class="skeleton h-12 rounded-xl"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT: Fare Panel + Book -->
+            <div class="lg:col-span-1">
+                <div class="campus-card bg-white border-2 border-[#E8E7DF] rounded-3xl p-6 sticky top-6 space-y-5">
+
+                    <h2 class="text-lg font-black text-[#111713]">Your Flight</h2>
+
+                    <!-- Route card -->
+                    <div class="bg-[#F4F3EB] rounded-2xl p-4 border border-[#E8E7DF]">
+                        <div class="flex justify-between text-lg font-black text-[#111713] mb-2">
+                            <span id="panel-from">—</span>
+                            <i class="fa-solid fa-plane text-[#004D2B] text-sm mx-2 self-center"></i>
+                            <span id="panel-to">—</span>
+                        </div>
+                        <div class="text-xs font-bold text-[#526056]" id="panel-flight-no">—</div>
+                        <div class="text-xs text-[#526056]" id="panel-airline">—</div>
+                        <div class="text-xs text-[#526056] mt-1">Travel: <span id="panel-date">—</span></div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="flex justify-between items-center border-t border-[#E8E7DF] pt-4">
+                        <span class="font-bold text-sm text-[#526056]">Total Fare</span>
+                        <span class="text-2xl font-black text-[#004D2B]" id="panel-price">₹—</span>
+                    </div>
+
+                    <!-- Proceed Button -->
+                    <a id="book-now-btn" href="#"
+                        class="block w-full bg-[#004D2B] hover:bg-[#003B21] text-white font-black text-sm px-8 py-4 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-sm text-center">
+                        <i class="fa-solid fa-lock text-xs"></i>
+                        Proceed to Checkout
+                    </a>
+
+                    <p class="text-[10px] text-center text-[#526056]">Powered by Campus Concierge · Prices may change</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="../shared/js/icons.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+        // ── Parse URL params ──
+        const p = new URLSearchParams(window.location.search);
+        const airline    = p.get('airline')    || 'Unknown Airline';
+        const flightNo   = p.get('flightNo')   || 'FL000';
+        const price      = parseInt(p.get('price') || '0', 10);
+        const fromCode   = p.get('from')       || 'CCU';
+        const toCode     = p.get('to')         || 'BLR';
+        const travelDate = p.get('travelDate') || '';
+        const mode       = p.get('mode')       || 'dummy';
+
+        // ── Static UI ──
+        document.getElementById('summary-flight-info').innerText = `${airline} · ${flightNo}`;
+        document.getElementById('summary-route').innerText = `${fromCode} → ${toCode} · ${travelDate || 'Date TBD'}`;
+        document.getElementById('summary-price').innerText = `₹${price.toLocaleString('en-IN')}`;
+        document.getElementById('panel-from').innerText = fromCode;
+        document.getElementById('panel-to').innerText = toCode;
+        document.getElementById('panel-flight-no').innerText = flightNo;
+        document.getElementById('panel-airline').innerText = airline;
+        document.getElementById('panel-price').innerText = `₹${price.toLocaleString('en-IN')}`;
+        document.getElementById('panel-date').innerText = travelDate || '—';
+
+        const modeBadge = document.getElementById('mode-badge');
+        if (mode === 'api') {
+            modeBadge.innerText = 'LIVE DATA';
+            modeBadge.className += ' bg-emerald-100 text-emerald-700';
+        } else {
+            modeBadge.innerText = 'DEMO MODE';
+            modeBadge.className += ' bg-amber-100 text-amber-700';
+        }
+
+        // ── Build checkout link ──
+        document.getElementById('book-now-btn').href =
+            `checkout.html?airline=${encodeURIComponent(airline)}&flightNo=${encodeURIComponent(flightNo)}&price=${price}&from=${fromCode}&to=${toCode}`;
+
+        // ── Days remaining ──
+        let daysLeft = '—';
+        if (travelDate) {
+            const diff = Math.ceil((new Date(travelDate) - new Date()) / 86400000);
+            daysLeft = diff > 0 ? `${diff}d` : 'Today';
+        }
+        document.getElementById('summary-days-left').innerText = daysLeft;
+
+        // ── Chart instance ──
+        let priceChart = null;
+
+        function formatINR(n) {
+            return '₹' + Number(n).toLocaleString('en-IN');
+        }
+
+        function renderChart(history) {
+            document.getElementById('chart-loading').style.display = 'none';
+
+            // Group history by departure_date
+            const grouped = {};
+            history.forEach(h => {
+                const dep = h.departure_date || 'Current';
+                if (!grouped[dep]) grouped[dep] = [];
+                grouped[dep].push(h);
+            });
+
+            const depDates = Object.keys(grouped).sort();
+            let labels = [];
+            let datasets = [];
+            let showLegend = false;
+
+            if (depDates.length <= 1) {
+                // Single departure: chronological x-axis
+                labels = history.map(h => {
+                    const d = new Date(h.date);
+                    return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+                });
+                const prices = history.map(h => h.price);
+                const soldOutMask = history.map(h => h.seats_available ? null : h.price);
+
+                datasets.push({
+                    label: 'Price',
+                    data: prices,
+                    borderColor: '#004D2B',
+                    backgroundColor: 'rgba(0,77,43,0.08)',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: '#D7F000',
+                    fill: true,
+                    tension: 0.4
+                });
+                datasets.push({
+                    label: 'Sold Out',
+                    data: soldOutMask,
+                    borderColor: '#ef4444',
+                    backgroundColor: 'rgba(239,68,68,0.15)',
+                    borderWidth: 0,
+                    pointRadius: 5,
+                    pointBackgroundColor: '#ef4444',
+                    fill: false,
+                    type: 'scatter'
+                });
+            } else {
+                // Multiple departures: align by days_before_departure
+                showLegend = true;
+                const allDays = new Set();
+                history.forEach(h => { if(h.days_before_departure != null) allDays.add(h.days_before_departure); });
+                const sortedDays = Array.from(allDays).sort((a, b) => b - a); // e.g. 62, 61 ... 0
+                
+                labels = sortedDays.map(d => `${d}d prior`);
+                
+                const colors = ['#004D2B', '#D7F000', '#526056', '#111713'];
+                let cIdx = 0;
+                
+                // Sort departures descending so most recent is first
+                depDates.sort((a, b) => new Date(b) - new Date(a)).forEach(dep => {
+                    const dataPoints = sortedDays.map(d => {
+                        const rec = grouped[dep].find(h => h.days_before_departure === d);
+                        return rec ? rec.price : null;
+                    });
+                    
+                    let labelName = 'Current Departure';
+                    if (dep !== 'Current') {
+                        const dObj = new Date(dep);
+                        const monthName = dObj.toLocaleDateString('en-US', { month: 'long' });
+                        labelName = `Dep: ${monthName}`;
+                    }
+                    
+                    datasets.push({
+                        label: labelName,
+                        data: dataPoints,
+                        borderColor: colors[cIdx % colors.length],
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        pointHoverRadius: 5,
+                        fill: false,
+                        tension: 0.4,
+                        spanGaps: true
+                    });
+                    cIdx++;
+                });
+            }
+
+            const ctx = document.getElementById('price-chart').getContext('2d');
+            if (priceChart) priceChart.destroy();
+            priceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { 
+                            display: showLegend,
+                            labels: {
+                                usePointStyle: true,
+                                boxWidth: 8,
+                                font: { size: 10, family: 'Inter' }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => ` ${ctx.dataset.label}: ${formatINR(ctx.raw)}`
+                            },
+                            backgroundColor: '#111713',
+                            titleColor: '#D7F000',
+                            bodyColor: '#fff',
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                maxTicksLimit: 8,
+                                color: '#526056',
+                                font: { size: 10, weight: '600' }
+                            }
+                        },
+                        y: {
+                            grid: { color: '#F4F3EB' },
+                            ticks: {
+                                color: '#526056',
+                                font: { size: 10 },
+                                callback: v => formatINR(v)
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderSeatAlerts(seatTrend) {
+            const container = document.getElementById('seat-alerts-container');
+            const items = [];
+
+            if (seatTrend.last_available_date) {
+                items.push({
+                    icon: '⏳',
+                    color: 'text-amber-600 bg-amber-50 border-amber-200',
+                    text: `Seats last tracked as available on <strong>${seatTrend.last_available_date}</strong>. Likely sold out after that.`
+                });
+            }
+            if (seatTrend.avg_sellout_pct > 10) {
+                items.push({
+                    icon: '📊',
+                    color: 'text-slate-600 bg-[#F4F3EB] border-[#E8E7DF]',
+                    text: `~${seatTrend.avg_sellout_pct}% of recorded days showed sold-out status — this route fills fast.`
+                });
+            }
+            seatTrend.fomo_alerts?.forEach(alert => {
+                items.push({
+                    icon: '🔔',
+                    color: 'text-red-600 bg-red-50 border-red-200',
+                    text: `Alert: <strong>${alert.message}</strong> — rare 1-seat availability spike observed.`
+                });
+            });
+            if (items.length === 0) {
+                items.push({
+                    icon: '✅',
+                    color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
+                    text: 'Seats appear consistently available on this route. No critical alerts.'
+                });
+            }
+
+            container.innerHTML = items.map(item => `
+                <div class="flex items-start gap-3 p-3.5 rounded-xl border ${item.color}">
+                    <span class="text-lg flex-shrink-0">${item.icon}</span>
+                    <p class="text-xs font-bold leading-relaxed">${item.text}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderAnalysis(data) {
+            const z = data.z_score_data;
+            const st = data.seat_trend;
+
+            // Stats
+            document.getElementById('stat-zscore').innerText = z.z_score?.toFixed(2) ?? '—';
+            document.getElementById('stat-dpmi').innerText = z.dpmi?.toFixed(2) ?? '—';
+            document.getElementById('stat-mean').innerText = formatINR(z.mean ?? 0);
+
+            const trend = data.recent_7d_trend || 'stable';
+            const trendMap = {
+                rising: { icon: '↑', cls: 'text-red-500' },
+                falling: { icon: '↓', cls: 'text-emerald-500' },
+                stable: { icon: '→', cls: 'text-amber-500' }
+            };
+            const tEl = document.getElementById('stat-trend-icon');
+            tEl.innerText = (trendMap[trend] || trendMap.stable).icon;
+            tEl.className = `text-2xl font-black ${(trendMap[trend] || trendMap.stable).cls}`;
+
+            // Price bar
+            const minP = z.min_price || 0, maxP = z.max_price || price * 1.5;
+            document.getElementById('bar-min').innerText = formatINR(minP);
+            document.getElementById('bar-max').innerText = formatINR(maxP);
+            const pct = Math.min(100, Math.max(0, ((price - minP) / (maxP - minP)) * 100));
+            document.getElementById('price-marker').style.left = `${pct}%`;
+
+            // Price level headline
+            const level = z.price_level || 'typical';
+            const headlines = {
+                high: `This price (${formatINR(price)}) is above typical range`,
+                low: `Great deal! ${formatINR(price)} is below typical`,
+                typical: `${formatINR(price)} is typical for this route`
+            };
+            document.getElementById('price-level-headline').innerText = headlines[level] || headlines.typical;
+            document.getElementById('price-typical-text').innerText =
+                `Typical range for this route: ${formatINR(minP)}–${formatINR(maxP)}`;
+
+            // Seat alerts
+            renderSeatAlerts(st);
+        }
+
+        async function fetchAIVerdict(analyseData) {
+            const z = analyseData.z_score_data;
+            const st = analyseData.seat_trend;
+            const params = new URLSearchParams({
+                departure_id: fromCode,
+                arrival_id: toCode,
+                flight_number: flightNo,
+                airline: airline,
+                current_price: price,
+                travel_date: travelDate,
+                z_score: z.z_score,
+                dpmi: z.dpmi,
+                days_remaining: analyseData.days_remaining,
+                mean_price: z.mean,
+                min_price: z.min_price,
+                max_price: z.max_price,
+                recent_trend: analyseData.recent_7d_trend || 'stable',
+                remaining_trend: analyseData.remaining_days_trend || 'stable',
+                seat_status: st.last_available_date ? 'limited' : 'available',
+                last_available_date: st.last_available_date || '',
+                fomo_alert_count: (st.fomo_alerts || []).length,
+                campus_context: analyseData.campus_context || 'Standard Period',
+                historical_dip: analyseData.historical_dip || '',
+                fake_scarcity: analyseData.fake_scarcity || ''
+            });
+            try {
+                const res = await window.apiFetch(`/api/flights/ai-verdict?${params}`);
+                const spinner = document.getElementById('ai-loading-spinner');
+                spinner.style.display = 'none';
+                if (res.success) {
+                    document.getElementById('ai-verdict-text').innerText = res.verdict;
+                    document.getElementById('ai-confidence-text').innerText =
+                        `Confidence: ${res.confidence.toUpperCase()}`;
+                } else {
+                    document.getElementById('ai-verdict-text').innerText = res.verdict;
+                    document.getElementById('ai-verdict-text').classList.add('text-slate-400');
+                }
+            } catch(e) {
+                document.getElementById('ai-loading-spinner').style.display = 'none';
+                document.getElementById('ai-verdict-text').innerText =
+                    'AI verdict temporarily unavailable. Configure OPENROUTER_API_KEY to enable.';
+                document.getElementById('ai-verdict-text').classList.add('text-slate-400');
+            }
+        }
+
+        async function loadData() {
+            try {
+                // 1. Fetch analyse data (z-score, seat trend, etc.)
+                const analyseParams = new URLSearchParams({
+                    departure_id: fromCode,
+                    arrival_id: toCode,
+                    flight_number: flightNo,
+                    current_price: price,
+                    travel_date: travelDate,
+                    mode: mode
+                });
+                const analyseData = await window.apiFetch(`/api/flights/analyse?${analyseParams}`);
+                renderAnalysis(analyseData);
+
+                if (analyseData.campus_context && analyseData.campus_context !== "Standard Period") {
+                    const badge = document.getElementById('campus-context-badge');
+                    badge.innerText = analyseData.campus_context;
+                    badge.classList.remove('hidden');
+                }
+
+                // 2. Fetch price history for chart
+                const histParams = new URLSearchParams({
+                    departure_id: fromCode,
+                    arrival_id: toCode,
+                    flight_number: flightNo,
+                    travel_date: travelDate,
+                    mode: mode
+                });
+                const histData = await window.apiFetch(`/api/flights/price-history?${histParams}`);
+                if (histData.success && histData.price_history?.length) {
+                    renderChart(histData.price_history);
+                } else {
+                    document.getElementById('chart-loading').innerHTML =
+                        `<div class="flex items-center justify-center h-full text-sm text-[#526056] font-bold">No price history available for this flight.</div>`;
+                }
+
+                // 3. Fetch AI verdict (async, non-blocking)
+                fetchAIVerdict(analyseData);
+
+            } catch(err) {
+                console.error('Failed to load analysis:', err);
+                document.getElementById('ai-verdict-text').innerText = 'Failed to load analysis. Is the server running?';
+                document.getElementById('chart-loading').innerHTML =
+                    `<div class="text-xs text-red-500 p-4">Error loading data: ${err.message}</div>`;
+            }
+        }
+
+        loadData();
+    </script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Live Order Tracking - CampusStore</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#004D2B',
+                        'primary-dark': '#003B21',
+                        surface: '#FAF9F3',
+                        outline: '#E8E7DF',
+                        text: '#111713',
+                        subtext: '#526056'
+                    },
+                    boxShadow: {
+                        '2xs': '0 1px 2px rgba(0,0,0,0.04)',
+                        'xl-soft': '0 20px 40px -15px rgba(0,0,0,0.05)'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+    <style>
+        .step-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 10;
+        }
+        .step-line {
+            width: 2px;
+            flex-grow: 1;
+            margin-left: 11px;
+            margin-top: -4px;
+            margin-bottom: -4px;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(0, 77, 43, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 77, 43, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 77, 43, 0); }
+        }
+        .step-active .step-circle {
+            background-color: #004D2B;
+            color: white;
+            animation: pulse-ring 1.5s infinite;
+        }
+        .step-completed .step-circle {
+            background-color: #004D2B;
+            color: white;
+        }
+        .step-inactive .step-circle {
+            background-color: #E8E7DF;
+            color: #8A988E;
+        }
+        .step-completed + .step-line {
+            background-color: #004D2B;
+        }
+        .step-active + .step-line,
+        .step-inactive + .step-line {
+            background-color: #E8E7DF;
+        }
+    </style>
+</head>
+<body class="bg-surface text-text font-sans antialiased min-h-screen flex flex-col selection:bg-primary/20">
+
+    <!-- Simple Header -->
+    <header class="bg-white sticky top-0 z-40 border-b border-outline">
+        <div class="px-4 h-14 flex items-center gap-3">
+            <button onclick="window.location.href='dashboard.html?tab=orders'" class="w-8 h-8 rounded-full bg-surface hover:bg-outline flex items-center justify-center transition active:scale-95">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <h1 class="text-base font-extrabold text-text uppercase tracking-wider">Live Tracking</h1>
+        </div>
+    </header>
+
+    <main class="flex-grow p-4 flex flex-col gap-4">
+        
+        <!-- Map/Header Card -->
+        <div class="bg-white rounded-2xl p-5 border border-outline shadow-2xs relative overflow-hidden flex flex-col items-center justify-center py-8">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxwYXRoIGQ9Ik0wIDIwaDQwTTIwIDB2NDAiIHN0cm9rZT0iI0U4RTdERiIgc3Ryb2tlLXdpZHRoPSIwLjUiIGZpbGw9Im5vbmUiLz4KPC9zdmc+')] opacity-50"></div>
+            
+            <div id="status-icon-container" class="relative z-10 w-20 h-20 rounded-full bg-emerald-50 border-4 border-white shadow-xl-soft flex items-center justify-center mb-3 text-primary">
+                <svg class="w-10 h-10 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+            </div>
+            
+            <h2 id="main-status-text" class="relative z-10 text-xl font-extrabold text-text">Loading Status...</h2>
+            <p id="sub-status-text" class="relative z-10 text-sm text-subtext mt-1 text-center px-4">Connecting to tracking satellite...</p>
+        </div>
+
+        <!-- OTP Card -->
+        <div id="otp-card" class="hidden bg-[#111713] rounded-2xl p-4 shadow-lg flex items-center justify-between text-white">
+            <div>
+                <h3 class="text-xs font-bold text-white/70 uppercase tracking-wider">Delivery PIN</h3>
+                <p class="text-xs text-white/90 mt-0.5">Share with rider to collect order</p>
+            </div>
+            <div class="bg-white/10 px-4 py-2 rounded-xl border border-white/20">
+                <span id="delivery-otp-text" class="text-2xl font-black tracking-[0.2em] text-[#D7F000]">---</span>
+            </div>
+        </div>
+
+        <!-- Rider Info Card (Hidden by default) -->
+        <div id="rider-card" class="hidden bg-white rounded-2xl p-4 border border-outline shadow-2xs flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl">
+                    🚴
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold text-text">Assigned Rider</h3>
+                    <p id="rider-name" class="text-xs text-subtext font-medium">Waiting...</p>
+                </div>
+            </div>
+            <a id="rider-phone-btn" href="#" class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-dark transition shadow-md active:scale-95">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Vertical Progress Tracker -->
+        <div class="bg-white rounded-2xl p-5 border border-outline shadow-2xs flex-grow">
+            <h3 class="text-xs font-extrabold text-subtext uppercase tracking-wider mb-4">Delivery Progress</h3>
+            
+            <div class="flex flex-col h-full gap-2">
+                
+                <!-- Step 1 -->
+                <div class="flex gap-4 min-h-[60px]" id="step-1-container">
+                    <div class="flex flex-col items-center">
+                        <div class="step-circle" id="step-1-circle">1</div>
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="pt-0.5">
+                        <h4 class="text-sm font-bold text-text">Order Placed</h4>
+                        <p class="text-xs text-subtext">Waiting for store confirmation</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex gap-4 min-h-[60px]" id="step-2-container">
+                    <div class="flex flex-col items-center">
+                        <div class="step-circle" id="step-2-circle">2</div>
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="pt-0.5">
+                        <h4 class="text-sm font-bold text-text">Processing / Assigned</h4>
+                        <p class="text-xs text-subtext" id="step-2-sub">Rider is assigned and picking up</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex gap-4 min-h-[60px]" id="step-3-container">
+                    <div class="flex flex-col items-center">
+                        <div class="step-circle" id="step-3-circle">3</div>
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="pt-0.5">
+                        <h4 class="text-sm font-bold text-text">Out for Delivery</h4>
+                        <p class="text-xs text-subtext">Rider is on the way to you</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex gap-4" id="step-4-container">
+                    <div class="flex flex-col items-center">
+                        <div class="step-circle" id="step-4-circle">4</div>
+                    </div>
+                    <div class="pt-0.5">
+                        <h4 class="text-sm font-bold text-text">Delivered</h4>
+                        <p class="text-xs text-subtext">Enjoy your meal!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api.js"></script>
+    <script src="js/token-notif.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('order_id');
+
+        if (!orderId) {
+            window.location.href = "dashboard.html?tab=orders";
+        }
+
+        let pollInterval = null;
+
+        async function fetchStatus() {
+            try {
+                const res = await window.apiFetch(`/api/order/status/${orderId}?t=${Date.now()}`);
+                if (res.success && res.data) {
+                    updateUI(res.data);
+                } else {
+                    document.getElementById('main-status-text').textContent = "Order not found";
+                    document.getElementById('sub-status-text').textContent = "Invalid order ID.";
+                }
+            } catch (e) {
+                console.error("Polling error:", e);
+            }
+        }
+
+        function updateUI(data) {
+            const status = data.status || 'PENDING';
+            const rider = data.rider;
+            const isPrint = data.store_name === 'Campus Print Express';
+            const otp = data.otp;
+            
+            // OTP Card
+            const otpCard = document.getElementById('otp-card');
+            if (otp && status !== 'COMPLETED' && status !== 'DELIVERED') {
+                otpCard.classList.remove('hidden');
+                document.getElementById('delivery-otp-text').textContent = otp;
+            } else {
+                otpCard.classList.add('hidden');
+            }
+            
+            // Rider Card
+            const riderCard = document.getElementById('rider-card');
+            if (rider) {
+                riderCard.classList.remove('hidden');
+                document.getElementById('rider-name').textContent = rider.full_name;
+                document.getElementById('rider-phone-btn').href = `tel:${rider.phone_number}`;
+                document.getElementById('step-2-sub').textContent = `Assigned to ${rider.full_name}`;
+            } else {
+                riderCard.classList.add('hidden');
+            }
+
+            // Steps Logic
+            const s1 = document.getElementById('step-1-container');
+            const s2 = document.getElementById('step-2-container');
+            const s3 = document.getElementById('step-3-container');
+            const s4 = document.getElementById('step-4-container');
+            
+            // Adapt steps text for printing
+            if (isPrint) {
+                s1.querySelector('h4').textContent = "Sent to Printer";
+                s1.querySelector('p').textContent = "Waiting for printer to start";
+                s2.querySelector('h4').textContent = "Printing";
+                s2.querySelector('p').id !== 'step-2-sub' && (s2.querySelector('p').textContent = "Printing in progress");
+                s4.querySelector('p').textContent = "Enjoy your prints!";
+            }
+            
+            // Reset all
+            [s1,s2,s3,s4].forEach(el => el.className = 'flex gap-4 min-h-[60px] step-inactive');
+            s4.className = 'flex gap-4 step-inactive';
+
+            let mainIcon = `<svg class="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
+            let mainTitle = "Order Placed";
+            let mainSub = "Waiting for confirmation...";
+
+            if (status === 'PRINTING_IN_PROGRESS') {
+                s1.className = 'flex gap-4 min-h-[60px] step-completed';
+                s2.className = 'flex gap-4 min-h-[60px] step-active';
+                mainTitle = "Printing in Progress";
+                mainSub = "Your document is being printed and will be assigned to a rider shortly.";
+            } else if (status === 'PENDING') {
+                if (isPrint) {
+                    s1.className = 'flex gap-4 min-h-[60px] step-completed';
+                    s2.className = 'flex gap-4 min-h-[60px] step-completed';
+                    // We keep step 2 as active/completed depending on preference, let's say step 2 is printing, so if it's pending in orders, printing is done.
+                    mainTitle = "Searching for Rider";
+                    mainSub = "Your print is ready! Searching for available riders...";
+                } else {
+                    s1.className = 'flex gap-4 min-h-[60px] step-active';
+                    mainTitle = "Order Placed";
+                    mainSub = "Searching for available riders...";
+                }
+            } else if (status === 'PROCESSING') {
+                s1.className = 'flex gap-4 min-h-[60px] step-completed';
+                s2.className = 'flex gap-4 min-h-[60px] step-active';
+                mainTitle = "Processing";
+                mainSub = isPrint ? "Rider is picking up your print from the outlet." : "Rider is picking up your order from the outlet.";
+            } else if (status === 'OUT_FOR_DELIVERY') {
+                s1.className = 'flex gap-4 min-h-[60px] step-completed';
+                s2.className = 'flex gap-4 min-h-[60px] step-completed';
+                s3.className = 'flex gap-4 min-h-[60px] step-active';
+                mainTitle = "Out for Delivery";
+                mainSub = "Your rider is on the way! Keep your phone nearby.";
+                mainIcon = `<span class="text-4xl text-primary">🚴</span>`;
+            } else if (status === 'COMPLETED' || status === 'DELIVERED') {
+                s1.className = 'flex gap-4 min-h-[60px] step-completed';
+                s2.className = 'flex gap-4 min-h-[60px] step-completed';
+                s3.className = 'flex gap-4 min-h-[60px] step-completed';
+                s4.className = 'flex gap-4 step-completed';
+                mainTitle = "Delivered!";
+                mainSub = isPrint ? "Enjoy your prints. See you next time!" : "Enjoy your meal. See you next time!";
+                mainIcon = `<svg class="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`;
+                
+                if (pollInterval) {
+                    clearInterval(pollInterval);
+                    pollInterval = null;
+                }
+            }
+
+            document.getElementById('status-icon-container').innerHTML = mainIcon;
+            document.getElementById('main-status-text').textContent = mainTitle;
+            document.getElementById('sub-status-text').textContent = mainSub;
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchStatus();
+            pollInterval = setInterval(fetchStatus, 5000);
+        });
+
+    </script>
+</body>
+</html>

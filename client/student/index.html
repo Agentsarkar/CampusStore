@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusStore — Canteen food or groceries. Pick your store.</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+</head>
+<body class="bg-[#FAF9F3] text-[#111713] min-h-screen flex flex-col pb-16 sm:pb-0">
+
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Main Storefront Content -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-5 space-y-8">
+
+        <!-- Active Order Priority Banner -->
+        <section id="active-order-priority-container" class="hidden">
+            <!-- Dynamically injected active order banner -->
+        </section>
+
+        <!-- Hero Section (Forest Green Rounded Banner) -->
+        <section class="campus-hero-banner p-6 sm:p-10 relative overflow-hidden flex flex-col justify-between min-h-[220px] sm:min-h-[260px]">
+            <div class="space-y-3 max-w-2xl relative z-10">
+                <span class="inline-block bg-[#D7F000] text-[#111713] text-[11px] font-extrabold px-3 py-1 rounded-full tracking-wider uppercase">
+                    TWO STORES · ONE 10–MINUTE PROMISE
+                </span>
+                <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                    Canteen food or groceries. Pick your store.
+                </h1>
+                <p class="text-xs sm:text-sm text-[#E6F0EB] max-w-lg leading-relaxed font-normal">
+                    Order fresh meals from campus outlets or get everyday essentials delivered directly to your hostel block.
+                </p>
+            </div>
+
+            <!-- Hero Metrics Row (Removed 40% off metric) -->
+            <div class="pt-4 flex flex-wrap items-center gap-6 text-xs font-semibold text-white relative z-10 border-t border-white/10 mt-4" id="hero-metrics-row">
+                <div class="flex items-center gap-2">
+                    <span id="hero-metric-clock-icon"></span>
+                    <div>
+                        <div class="font-bold text-sm text-[#D7F000]">9:42 avg</div>
+                        <div class="text-[11px] text-[#E6F0EB] font-normal">delivery time</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span id="hero-metric-delivery-icon"></span>
+                    <div>
+                        <div class="font-bold text-sm text-[#D7F000]">180+</div>
+                        <div class="text-[11px] text-[#E6F0EB] font-normal">dark stores</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Store Experience Switcher -->
+        <section class="space-y-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button onclick="selectHomeStore('flash')" id="switcher-flash" 
+                    class="campus-card p-4 text-left transition border-2 border-[#004D2B] bg-white flex justify-between items-center group">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span id="switcher-flash-icon"></span>
+                            <span class="font-extrabold text-sm text-[#111713]">CAMPUS FLASH</span>
+                            <span class="bg-[#004D2B] text-white text-[9px] font-bold px-2 py-0.5 rounded-full">HOSTEL DELIVERY</span>
+                        </div>
+                        <p class="text-xs text-[#526056] mt-1">Everyday groceries & late-night munchies to your room</p>
+                    </div>
+                </button>
+
+                <button onclick="selectHomeStore('canteen')" id="switcher-canteen" 
+                    class="campus-card p-4 text-left transition border-2 border-transparent bg-white hover:border-[#E8E7DF] flex justify-between items-center group">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span id="switcher-canteen-icon"></span>
+                            <span class="font-extrabold text-sm text-[#111713]">CAMPUS CANTEEN</span>
+                            <span class="bg-[#F4F3EB] text-[#526056] text-[9px] font-bold px-2 py-0.5 rounded-full">COUNTER PICKUP</span>
+                        </div>
+                        <p class="text-xs text-[#526056] mt-1">Fresh meals & snacks from campus outlets</p>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Campus Print Written Block Tab (Harmonized with Campus Store Design System) -->
+            <div class="mt-3 w-full campus-card p-4 sm:p-5 border-2 border-[#E8E7DF] hover:border-[#004D2B] bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition group shadow-sm">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-11 h-11 rounded-2xl bg-[#E6F0EB] text-[#004D2B] border border-[#004D2B]/20 flex items-center justify-center text-xl flex-shrink-0 font-bold">
+                        🖨️
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-extrabold text-sm text-[#111713] tracking-tight">CAMPUS PRINT EXPRESS</span>
+                            <span class="bg-[#004D2B] text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">HOSTEL ROOM DELIVERY</span>
+                        </div>
+                        <h3 class="text-sm sm:text-base font-extrabold text-[#111713] mt-0.5">Too Lazy to Print? Go Here! 📄</h3>
+                        <p class="text-xs text-[#526056] mt-0.5">Upload PDFs & docs online. Get B/W (₹2/pg) or Color (₹5/pg) printouts delivered to your door!</p>
+                    </div>
+                </div>
+                <a href="../print.html" class="w-full sm:w-auto bg-[#004D2B] hover:bg-[#003B21] text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition duration-200 flex items-center justify-center gap-2 whitespace-nowrap shadow-sm">
+                    <span>Order Printouts Now</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <!-- Campus Concierge Flight Block Tab (Highlighted) -->
+            <div class="mt-4 w-full campus-card p-5 border-2 border-[#003B21] bg-[#004D2B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 transition group shadow-lg relative overflow-hidden">
+                <!-- Subtle background glow/decoration -->
+                <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-[#D7F000] opacity-10 rounded-full blur-2xl pointer-events-none"></div>
+                
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="w-12 h-12 rounded-2xl bg-[#D7F000] text-[#111713] flex items-center justify-center text-2xl flex-shrink-0 font-bold shadow-md shadow-black/20">
+                        ✈️
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-extrabold text-sm text-[#D7F000] tracking-tight">CAMPUS CONCIERGE</span>
+                            <span class="bg-red-500 text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase animate-pulse shadow-sm shadow-red-500/50">NEW</span>
+                        </div>
+                        <h3 class="text-sm sm:text-lg font-black text-white mt-0.5 tracking-tight">Heading home for the holidays? ✈️</h3>
+                        <p class="text-xs text-[#E6F0EB] mt-0.5 max-w-sm">Find exclusive student-discounted flights. Now testing our <strong class="text-white">Kolkata (CCU) &rarr; Bangalore (BLR)</strong> route!</p>
+                    </div>
+                </div>
+                <a href="../flights/index.html" class="w-full sm:w-auto bg-[#D7F000] hover:bg-[#c2d800] text-[#111713] font-black text-xs px-6 py-3 rounded-xl transition duration-200 flex items-center justify-center gap-2 whitespace-nowrap shadow-md hover:shadow-lg relative z-10">
+                    <span>Search Flights</span>
+                    <i class="fa-solid fa-plane text-xs"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Campus Outlets Section -->
+        <section id="campus-outlets-section" class="space-y-3">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="text-lg font-extrabold text-[#111713]">Campus Outlets</h2>
+                    <p class="text-xs text-[#526056]">Fresh food, hot and ready from around campus.</p>
+                </div>
+                <a href="javascript:void(0)" onclick="selectHomeStore('canteen')" class="text-xs font-bold text-[#004D2B] hover:underline flex items-center gap-1">
+                    See all &rarr;
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="campus-outlets-grid">
+                <!-- Dynamically populated outlet cards -->
+            </div>
+        </section>
+
+        <!-- Category Filter Pills Bar (Clean SVG Icon Chips) -->
+        <section id="category-chips-section" class="space-y-2">
+            <h3 class="text-sm font-extrabold text-[#111713]" id="category-chips-title">Browse canteen menu</h3>
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs" id="category-chips-bar">
+                <!-- Dynamically populated category chips -->
+            </div>
+        </section>
+
+        <!-- Product Sections & Grid Catalog -->
+        <section class="space-y-8" id="store-catalog-feed">
+            <div id="categories-products-container" class="space-y-8">
+                <!-- Dynamically populated category sections -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Application Scripts -->
+    <script src="../shared/js/icons.js"></script>
+    <script src="../shared/js/auth.js"></script>
+    <script src="../shared/js/api.js"></script>
+    <script src="../shared/js/toast.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="js/token-notif.js"></script>
+    <script>
+        let currentSelectedStore = "flash";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const storeParam = urlParams.get("store");
+            if (storeParam && ["flash", "canteen"].includes(storeParam)) {
+                currentSelectedStore = storeParam;
+            }
+            
+            injectHeroIcons();
+            renderActiveOrderBanner();
+            renderOutlets();
+            renderCategoryChips();
+
+            window.addEventListener("authStateChanged", () => {
+                renderActiveOrderBanner();
+            });
+
+            window.addEventListener("ordersUpdated", () => {
+                renderActiveOrderBanner();
+            });
+
+            window.addEventListener("storeModeChanged", (e) => {
+                selectHomeStore(e.detail.mode);
+            });
+        });
+
+        window.addEventListener("categoriesLoaded", () => {
+            renderOutlets();
+            renderCategoryChips();
+            renderStoreCatalog();
+        });
+
+        window.addEventListener("productsLoaded", () => {
+            renderStoreCatalog();
+        });
+
+        function injectHeroIcons() {
+            if (!window.CampusIcons) return;
+            
+            const clockEl = document.getElementById("hero-metric-clock-icon");
+            const deliveryEl = document.getElementById("hero-metric-delivery-icon");
+            
+            if (clockEl) clockEl.innerHTML = window.CampusIcons.Clock(20, "text-[#D7F000]");
+            if (deliveryEl) deliveryEl.innerHTML = window.CampusIcons.Delivery(20, "text-[#D7F000]");
+
+            const flashIconEl = document.getElementById("switcher-flash-icon");
+            const canteenIconEl = document.getElementById("switcher-canteen-icon");
+
+            if (flashIconEl) flashIconEl.innerHTML = window.CampusIcons.Flash(16, "text-[#004D2B]");
+            if (canteenIconEl) canteenIconEl.innerHTML = window.CampusIcons.Outlet(16, "text-[#004D2B]");
+        }
+
+        function renderActiveOrderBanner() {
+            const container = document.getElementById("active-order-priority-container");
+            const activeOrders = window.appState.activeOrders || [];
+
+            if (activeOrders.length === 0) {
+                container.className = "hidden";
+                container.innerHTML = "";
+                return;
+            }
+
+            const latestOrder = activeOrders[0];
+            const status = latestOrder.order_status || "PLACED";
+            
+            let statusBadgeClass = "badge-placed";
+            let statusText = "Order Placed";
+            
+            if (status === "CONFIRMED") {
+                statusBadgeClass = "badge-confirmed";
+                statusText = "Confirmed";
+            } else if (status === "PREPARING") {
+                statusBadgeClass = "badge-preparing";
+                statusText = "Preparing";
+            } else if (status === "OUT_FOR_DELIVERY") {
+                statusBadgeClass = "badge-out_for_delivery";
+                statusText = "Out for Delivery";
+            }
+
+            container.className = "block campus-card p-4 border-l-4 border-l-[#004D2B] bg-white";
+            container.innerHTML = `
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-bold text-[#111713]">Active Order #${latestOrder.order_number || latestOrder._id}</span>
+                            <span class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full ${statusBadgeClass}">${statusText}</span>
+                        </div>
+                        <p class="text-xs text-[#526056] mt-0.5">
+                            ${latestOrder.section === 'canteen' ? 'Canteen Counter Pickup' : 'Hostel Room Delivery'} · Total: ₹${latestOrder.totalAmt}
+                        </p>
+                    </div>
+                    <a href="dashboard.html?tab=orders" class="inline-flex items-center justify-center px-4 py-1.5 rounded-xl text-xs font-bold bg-[#FAF9F3] border border-[#E8E7DF] hover:border-[#004D2B] transition text-[#111713]">
+                        View Details &rarr;
+                    </a>
+                </div>
+            `;
+        }
+
+        function renderOutlets() {
+            const grid = document.getElementById("campus-outlets-grid");
+            if (!grid) return;
+
+            grid.innerHTML = "";
+            const outlets = window.getCategoriesBySection('canteen');
+
+            if (outlets.length === 0) {
+                grid.innerHTML = `<p class="text-[#526056] text-xs py-2 col-span-full">No canteen outlets found.</p>`;
+                return;
+            }
+
+            outlets.forEach(out => {
+                const card = document.createElement("a");
+                card.href = "/canteen/index.html"; // Go to dedicated canteen page
+                card.className = "campus-card p-4 hover:border-[#004D2B] cursor-pointer transition flex flex-col justify-between group";
+                card.innerHTML = `
+                    <div class="mb-3 w-12 h-12 rounded-xl bg-[#F4F3EB] border border-[#E8E7DF] overflow-hidden flex items-center justify-center">
+                        ${out.image ? `<img src="${out.image}" class="w-full h-full object-cover">` : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>'}
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xs text-[#111713]">${out.name}</h4>
+                        <p class="text-[11px] text-[#526056] font-medium mt-1 group-hover:text-[#004D2B] transition">View Menu &rarr;</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderCategoryChips() {
+            const bar = document.getElementById("category-chips-bar");
+            if (!bar) return;
+
+            const categories = window.getCategoriesBySection(currentSelectedStore);
+            bar.innerHTML = "";
+
+            if (categories.length === 0) return;
+
+            // All chip
+            const allChip = document.createElement("button");
+            allChip.className = "px-3.5 py-1.5 rounded-full border border-[#004D2B] bg-[#E6F0EB] text-[#004D2B] font-bold text-xs whitespace-nowrap";
+            allChip.innerText = "All";
+            bar.appendChild(allChip);
+
+            categories.forEach(cat => {
+                const iconFunc = (cat.iconType && window.CampusIcons[cat.iconType]) ? window.CampusIcons[cat.iconType] : window.CampusIcons.Snack;
+                const iconSvg = iconFunc(14, "text-[#004D2B] inline-block mr-1.5");
+
+                const chip = document.createElement("a");
+                chip.href = `category.html?id=${cat._id}&name=${encodeURIComponent(cat.name)}&section=${currentSelectedStore}`;
+                chip.className = "px-3.5 py-1.5 rounded-full border border-[#E8E7DF] bg-white hover:border-[#004D2B] text-xs font-semibold text-[#111713] whitespace-nowrap transition flex items-center";
+                chip.innerHTML = `${iconSvg} <span>${escapeHtml(cat.name)}</span>`;
+                bar.appendChild(chip);
+            });
+        }
+
+        function selectHomeStore(mode) {
+            currentSelectedStore = mode;
+            window.appState.activeStore = mode;
+
+            const switcherFlash = document.getElementById("switcher-flash");
+            const switcherCanteen = document.getElementById("switcher-canteen");
+            const outletsSec = document.getElementById("campus-outlets-section");
+            const chipsSec = document.getElementById("category-chips-section");
+            const catalogSec = document.getElementById("store-catalog-feed");
+            const chipsTitle = document.getElementById("category-chips-title");
+
+            if (mode === "flash") {
+                if (switcherFlash) switcherFlash.className = "campus-card p-4 text-left transition border-2 border-[#004D2B] bg-white flex justify-between items-center group";
+                if (switcherCanteen) switcherCanteen.className = "campus-card p-4 text-left transition border-2 border-transparent bg-white hover:border-[#E8E7DF] flex justify-between items-center group";
+                
+                if (outletsSec) outletsSec.classList.add("hidden");
+                if (chipsSec) chipsSec.classList.remove("hidden");
+                if (catalogSec) catalogSec.classList.remove("hidden");
+                
+                if (chipsTitle) chipsTitle.innerText = "Browse Flash Essentials";
+                
+                renderCategoryChips();
+                renderStoreCatalog();
+            } else {
+                if (switcherCanteen) switcherCanteen.className = "campus-card p-4 text-left transition border-2 border-[#004D2B] bg-white flex justify-between items-center group";
+                if (switcherFlash) switcherFlash.className = "campus-card p-4 text-left transition border-2 border-transparent bg-white hover:border-[#E8E7DF] flex justify-between items-center group";
+                
+                if (outletsSec) outletsSec.classList.remove("hidden");
+                if (chipsSec) chipsSec.classList.add("hidden");
+                if (catalogSec) catalogSec.classList.add("hidden");
+                
+                renderOutlets();
+            }
+        }
+
+        function renderStoreCatalog() {
+            const container = document.getElementById("categories-products-container");
+            if (!container) return;
+            container.innerHTML = "";
+
+            const categories = window.getCategoriesBySection(currentSelectedStore);
+
+            if (categories.length === 0) {
+                container.innerHTML = `<p class="text-[#526056] text-xs py-8 text-center">No categories found in this section.</p>`;
+                return;
+            }
+
+            categories.forEach(cat => {
+                const allProds = window.getProductsBySection(currentSelectedStore);
+                const catProducts = allProds.filter(p => p.category_id === cat._id || (p.category && p.category.some(c => c._id === cat._id)));
+
+                const section = document.createElement("div");
+                section.className = "space-y-3";
+
+                let productCardsHtml = "";
+                if (catProducts.length > 0) {
+                    catProducts.forEach(prod => {
+                        productCardsHtml += window.renderProductCardHtml(prod);
+                    });
+                } else {
+                    productCardsHtml = `<p class="text-[#526056] text-xs py-2 col-span-full">No items currently available.</p>`;
+                }
+
+                section.innerHTML = `
+                    <div class="flex items-end justify-between border-b border-[#E8E7DF] pb-2">
+                        <div>
+                            <h3 class="font-extrabold text-base sm:text-lg text-[#111713]">${cat.name}</h3>
+                            <p class="text-xs text-[#526056]">${cat.subtitle || 'Everyday campus essentials.'}</p>
+                        </div>
+                        <a href="category.html?id=${cat._id}&name=${encodeURIComponent(cat.name)}&section=${currentSelectedStore}" 
+                            class="text-xs font-bold text-[#004D2B] hover:underline flex items-center gap-1">
+                            Shop all &rarr;
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5">
+                        ${productCardsHtml}
+                    </div>
+                `;
+                container.appendChild(section);
+            });
+        }
+
+        window.addEventListener("cartUpdated", () => {
+            renderStoreCatalog();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Concierge - Flight Booking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../shared/css/design-system.css">
+</head>
+
+<body class="bg-[#FAF9F3] text-[#111713] flex flex-col min-h-screen">
+
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Main Container -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-5xl">
+
+        <!-- Top Navigation / Breadcrumb -->
+        <div class="mb-6 flex items-center justify-between">
+            <a href="../student/index.html"
+                class="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#004D2B] transition">
+                <i class="fa-solid fa-arrow-left"></i> Back to Campus Home
+            </a>
+            <span
+                class="inline-flex items-center gap-1.5 bg-[#E6F0EB] text-[#004D2B] text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                ✈️ Campus Concierge
+            </span>
+        </div>
+
+        <!-- Banner Header (Forest Green Campus Hero Banner) -->
+        <div class="campus-hero-banner p-6 md:p-8 mb-8 relative overflow-hidden shadow-lg border border-[#004D2B] bg-[#003B21] rounded-2xl">
+            <div class="space-y-2 max-w-xl relative z-10">
+                <span class="inline-block bg-[#D7F000] text-[#111713] text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                    ✈️ STUDENT TRAVEL HUB
+                </span>
+                <h1 class="text-2xl md:text-3xl font-black tracking-tight text-white leading-tight">
+                    Heading Home? <span class="text-[#D7F000]">Find Flights.</span> 🌍
+                </h1>
+                <p class="text-xs md:text-sm text-[#E6F0EB] mt-1 leading-relaxed">
+                    Search and book domestic flights with exclusive campus student discounts. 
+                    Currently testing our primary route: <strong class="text-white">Kolkata (CCU) &harr; Bangalore (BLR)</strong>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Flight Search Widget -->
+        <div class="bg-white rounded-2xl border-2 border-[#E8E7DF] p-6 shadow-sm mb-10 relative z-20 -mt-12 mx-4 sm:mx-8">
+            <form id="flight-search-form" class="space-y-5">
+                
+                <!-- Trip Type Toggle -->
+                <div class="flex items-center gap-6">
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="radio" name="trip_type" value="one_way" class="hidden peer" checked onchange="toggleReturnDate()">
+                        <div class="w-5 h-5 rounded-full border-2 border-[#E8E7DF] peer-checked:border-[#004D2B] peer-checked:bg-[#004D2B] flex items-center justify-center transition">
+                            <div class="w-2 h-2 rounded-full bg-white opacity-0 peer-checked:opacity-100 transition"></div>
+                        </div>
+                        <span class="text-sm font-bold text-[#526056] peer-checked:text-[#111713]">One-Way</span>
+                    </label>
+                    
+                    <label class="flex items-center gap-2 cursor-pointer group">
+                        <input type="radio" name="trip_type" value="return" class="hidden peer" onchange="toggleReturnDate()">
+                        <div class="w-5 h-5 rounded-full border-2 border-[#E8E7DF] peer-checked:border-[#004D2B] peer-checked:bg-[#004D2B] flex items-center justify-center transition">
+                            <div class="w-2 h-2 rounded-full bg-white opacity-0 peer-checked:opacity-100 transition"></div>
+                        </div>
+                        <span class="text-sm font-bold text-[#526056] peer-checked:text-[#111713]">Return</span>
+                    </label>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- From -->
+                    <div class="col-span-1 md:col-span-1">
+                        <label class="block text-xs font-bold text-[#526056] mb-1.5 uppercase tracking-wider">From</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-plane-departure text-[#004D2B]"></i>
+                            </div>
+                            <select id="flight_from" required
+                                class="w-full bg-white border-2 border-[#E8E7DF] text-[#111713] font-bold text-sm rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-[#004D2B] transition appearance-none">
+                                <option value="CCU" selected>Kolkata (CCU)</option>
+                                <option value="BLR">Bangalore (BLR)</option>
+                                <option value="DEL">Delhi (DEL)</option>
+                                <option value="BOM">Mumbai (BOM)</option>
+                                <option value="HYD">Hyderabad (HYD)</option>
+                                <option value="MAA">Chennai (MAA)</option>
+                                <option value="PNQ">Pune (PNQ)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- To -->
+                    <div class="col-span-1 md:col-span-1">
+                        <label class="block text-xs font-bold text-[#526056] mb-1.5 uppercase tracking-wider">To</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-plane-arrival text-[#004D2B]"></i>
+                            </div>
+                            <select id="flight_to" required
+                                class="w-full bg-white border-2 border-[#E8E7DF] text-[#111713] font-bold text-sm rounded-xl pl-10 pr-4 py-3 focus:outline-none focus:border-[#004D2B] transition appearance-none">
+                                <option value="CCU">Kolkata (CCU)</option>
+                                <option value="BLR" selected>Bangalore (BLR)</option>
+                                <option value="DEL">Delhi (DEL)</option>
+                                <option value="BOM">Mumbai (BOM)</option>
+                                <option value="HYD">Hyderabad (HYD)</option>
+                                <option value="MAA">Chennai (MAA)</option>
+                                <option value="PNQ">Pune (PNQ)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Departure Date -->
+                    <div class="col-span-1 md:col-span-1">
+                        <label class="block text-xs font-bold text-[#526056] mb-1.5 uppercase tracking-wider">Departure</label>
+                        <input type="date" id="departure_date" required
+                            class="w-full bg-white border-2 border-[#E8E7DF] text-[#111713] font-bold text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-[#004D2B] transition">
+                    </div>
+
+                    <!-- Return Date (Hidden by default) -->
+                    <div class="col-span-1 md:col-span-1 opacity-50 transition-opacity duration-300" id="return_date_container">
+                        <label class="block text-xs font-bold text-[#526056] mb-1.5 uppercase tracking-wider">Return</label>
+                        <input type="date" id="return_date" disabled
+                            class="w-full bg-[#F4F3EB] border-2 border-[#E8E7DF] text-[#111713] font-bold text-sm rounded-xl px-4 py-3 focus:outline-none focus:border-[#004D2B] transition cursor-not-allowed">
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-2">
+                    <button type="submit" id="search-btn"
+                        class="bg-[#004D2B] hover:bg-[#003B21] text-white font-extrabold text-sm px-8 py-3.5 rounded-xl transition duration-200 flex items-center justify-center gap-2 shadow-sm">
+                        <span>Search Flights</span>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden flex flex-col items-center justify-center py-12">
+            <div class="w-12 h-12 border-4 border-[#E8E7DF] border-t-[#004D2B] rounded-full animate-spin mb-4"></div>
+            <p class="text-sm font-bold text-[#526056] animate-pulse">Searching over 400+ airlines for student fares...</p>
+        </div>
+
+        <!-- Search Results -->
+        <div id="search-results" class="hidden space-y-4 mb-12">
+            <h2 class="text-lg font-black text-[#111713] mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-plane text-[#004D2B]"></i> Flights from <span class="text-[#004D2B]">Kolkata</span> to <span class="text-[#004D2B]">Bangalore</span>
+            </h2>
+            
+            <div id="results-container" class="space-y-4">
+                <!-- Flights will be injected here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script src="../shared/js/icons.js"></script>
+    <script src="../js/app.js"></script>
+    <script>
+        // Set minimum dates for inputs
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('departure_date').min = today;
+            document.getElementById('departure_date').value = today;
+            document.getElementById('return_date').min = today;
+        });
+
+        function toggleReturnDate() {
+            const isReturn = document.querySelector('input[name="trip_type"]:checked').value === 'return';
+            const returnContainer = document.getElementById('return_date_container');
+            const returnInput = document.getElementById('return_date');
+
+            if (isReturn) {
+                returnContainer.classList.remove('opacity-50');
+                returnInput.disabled = false;
+                returnInput.classList.remove('bg-[#F4F3EB]', 'cursor-not-allowed');
+                returnInput.classList.add('bg-white');
+                returnInput.required = true;
+                
+                // Set return date min to departure date
+                const depDate = document.getElementById('departure_date').value;
+                if(depDate) returnInput.min = depDate;
+            } else {
+                returnContainer.classList.add('opacity-50');
+                returnInput.disabled = true;
+                returnInput.classList.add('bg-[#F4F3EB]', 'cursor-not-allowed');
+                returnInput.classList.remove('bg-white');
+                returnInput.required = false;
+                returnInput.value = '';
+            }
+        }
+
+        document.getElementById('departure_date').addEventListener('change', (e) => {
+            document.getElementById('return_date').min = e.target.value;
+        });
+
+        // Handle Search Form Submit
+        document.getElementById('flight-search-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const btn = document.getElementById('search-btn');
+            const originalBtnText = btn.innerHTML;
+            
+            // Get values
+            const isReturn = document.querySelector('input[name="trip_type"]:checked').value === 'return';
+            const type = isReturn ? 1 : 2;
+            const fromId = document.getElementById('flight_from').value;
+            const toId = document.getElementById('flight_to').value;
+            const depDate = document.getElementById('departure_date').value;
+            const retDate = document.getElementById('return_date').value;
+            
+            // UI State updates
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Searching...`;
+            document.getElementById('search-results').classList.add('hidden');
+            document.getElementById('loading-state').classList.remove('hidden');
+            document.getElementById('loading-state').classList.add('flex');
+            
+            try {
+                let url = `/api/flights/search?departure_id=${fromId}&arrival_id=${toId}&outbound_date=${depDate}&type=${type}`;
+                if (isReturn && retDate) {
+                    url += `&return_date=${retDate}`;
+                }
+                
+                const data = await window.apiFetch(url);
+                
+                document.getElementById('loading-state').classList.add('hidden');
+                document.getElementById('loading-state').classList.remove('flex');
+                document.getElementById('search-results').classList.remove('hidden');
+                btn.disabled = false;
+                btn.innerHTML = originalBtnText;
+                
+                if (!data || (!data.best_flights && !data.other_flights)) {
+                    document.getElementById('results-container').innerHTML = `
+                        <div class="bg-red-50 text-red-600 p-4 rounded-xl border border-red-200">
+                            Failed to fetch flights. Please try different dates or route.
+                        </div>
+                    `;
+                    return;
+                }
+                
+                renderRealFlights(data, isReturn, retDate, fromId, toId, depDate);
+                
+            } catch (error) {
+                console.error('Error fetching flights:', error);
+                document.getElementById('loading-state').classList.add('hidden');
+                document.getElementById('loading-state').classList.remove('flex');
+                btn.disabled = false;
+                btn.innerHTML = originalBtnText;
+                alert("Error connecting to server.");
+            }
+        });
+
+        function formatTime(timeStr) {
+            if (!timeStr) return "--:--";
+            // If it's already a time string like "17:00", we can format it to 12-hour or just return it.
+            // Let's format it nicely to 12-hour AM/PM if it's HH:MM
+            if (timeStr.includes(':')) {
+                let [hours, minutes] = timeStr.split(':');
+                hours = parseInt(hours, 10);
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                return `${hours.toString().padStart(2, '0')}:${minutes} ${ampm}`;
+            }
+            return timeStr;
+        }
+
+        function renderRealFlights(data, isReturn, retDate, fromId, toId, depDate) {
+            const container = document.getElementById('results-container');
+            container.innerHTML = ''; // Clear previous
+            
+            // Update title
+            const titleEl = document.querySelector('#search-results h2');
+            titleEl.innerHTML = `<i class="fa-solid fa-plane text-[#004D2B]"></i> Flights from <span class="text-[#004D2B]">${fromId}</span> to <span class="text-[#004D2B]">${toId}</span>`;
+
+            // Combine best and other flights (take up to 10)
+            const flights = [...(data.best_flights || []), ...(data.other_flights || [])].slice(0, 10);
+            
+            if (flights.length === 0) {
+                container.innerHTML = `<div class="p-6 bg-white border border-[#E8E7DF] rounded-xl text-center text-[#526056] font-bold">No flights found for this route on the selected date.</div>`;
+                return;
+            }
+
+            let html = '';
+            for(let flight of flights) {
+                // Handle different flight leg structures depending on return or one-way
+                const outboundLeg = flight.flights[0];
+                let airlineName = outboundLeg.airline || "Airline";
+                let flightNo = outboundLeg.flight_number || "Flight";
+                let logoUrl = outboundLeg.airline_logo || "";
+                
+                // If it's a round trip, Google Flights nests the legs slightly differently sometimes
+                // We'll extract the core outbound info
+                let depTime = formatTime(outboundLeg.departure_airport?.time);
+                let arrTime = formatTime(outboundLeg.arrival_airport?.time);
+                let dur = outboundLeg.duration ? `${Math.floor(outboundLeg.duration/60)}h ${outboundLeg.duration%60}m` : "--";
+                
+                let price = flight.price ? `₹${flight.price}` : "N/A";
+                let logoHtml = logoUrl ? `<img src="${logoUrl}" class="w-8 h-8 object-contain">` : `✈️`;
+
+                html += `
+                <div class="bg-white border-2 border-[#E8E7DF] rounded-2xl p-4 sm:p-5 hover:border-[#004D2B] transition-colors shadow-sm group">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        
+                        <!-- Airline Info -->
+                        <div class="flex items-center gap-3 min-w-[150px]">
+                            <div class="w-10 h-10 rounded-xl bg-[#F4F3EB] border border-[#E8E7DF] flex items-center justify-center text-lg overflow-hidden p-1">
+                                ${logoHtml}
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-[#111713]">${airlineName}</h4>
+                                <p class="text-xs text-[#526056] font-medium">${flightNo}</p>
+                            </div>
+                        </div>
+
+                        <!-- Flight Times -->
+                        <div class="flex items-center justify-between w-full sm:w-auto gap-4 sm:gap-8 flex-1">
+                            <div class="text-center sm:text-right">
+                                <div class="font-black text-lg text-[#111713]">${depTime}</div>
+                                <div class="text-xs font-bold text-[#526056]">${fromId}</div>
+                            </div>
+
+                            <div class="flex flex-col items-center flex-1 sm:flex-none sm:w-32">
+                                <span class="text-[10px] font-bold text-[#526056] bg-[#F4F3EB] px-2 py-0.5 rounded-full mb-1">
+                                    ${flight.layovers ? flight.layovers.length + ' Stops' : 'Non-stop'}
+                                </span>
+                                <div class="w-full h-px bg-[#E8E7DF] relative">
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#004D2B] text-[10px]">
+                                        <i class="fa-solid fa-plane"></i>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-bold text-[#526056] mt-1">${flight.total_duration ? `${Math.floor(flight.total_duration/60)}h ${flight.total_duration%60}m` : dur}</span>
+                            </div>
+
+                            <div class="text-center sm:text-left">
+                                <div class="font-black text-lg text-[#111713]">${arrTime}</div>
+                                <div class="text-xs font-bold text-[#526056]">${toId}</div>
+                            </div>
+                        </div>
+
+                        <!-- Price & Action -->
+                        <div class="flex flex-row sm:flex-col items-center justify-between sm:justify-center w-full sm:w-auto sm:border-l-2 border-dashed border-[#E8E7DF] sm:pl-6 pt-4 sm:pt-0 border-t-2 sm:border-t-0 mt-2 sm:mt-0">
+                            <div class="font-black text-xl text-[#004D2B] sm:mb-2">${price}</div>
+                            <button onclick="window.location.href='analyse.html?airline=${encodeURIComponent(airlineName)}&flightNo=${encodeURIComponent(flightNo)}&price=${flight.price}&from=${fromId}&to=${toId}&travelDate=${encodeURIComponent(depDate)}&mode=api'" class="bg-[#D7F000] text-[#111713] hover:bg-[#c2d800] font-extrabold text-xs px-5 py-2.5 rounded-xl transition duration-200 shadow-sm whitespace-nowrap">
+                                Analyse price &amp; book
+                            </button>
+                        </div>
+
+                    </div>
+                    
+                    ${isReturn && flight.flights.length > 1 ? `
+                    <div class="mt-4 pt-4 border-t border-[#E8E7DF] bg-[#F9FBE7] -mx-4 sm:-mx-5 -mb-4 sm:-mb-5 px-4 sm:px-5 pb-4 sm:pb-5 rounded-b-2xl">
+                        <div class="text-xs font-bold text-[#004D2B] mb-2"><i class="fa-solid fa-arrow-rotate-left mr-1"></i> Return Flight Bundle (Included)</div>
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center gap-2">
+                                <span class="w-6 h-6 rounded-md bg-white border border-[#E8E7DF] flex items-center justify-center text-xs overflow-hidden p-0.5">
+                                    ${flight.flights[flight.flights.length - 1].airline_logo ? `<img src="${flight.flights[flight.flights.length - 1].airline_logo}" class="w-full h-full object-contain">` : '✈️'}
+                                </span>
+                                <span class="font-bold text-[#111713]">${flight.flights[flight.flights.length - 1].airline} ${flight.flights[flight.flights.length - 1].flight_number}</span>
+                            </div>
+                            <div class="font-black">${formatTime(flight.flights[flight.flights.length - 1].departure_airport?.time)} &rarr; ${formatTime(flight.flights[flight.flights.length - 1].arrival_airport?.time)}</div>
+                            <div class="font-bold text-[#004D2B]">Bundle</div>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
