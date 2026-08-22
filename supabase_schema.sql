@@ -300,4 +300,34 @@ ON storage.objects FOR DELETE
 TO public 
 USING (bucket_id = 'printout');
 
+-- =======================================================
+-- MIGRATION: FLIGHT PRICE HISTORY (FLIGHTS MODULE)
+-- =======================================================
+CREATE TABLE IF NOT EXISTS flight_price_history (
+  id BIGSERIAL PRIMARY KEY,
+  flight_number TEXT NOT NULL,
+  airline TEXT,
+  departure_id TEXT NOT NULL,
+  arrival_id TEXT NOT NULL,
 
+  -- TWO date columns — this is the key architectural decision:
+  departure_date DATE NOT NULL,        -- When THIS SPECIFIC flight departs (e.g. Sep 30, Aug 30, Jul 30)
+  recorded_date  DATE NOT NULL,        -- When the price was OBSERVED (e.g. Sep 10 = 20 days before Sep 30)
+  days_before_departure INT,           -- departure_date - recorded_date (for trend comparison across months)
+
+  price INTEGER NOT NULL,
+  seats_available BOOLEAN DEFAULT TRUE,
+  source TEXT DEFAULT 'recorded',      -- 'recorded' = generated baseline, 'api' = live from SearchAPI
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+
+  -- Prevents: same observation for same flight on same departure date being stored twice
+  -- But ALLOWS: flight 6E 2222 on Sep 30 AND flight 6E 2222 on Aug 30 as separate rows
+  UNIQUE (flight_number, departure_id, arrival_id, departure_date, recorded_date)
+);
+
+-- Efficient lookup: all departure months of the same flight on a route
+CREATE INDEX IF NOT EXISTS idx_fph_flight_dep ON flight_price_history
+  (departure_id, arrival_id, flight_number, departure_date, recorded_date);
+
+-- Disable RLS so backend can read/write freely
+ALTER TABLE flight_price_history DISABLE ROW LEVEL SECURITY;
